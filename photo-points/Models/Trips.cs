@@ -7,5 +7,7 @@ namespace photo-points.Models
 {
     public class Trips
 {
+    public long tripID { get; set; }
+    public string tripName { get; set; }
 }
 }

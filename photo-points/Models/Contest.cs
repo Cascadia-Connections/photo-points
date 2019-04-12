@@ -7,5 +7,10 @@ namespace photo-points.Models
 {
     public class Contest
 {
+    public long contestID { get; set; }
+    public int phenologyScore { get; set; }
+    public int creativityScore { get; set; }
+    public int scienceSelieScore { get; set; }
+    public int overallScore { get; set; }
 }
 }
