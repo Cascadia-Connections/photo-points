@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace photo_points.Models
 {
-    public class FakeSubmissionRepository : SubmissionRepository
+    public class FakeSubmissionRepository : ISubmissionRepository
 {
         public IQueryable<Submission> Submissions => new List<Submission>
         {
