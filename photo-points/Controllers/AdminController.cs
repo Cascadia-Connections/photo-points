@@ -41,7 +41,7 @@ namespace photopoints.Controllers
         public IActionResult Update(long id)
         {
             User user = _pdc.Users.Single(u => u.UserId == id);
-            return View("WelcomAdmin", user);
+            return View("WelcomeAdmin", user);
         }
     }
 }
