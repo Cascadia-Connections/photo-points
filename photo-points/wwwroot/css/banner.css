@@ -1,0 +1,56 @@
+/*Body*/
+
+.top-banner{
+    background-color: white; 
+    padding: .8em;
+    margin: -0.5em;
+    
+}
+
+
+.logo{
+    margin: .5em; 
+    max-width: 239px; 
+    max-height: 85px; 
+}
+
+ .logout a{
+    
+     text-decoration: none;
+     background-color: #c7b683;
+     padding: 5px;
+/*     margin: 5px; */
+/*     margin-top: 10px;*/
+     
+     border-radius: 12.75%;
+     
+     
+}
+
+.banner {
+    background-color: #003947;
+    margin-top:0.5em;
+    padding: 2em;
+    margin-right: -0.5em;
+    margin-left: -0.5em;
+/*    height: 200px;*/
+    
+/*    margin-top: -2em;*/
+/*    min-width: 320px; */
+/*    margin: -10px;*/
+}
+
+header{
+    
+}
+.banner {
+    color: white;
+    text-align-last: center;
+}
+
+/*REsponsive */
+
+@media screen and (min-width: ){
+    
+    
+}
