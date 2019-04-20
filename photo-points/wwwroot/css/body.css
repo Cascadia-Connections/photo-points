@@ -6,26 +6,22 @@ body{
 }
 
 .admin-nav {
-    background-color:white;
-    padding:5px; 
+    /*background-color: #4c8c3e;*/
+    background-color: #9daeab; 
+    padding: 5px;
     text-decoration: none;
-    color: white;   
+    color: white;
+    margin: 5px 2.5em 3em 2.5em;
 }
 
 
-/*.menu-options{  
-
-padding-left: 1em;
-    padding-right: 1em;
-
-}*/
 
 
 /*    Administration Navigation    */
 
 
-.admin-nav li{
-    margin: 5px;
+.admin-nav button{
+    /*margin: 5px;*/
     padding: 10px;
     background-color: #4c8c3e;
     list-style-type: none;
@@ -34,16 +30,6 @@ padding-left: 1em;
 }
 
 
-.admin-nav {
-    margin: 5px 2.5em 3em 2.5em; 
-    display: flex;
-/*    float: right;*/
-/*    margin-right: 2em;*/
-/*        float:right;*/
-
-/*    display: flex;*/
-
-}
 
 /*tried the disply:flex; with @media screen // but it didnt work*/
 
@@ -55,9 +41,8 @@ padding-left: 1em;
 }
 
 .main-body{
-    display: flex;
     margin: 1em; 
-    padding: 3em; 
+    padding: 2em; 
 }
 
 
@@ -69,7 +54,7 @@ padding-left: 1em;
     border-style: solid;
     border-color: white; 
     padding: 0.5em;
-    
+    /*float:inherit;*/
 }
 
 .main-body{
@@ -82,22 +67,60 @@ padding-left: 1em;
 
 /*    color:green;*/
     color:red;
-    padding: 1em;
+    padding: .5em;
+
     /*position: clear;*/
 
 }
 
 
+/*RESPONSIVE DESIGN*/
 
-/*@media screen and(min-width: 400px){
+@media screen and (min-width: 400px){
     
+     .admin-nav{
+         float: right; 
+     }
 
-    }*/
+     .admin-content-first{
+         margin-top: 125px;
+     }
 
-    
-/*
-    @media screen and (min-width: 60em){
-    body{
-        font-size:1.3em; 
     }
-}*/
+
+@media screen and (min-width: 650px){
+
+    .admin-content-first{
+        margin-right: 225px;
+        margin-top: -1px;
+        margin-bottom: 15px; 
+        padding-bottom: 5px;
+    }
+
+    .pending-update{
+        margin-bottom: 2px;
+    }
+
+
+}
+
+
+@media screen and (min-width: 700px){
+
+    .admin-content-first {
+
+        margin-bottom: 50px;
+        padding-bottom: 50px;
+    }
+
+    .pending-update{
+        margin-bottom: 2px;
+    }
+
+    .footer{
+        margin-bottom: -20px;
+    }
+    
+}
+
+

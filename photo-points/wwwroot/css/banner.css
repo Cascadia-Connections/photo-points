@@ -14,17 +14,13 @@
     max-height: 85px; 
 }
 
- .logout a{
+ .logout input{
     
      text-decoration: none;
      background-color: #c7b683;
      padding: 5px;
-/*     margin: 5px; */
-/*     margin-top: 10px;*/
-     
      border-radius: 12.75%;
-     
-     
+        
 }
 
 .banner {
@@ -33,16 +29,10 @@
     padding: 2em;
     margin-right: -0.5em;
     margin-left: -0.5em;
-/*    height: 200px;*/
-    
-/*    margin-top: -2em;*/
-/*    min-width: 320px; */
-/*    margin: -10px;*/
+
 }
 
-header{
-    
-}
+
 .banner {
     color: white;
     text-align-last: center;
@@ -50,7 +40,7 @@ header{
 
 /*REsponsive */
 
-@media screen and (min-width: ){
+/*@media screen and (min-width: ){
     
     
-}
+}*/

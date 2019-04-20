@@ -7,9 +7,7 @@
     margin-bottom: -0.8em;
     margin-left: -0.5em;
     margin-right: -0.5em;
-/*    position: absolute;*/
-/*    bottom: 0;*/
-/*    margin:-10px; */
+
     
 }
 
@@ -35,23 +33,8 @@
 
 
 
-    .footer-content{
-/*       background-color: aqua;*/
-/*        margin: 0.5em;*/
-    }
 
-/*the flex responsive layout doesn't work -- the below code works once uncommented*/
 
-/*
-    .all-footer-content{
-            display:flex;
-        justify-content: space-between;      
-        }
-
-.footer-content{
-        width: calc(33.333333% - 0.5em);
-    }
-*/
 
 @media screen and (min-width: 700px){
     
