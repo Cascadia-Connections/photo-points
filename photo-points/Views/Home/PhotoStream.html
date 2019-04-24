@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Photo Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Administration can access Northcreek Forest data." />
+
+    <!--links to style sheets, and custom fonts-->
+    <link rel="stylesheet" href="../../wwwroot/css/style.css" type="text/css" media="all" />
+</head>
+
+<body>
+
+    <section class="top-banner">
+        <div class="logo">
+            <!--logo will go here -->
+            <a href="WelcomeAdmin.html"><img src="../../wwwroot/images/fncf-rgb-horizontal-logo_1.jpg" /></a>
+        </div>
+
+        <div class="logout">
+            <!--<a href="logout.html">Log out</a>-->
+            <input type="button" onclick="location.href = '/Logout.html';" value="Log Out"></input>
+            <!--no view for logot//currently this link goes NOWHERE-->
+        </div>
+    </section>
+
+    <header class="banner">
+        <div>
+            <h1>Welcome, &#91;Administrator&#93;</h1>
+        </div>
+    </header>
+
+
+    <section class="content">
+
+        <section class="admin-nav">
+            <nav class="menu-options">
+                <article class="menu-one">
+                    <div>
+                        <!--<li><a href="PhotoPoints.html">???</a></li>-->
+                        <button type="button" onclick="location.href='/PhotoPoints.html';" value="Go to PhotoPoints">PhotoPoints</button>
+                    </div>
+                </article>
+
+                <article class="menu-two">
+                    <div>
+                        <!--<li><a href="PendingPhotos.html">Pending Photos</a></li>-->
+                        <button type="button" onclick="location.href = '/PendingPhotos.html';" value="Pending Photos">Pending Photos</button>
+                    </div>
+                </article>
+
+                <article class="menu-one">
+                    <div>
+                        <!--<li><a href="ViewData.html">View PhotoPoint Data</a></li>-->
+                        <button type="button" onclick="location.href='/ViewData.html';" value="View PhotoPoint Data">View PhotoPoint Data</button>
+
+                    </div>
+                </article>
+            </nav>
+        </section>
+        <!-- this is an alert? that pops up when there are pending submissions.//or always there changing from red to green -->
+        <section class="main-body">
+
+            <!-- Card list goes here -->
+
+        </section>
+
+    </section>
+
+    <!--     footer-->
+    <footer class="footer-main">
+
+        <section class="all-footer-content">
+
+            <article class="footer-content">
+                <div class="footer-content-one">
+                    <h3>Administration information:</h3>
+                    <p>Contact administration </p>
+                    <p>Phone: </p>
+                    <p>Email: </p>
+                    <p>For technical support call: .</p>
+                </div>
+            </article>
+
+            <article class="footer-content">
+                <div class="footer-content-two">
+                    <p>
+                        <img src="../../wwwroot/images/Bothell-Kenmore-Chamber-logo-stacked.png" style="width: 100px; height: 100px" />
+                    </p>
+                </div>
+            </article>
+
+            <article class="footer-content">
+                <div class="footer-content-three">
+                    <h3>Friends of North Creek Forest Mission Statement:</h3>
+                    <p>To maintain and improve ecological function of North Creek Forest through Education, Stewardship, and Conservation in perpetuity.</p>
+                    <p>Friends of North Creek Forest is a 501(c)3 non-profit corporation. Donations of any amount are gratefully accepted and are tax deductible as allowed by law. EIN: 27-5439187.</p>
+                </div>
+            </article>
+        </section>
+    </footer>
+
+</body>
+</html>
