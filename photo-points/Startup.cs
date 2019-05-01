@@ -33,10 +33,8 @@ namespace photo_points
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options => 
-            options.UseSqlServer( Configuration["Data:PhotoPointSubmissions:ConnectionString"]));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<ISubmissionRepository, EFSubmissionRepository>();
+            services.AddTransient<IAdminServiceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +60,6 @@ namespace photo_points
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            SeedData.EnsurePopulated(app);
         }
     }
 }
