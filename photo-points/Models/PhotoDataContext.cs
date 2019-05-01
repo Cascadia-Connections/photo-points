@@ -27,6 +27,9 @@ namespace photo_points.Models
         //TODO: Update with your Database, User, and Password
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+           
+           // it will be done after we start using our data//
+
            if (Environment.GetEnvironmentVariable("") == "")
 
            optionsBuilder.UseSqlServer("Server=localhost,1433; Database=BitData;User=SA; Password=<YourStrong!Passw0rd>");
