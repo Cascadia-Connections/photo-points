@@ -9,14 +9,26 @@ using Microsoft.Extensions.DependencyInjection;
 namespace photo_points.Models
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class FakePhotoRepository : 
+
+
+
+        // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
+    public class FakeAdminRepository : IAdminServices
     {
+
+
+        private DateTime DateTime(int v)
+        {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { photo = 240, captureDate = 4/25/2019 },
-            new Capture { photo = 240, captureDate = 3/13/2019 },
-            new Capture { photo = 240, captureDate = 2/3/2019 }
+            new Capture { photo = 240, captureDate = DateTime (4/25/2019) },
+            new Capture { photo = 240, captureDate = DateTime (3/13/2019) },
+            new Capture { photo = 240, captureDate = DateTime(2/3/2019) }
         }.AsQueryable<Capture>();
 
+       
 
         public IQueryable<User> users => new List<User> {
             new User { firstName = "Sara", lastName = "Ansari" },
