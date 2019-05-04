@@ -1,20 +1,15 @@
-﻿
-@{
-    ViewData["Title"] = "View";
-}
-
-
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Photo Stream</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <meta name="description" content="Administration can access Northcreek Forest data." />
 
     <!--links to style sheets, and custom fonts-->
-    <link rel="stylesheet" href="../../wwwroot/css/style.css" type="text/css" media="all">
-    <!--
-    <link rel="stylesheet" href="../../wwwroot/css/typography.css" type="text/css" media="all">
-    <link rel="stylesheet" href="../../wwwroot/css/body.css" type="text/css" media="all">
-    <link rel="stylesheet" href="../../wwwroot/css/banner.css" type="text/css" media="all">
-    <link rel="stylesheet" href="../../wwwroot/css/footer.css" type="text/css" media="all">
-        -->
-
+    <link rel="stylesheet" href="../../wwwroot/css/style.css" type="text/css" media="all" />
+</head>
 
 <body>
 
@@ -26,14 +21,15 @@
 
         <div class="logout">
             <!--<a href="logout.html">Log out</a>-->
-            <input type="button" onclick="location.href = '/Logout.html';" value="Log Out"/>
+            <input type="button" onclick="location.href = '/Logout.html';" value="Log Out"></input>
             <!--no view for logot//currently this link goes NOWHERE-->
         </div>
     </section>
 
     <header class="banner">
         <div>
-            <h1>Welcome, &#91;Administrator&#93;</h1>
+            <!--<h1>Welcome, &#91;Administrator&#93;</h1>-->
+            <h1>Photo Stream</h1>
         </div>
     </header>
 
@@ -45,21 +41,21 @@
                 <article class="menu-one">
                     <div>
                         <!--<li><a href="PhotoPoints.html">???</a></li>-->
-                        <button type="button" onclick="location.href='/PhotoPoints.html';" value="Go to PhotoPoints">Photo Feed View</button>
+                        <button type="button" onclick="location.href='WelcomeAdmin.html';" value="Go to Home page">Home</button>
                     </div>
                 </article>
 
                 <article class="menu-two">
                     <div>
                         <!--<li><a href="PendingPhotos.html">Pending Photos</a></li>-->
-                        <button type="button" onclick="location.href = '/PendingPhotos.html';" value="Pending Photos">Pending Photos</button>
+                        <button type="button" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">Pending Photos</button>
                     </div>
                 </article>
 
                 <article class="menu-one">
                     <div>
                         <!--<li><a href="ViewData.html">View PhotoPoint Data</a></li>-->
-                        <button type="button" onclick="location.href='/ViewData.html';" value="View PhotoPoint Data">View PhotoPoint Data</button>
+                        <button type="button" onclick="location.href='ViewData.html';" value="View PhotoPoint Data">View PhotoPoint Data</button>
 
                     </div>
                 </article>
@@ -68,16 +64,7 @@
         <!-- this is an alert? that pops up when there are pending submissions.//or always there changing from red to green -->
         <section class="main-body">
 
-            <div class="pending-update">
-                <!--                <p><b>&#91;0&#93; pending submissions</b></p>-->
-                <p><b>&#91;8&#93; pending submissions</b></p>
-
-            </div>
-
-            <div class="admin-content-first">
-                <h2>Title</h2>
-                <p><i>Content for Admin search results.</i></p>
-            </div>
+            <!-- Card list goes here -->
 
         </section>
 
@@ -114,9 +101,7 @@
                 </div>
             </article>
         </section>
-
     </footer>
 
-
 </body>
-</html> 
+</html>
