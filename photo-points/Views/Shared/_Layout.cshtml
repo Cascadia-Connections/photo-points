@@ -26,12 +26,13 @@
 
         <section class="banner">
             <div>
-                <h1>Welcome, &#91;Administrator&#93;</h1>
+                <h1>Welcome, &#91;Administrator&#93;</h1> 
+                @*User.firstName ???*@
             </div>
         </section>
     </header>
 
-    <section class="admin-nav">
+    @*<section class="admin-nav">
         <nav class="menu-options">
             <article class="menu-one">
                 <div>
@@ -51,43 +52,54 @@
                 </div>
             </article>
         </nav>
-    </section>
+    </section>*@
 
     <section class="admin-nav">
         <nav class="menu-options">
             <article class="menu-one">
                 <div>
-                    <input type="button" value="PhotoStream" onclick="location.href='PhotoStream.html" />
+                    <input type="submit" value="Photo Stream" onclick="location.href='PhotoStream.html'" />
                     @*actionLink will create a text link*@
-                    @Html.ActionLink("Photo Stream", "PhotoStream")
+                    @*Html.ActionLink("Photo Stream", "PhotoStream")*@
                 </div>
             </article>
 
             <article class="menu-two">
                 <div>
-                    <input type="button" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">
-                    <a asp-action="PhotoStream" asp-route-id=""></a>
-                    @Html.ActionLink("Photo Pending", "Retrieve")
-
+                    <input type="submit" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">
+                    @*Html.ActionLink("Pending", "PhotoStream")*@
                 </div>
             </article>
 
             <article class="menu-one">
                 <div>
-                    <input type="button" onclick="location.href='ViewData.html';" value="View PhotoPoint Data">
+                    <input type="submit" onclick="'PhotoStream';" value="View PhotoPoint Data">
+                    @*<a asp-action="PhotoStream">dunno</a>*@
                 </div>
             </article>
         </nav>
     </section>
 
+    <section class="content">
+        <section class="main-body">
+            <div class="pending-update">
+                <p><b>&#91;8&#93; pending submissions</b></p>
+            </div>
+
+            <div class="admin-content-first">
+
+                @RenderBody()
+
+            </div>
+
+       
 
 
-    @RenderBody();
+        </section>
+    </section>
 
     <footer class="footer-main">
-
         <section class="all-footer-content">
-
             <article class="footer-content">
                 <div class="footer-content-one">
                     <h3>Administration information:</h3>
@@ -114,7 +126,6 @@
                 </div>
             </article>
         </section>
-
     </footer>
 
 </body>

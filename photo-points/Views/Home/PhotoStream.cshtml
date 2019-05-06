@@ -1,28 +1,19 @@
-﻿@model photopoints.Controllers.AdminController
+﻿@model photo_points.Controllers.AdminController
 @addTagHelper *,Microsfot.AspNetCOre.Mvc.TagHelpers
-
 @{
     Layout = "_Layout";
+    ViewBag.Title = "PhotoStream";
 }
 
 
+<h2>Photo Stream</h2>
+    <p><i>Card list goes here</i></p>
+    <form asp-action="PhotoStream" asp-controller="Home">
 
-<header class="banner">
     <div>
-        <!--<h1>Welcome, &#91;Administrator&#93;</h1>-->
-        <h1>Photo Stream</h1>
+        <input type="submit" value="PhotoStream" />
     </div>
-</header>
+    <!-- Card list goes here -->
 
-
-<section class="content">
-
-    <!-- this is an alert? that pops up when there are pending submissions.//or always there changing from red to green -->
-    <section class="main-body">
-        <p>adding fake content</p>
-        <!-- Card list goes here -->
-
-    </section>
-
-</section>
+</form>
 

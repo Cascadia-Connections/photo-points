@@ -15,13 +15,18 @@ namespace photo_points.Controllers
         //    return View();
         //}
 
-        public IActionResult WelcomeAdmin()
-        {
-            return View();
-        }
+        //public IActionResult WelcomeAdmin()
+        //{
+        //    return View();
+        //}
+
+        //public IActionResult PhotoStream()
+        //{
+        //    return View();
+        //}
 
 
-
+        //// //Below code is Default code that has been commented out to allow us to start from 'scratch'
         //public IActionResult About()
         //{
         //    ViewData["Message"] = "Your application description page.";
