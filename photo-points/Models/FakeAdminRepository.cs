@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using photo_points.Models;
 
 namespace photo_points.Models
 {
@@ -13,7 +14,7 @@ namespace photo_points.Models
 
 
         // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
-    public class FakeAdminRepository : IAdminServices
+    public class FakeAdminRepository : IAdminServiceRepository
     {
 
 
@@ -35,5 +36,11 @@ namespace photo_points.Models
             new User { firstName = "Sim", lastName = "Ruble" },
             new User { firstName = "Willie", lastName = "Weber" }
         }.AsQueryable<User>();
+
+        public IQueryable<Capture> Captures => throw new NotImplementedException();
+
+        public IQueryable<Data> Datas => throw new NotImplementedException();
+
+        public IQueryable<PhotoPoint> PhotoPoints => throw new NotImplementedException();
     }
 }
