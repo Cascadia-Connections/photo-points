@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\PhotoStream.cshtml" />
-    <None Include="Views\Home\WelcomeAdmin.cshtml" />
+    <None Include="Views\Admin\PhotoStream.cshtml" />
+    <None Include="Views\Admin\WelcomeAdmin.cshtml" />
     <None Include="wwwroot\PhotoStream.html" />
     <None Include="wwwroot\WelcomeAdmin.html" />
   </ItemGroup>

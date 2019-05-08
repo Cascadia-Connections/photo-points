@@ -58,7 +58,7 @@ namespace photo_points
                 routes.MapRoute(
                     name: "default",
                     //template: "{controller=Home}/{action=Index}/{id?}");
-                    template: "{controller=Home}/{action=WelcomeAdmin}/{id?}");
+                    template: "{controller=Admin}/{action=WelcomeAdmin}/{id?}");
 
         });
         }
