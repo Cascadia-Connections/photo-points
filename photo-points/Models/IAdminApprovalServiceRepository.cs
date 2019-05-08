@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace photo_points.Models
 {
-    public interface IAdminServiceRepository
+    public interface IAdminApprovalServiceRepository
 {
         IQueryable<Capture> Captures { get; }
         IQueryable<Data> Datas { get; }
