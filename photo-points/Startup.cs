@@ -34,7 +34,7 @@ namespace photo_points
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IAdminApprovalServiceRepository, FakeAdminRepository>();
+            services.AddTransient<IAdminReviewServicesRepository, FakeAdminRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
