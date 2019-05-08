@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using photo_points.Controllers;
+using photo_points.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace photo_points
 {
@@ -32,8 +33,8 @@ namespace photo_points
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IAdminServiceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,10 +58,8 @@ namespace photo_points
             {
                 routes.MapRoute(
                     name: "default",
-                    //template: "{controller=Home}/{action=Index}/{id?}");
-                    template: "{controller=Admin}/{action=WelcomeAdmin}/{id?}");
-
-        });
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

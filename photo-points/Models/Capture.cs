@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,9 @@ namespace photo_points.Models
     public DateTime captureDate { get; set; }
     public long photoPointID { get; set; }
     public long userID { get; set; }
+    public User user { get; set; }
+    public PhotoPoint PhotoPoint { get; set; }
+
 
     public ICollection<Data> ppData { get; set; }
 

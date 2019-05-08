@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using photo_points.Models;
 
 namespace photo_points.Models
 {
@@ -8,7 +13,7 @@ namespace photo_points.Models
         public PhotoDataContext(DbContextOptions<PhotoDataContext> options)
         : base(options)
         {
-            Database.EnsureCreated();
+           // Database.EnsureCreated();
         }
 
         //Access to Collections representing DB tables
@@ -22,9 +27,14 @@ namespace photo_points.Models
         //TODO: Update with your Database, User, and Password
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost,1433; Database=BitData;User=SA; Password=<YourStrong!Passw0rd>");
+           
+           // it will be done after we start using our data//
+
+           if (Environment.GetEnvironmentVariable("") == "")
+
+           optionsBuilder.UseSqlServer("Server=localhost,1433; Database=BitData;User=SA; Password=<YourStrong!Passw0rd>");
         }
     }
-
+      
 
 }
