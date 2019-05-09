@@ -7,21 +7,43 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
 using photo_points.Controllers;
-//using photo_points.ViewModels;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace photopoints.Controllers
+namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
 
 
-    
+        //private PhotoDataContext _pdc;
+
+        //public AdminController(PhotoDataContext pdContext)
+
+        //{
+        //    _pdc = pdContext;
+        //}
+
+
+
         // GET: /<controller>/
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult WelcomeAdmin()
         {
+            if (ModelState.IsValid)
+            {
+                return View("WelcomeAdmin");
+            }
             return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult PhotoStream()
+        {
+
+            return View("PhotoStream");
         }
 
 
