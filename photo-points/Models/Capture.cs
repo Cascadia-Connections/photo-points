@@ -11,6 +11,7 @@ namespace photo_points.Models
     public long captureID { get; set; }
     public byte photo { get; set; }
     public DateTime captureDate { get; set; }
+    public bool approved { get; set; }
     
     public ICollection<Data> data { get; set; }
     public ICollection<Tag> tags {get; set; }
