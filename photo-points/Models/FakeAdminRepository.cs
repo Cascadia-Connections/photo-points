@@ -14,7 +14,7 @@ namespace photo_points.Models
 
 
         // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
-    public class FakeAdminRepository : IAdminServiceRepository
+    public class FakeAdminRepository : IAdminReviewServiceRepository
     {
 
 
@@ -24,9 +24,9 @@ namespace photo_points.Models
         }
 
         public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { photo = 240, captureDate = DateTime (4/25/2019) },
-            new Capture { photo = 240, captureDate = DateTime (3/13/2019) },
-            new Capture { photo = 240, captureDate = DateTime(2/3/2019) }
+            new Capture { photo = 240, captureDate = DateTime (4/25/2019) ,Approved=true },
+            new Capture { photo = 240, captureDate = DateTime (3/13/2019) ,Approved=false},
+            new Capture { photo = 240, captureDate = DateTime(2/3/2019) ,Approved=true}
         }.AsQueryable<Capture>();
 
        

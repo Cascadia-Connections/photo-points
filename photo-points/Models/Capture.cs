@@ -13,8 +13,8 @@ namespace photo_points.Models
     public DateTime captureDate { get; set; }
     public long photoPointID { get; set; }
     public long userID { get; set; }
-
-    public ICollection<Data> ppData { get; set; }
+        public bool Approved { get; set; }
+        public ICollection<Data> ppData { get; set; }
 
 }
 }
