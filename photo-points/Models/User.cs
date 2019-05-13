@@ -12,6 +12,7 @@ namespace photo_points.Models
     public string lastName { get; set; }
 
     public ICollection<Capture> captures { get; set; }
+    public ICollection<Tag> tags { get; set; }
 
 }
 }

@@ -8,9 +8,11 @@ namespace photo_points.Models
     public class Data
 {
     public long dataID { get; set; }
-    public long captureID { get; set; }
     public string type { get; set; }
     public string value { get; set; }
+    public string comment { get; set; }
+    
+
     public Capture capture { get; set; }
 
 

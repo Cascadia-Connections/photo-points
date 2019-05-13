@@ -11,13 +11,10 @@ namespace photo_points.Models
     public long captureID { get; set; }
     public byte photo { get; set; }
     public DateTime captureDate { get; set; }
-    public long photoPointID { get; set; }
-    public long userID { get; set; }
+    
+    public ICollection<Data> data { get; set; }
+    public ICollection<Tag> tags {get; set; }
     public User user { get; set; }
     public PhotoPoint PhotoPoint { get; set; }
-
-
-    public ICollection<Data> ppData { get; set; }
-
 }
 }
