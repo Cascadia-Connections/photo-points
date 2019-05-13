@@ -34,7 +34,8 @@ namespace photo_points
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IAdminServiceRepository>();
+            //services.AddTransient<IAdminServiceRepository>();
+            // // uncomment above line
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +59,7 @@ namespace photo_points
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Admin}/{action=WelcomeAdmin}/{id?}");
             });
         }
     }

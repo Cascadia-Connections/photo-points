@@ -50,14 +50,17 @@ body{
 }
 
 .main-body{
-    margin: 2em; 
-    padding: 2em; 
+    /*margin: 2em; 
+    padding: 2em;*/ 
 }
 
 
 
 /*'Title' Administrative view on Landing Page*/
 
+.content{
+    margin-bottom: 100px;
+}
 .admin-content-first{
     background-color: #9daeab;
     border-style: solid;

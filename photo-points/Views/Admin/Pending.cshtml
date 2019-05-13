@@ -1,0 +1,26 @@
+﻿@model photo_points.Controllers.AdminController
+@addTagHelper *,Microsfot.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Pending";
+}
+
+
+<h2>Photo Stream</h2>
+<p><i>Card list goes here</i></p>
+
+<form asp-action="Pending" asp-controller="Admin">
+
+    <!-- Card list goes here -->
+
+    <div>
+        <input type="submit" value="Pending" />
+    </div>
+
+    <div>
+        <input type="search" value="Pending" />
+    </div>
+
+
+</form>
+

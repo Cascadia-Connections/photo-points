@@ -1,0 +1,26 @@
+﻿@model photo_points.Models.User
+@addTagHelper *,Microsfot.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "newView";
+}
+
+<!Doctype html>
+<html>
+<head>
+</head>
+<body>
+    <header>
+        <h2>Test View</h2>
+    </header>
+
+    <form>
+        <label asp-for="firstName">Your Name</label>
+        <input asp-for="firstName" />
+    </form>
+
+
+</body>
+
+</html>
+
