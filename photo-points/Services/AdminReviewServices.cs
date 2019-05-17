@@ -10,6 +10,7 @@ namespace photo_points.Services
     public class AdminReviewServices : IAdminReviewServices
     {
 
+
         public Task approve(long captureID, byte photo, DateTime captureDate, bool Approved)
         {
             return Task.CompletedTask;
