@@ -10,14 +10,25 @@ namespace photo_points.Services
     public class AdminReviewServices : IAdminReviewServices
     {
 
-      // private readonly IAdminReviewServiceRepository _adminRepo;
-      private IAdminReviewServiceRepository _adminRipo;
-
-        public AdminReviewServices(IAdminReviewServiceRepository adminRepo)
+        public Task approve(long captureID, byte photo, DateTime captureDate, bool Approved)
         {
-            _adminRipo = adminRepo;
+            return Task.CompletedTask;
         }
 
+        // private readonly IAdminReviewServiceRepository _adminRepo;
+        private IAdminReviewServiceRepository _fakeAdminRepo;
+
+        public AdminReviewServices(IAdminReviewServiceRepository fakeAdminRepo)
+        {
+            _fakeAdminRepo = fakeAdminRepo;
+        }
+
+
+
+        //public object approve()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
    

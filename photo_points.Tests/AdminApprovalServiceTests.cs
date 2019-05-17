@@ -8,21 +8,22 @@ namespace photo_points.Tests
     public class AdminApprovalServiceTests
     {
 
-        //private Mock<IAdminReviewServices> adminRepo;
 
         private AdminReviewServices Subject()
         {
-            //adminRepo = new Mock<IAdminReviewServices>();
+            var fakeAdminRepo = new FakeAdminRepository();
 
-            //return new AdminReviewServices(adminRepo.Object);
+            return new AdminReviewServices(fakeAdminRepo);
         }
 
         [Fact]
-        public void IsAdminApproval_Valid()
+        public void IsAdminApproval_Valid(long captureID, byte photo, DateTime captureDate, bool Approved)
         {
 
-            // var service = Subject();
-            //  var isValid = service.IsAdminApproval(1, new { approval = false });
+          var service = Subject();
+          var isValid = service.approve(captureID, photo, captureDate, Approved);
+          Assert.True(Approved);
+
 
         }
 
