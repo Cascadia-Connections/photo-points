@@ -7,9 +7,8 @@ using photo_points.Models;
 namespace photo_points.Services
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class AdminReviewServices : IAdminReviewService
+    public class AdminReviewServices : IAdminReviewServices
     {
-
 
         public bool approve(long captureID, byte photo, DateTime captureDate, bool Approved)
         {
