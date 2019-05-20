@@ -23,7 +23,7 @@ namespace photo_points.Tests
 
           var service = Subject();
           var isValid = service.approve(2);
-          Assert.Equal(isValid,actual);
+          Assert.Equal(isValid,false);
 
 
         }
