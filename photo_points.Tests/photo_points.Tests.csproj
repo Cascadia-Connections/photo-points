@@ -16,7 +16,6 @@
     <ItemGroup>
 <ProjectReference Include="..\photo_points\photo_points.csproj" />
 
-<ProjectReference Include="..\photo_points\photo_points\bin\Debug\netcoreapp2.1\.csproj" />
 
 </ItemGroup>
 
