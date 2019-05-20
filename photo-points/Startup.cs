@@ -39,7 +39,7 @@ namespace photo_points
 
             services.AddTransient<FakeAdminRepository>();
 
-            services.AddTransient<IAdminReviewServices, AdminReviewServices>();
+            services.AddTransient<IAdminReviewService, AdminReviewServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,13 +7,13 @@ using photo_points.Models;
 namespace photo_points.Services
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class AdminReviewServices : IAdminReviewServices
+    public class AdminReviewServices : IAdminReviewService
     {
 
 
-        public Task approve(long captureID, byte photo, DateTime captureDate, bool Approved)
+        public bool approve(long captureID, byte photo, DateTime captureDate, bool Approved)
         {
-            return Task.CompletedTask;
+            return true;
         }
 
         // private readonly IAdminReviewServiceRepository _adminRepo;
