@@ -1,0 +1,19 @@
+.card-back {
+    position: fixed;
+    height: 500px;
+    width: 1000px;
+    background-color: aliceblue;
+}
+
+.mini-image {
+    position: fixed;
+    height: 250px;
+    width: 250px;
+    background-color: lightgrey;
+    margin: 20px;
+}
+
+.ppname {
+    position: absolute;
+    left: auto;
+}

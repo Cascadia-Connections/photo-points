@@ -20,16 +20,25 @@ body{
 /*    Administration Navigation    */
 
 
-.admin-nav button{
+.admin-nav button {
     /*margin: 5px;*/
     padding: 10px;
     background-color: #4c8c3e;
     list-style-type: none;
     text-align: center;
     font-size: 15px;
+    width: 100%;
 }
 
-
+    .admin-nav input {
+        /*margin: 5px;*/
+        padding: 10px;
+        background-color: #4c8c3e;
+        list-style-type: none;
+        text-align: center;
+        font-size: 15px;
+        width: 100%;
+    }
 
 /*tried the disply:flex; with @media screen // but it didnt work*/
 
@@ -41,7 +50,7 @@ body{
 }
 
 .main-body{
-    margin: 1em; 
+    margin: 2em; 
     padding: 2em; 
 }
 
@@ -54,7 +63,6 @@ body{
     border-style: solid;
     border-color: white; 
     padding: 0.5em;
-    /*float:inherit;*/
 }
 
 .main-body{
@@ -66,7 +74,7 @@ body{
 .pending-update{
 
 /*    color:green;*/
-    color:red;
+    color:darkred;
     padding: .5em;
 
     /*position: clear;*/
