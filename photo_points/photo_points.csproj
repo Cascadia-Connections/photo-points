@@ -5,21 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\PhotoStream.cshtml" />
-    <Content Remove="Views\Home\WelcomeAdmin.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Admin\PhotoStream.cshtml" />
-    <None Include="Views\Admin\WelcomeAdmin.cshtml" />
-    <None Include="wwwroot\PhotoStream.html" />
-    <None Include="wwwroot\WelcomeAdmin.html" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
+  
+  
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>

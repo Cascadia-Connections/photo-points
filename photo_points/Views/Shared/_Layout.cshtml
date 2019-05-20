@@ -3,130 +3,72 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewBag.Title - photo_points</title>
-    <link rel="stylesheet" href="~/css/style.css" />
-    <link rel="stylesheet" href="~/images" />
+    <title>@ViewData["Title"] - photo_points</title>
 
-    @*<link rel="stylesheet" href="/css/style.css" />*@
-    @*<link rel="stylesheet" href="css/style.css" />*@
-
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
 </head>
-
 <body>
-    <header>
-        <section class="top-banner">
-            <div class="logo">
-                <a href="WelcomeAdmin.html"><img src="/images/fncf-rgb-horizontal-logo_1.jpg" alt="Northcreek Forest" /></a>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">photo_points</a>
             </div>
-
-            <div class="logout">
-                <input type="button" onclick="location.href = '/Logout.html';" value="Log Out">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section class="banner">
-            <div>
-                <h1>Welcome, &#91;Administrator&#93;</h1> 
-                @*User.firstName ???*@
-            </div>
-        </section>
-    </header>
+    <partial name="_CookieConsentPartial" />
 
-    @*<section class="admin-nav">
-        <nav class="menu-options">
-            <article class="menu-one">
-                <div>
-                    <button type="button" onclick="location.href='PhotoStream.cshtml';" value="Go to Photo Stream">Photo Stream</button>
-                </div>
-            </article>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2019 - photo_points</p>
+        </footer>
+    </div>
 
-            <article class="menu-two">
-                <div>
-                    <button type="button" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">Pending Photos</button>
-                </div>
-            </article>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
 
-            <article class="menu-one">
-                <div>
-                    <button type="button" onclick="location.href='ViewData.html';" value="View PhotoPoint Data">View PhotoPoint Data</button>
-                </div>
-            </article>
-        </nav>
-    </section>*@
-
-    <section class="admin-nav">
-        <nav class="menu-options">
-            <article class="menu-one">
-                <div>
-                    <input type="submit" value="Photo Stream" onclick="location.href='PhotoStream.html'" />
-                    @*actionLink will create a text link*@
-                    @*Html.ActionLink("Photo Stream", "PhotoStream")*@
-                </div>
-            </article>
-
-            <article class="menu-two">
-                <div>
-                    <input type="submit" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">
-                    @*Html.ActionLink("Pending", "PhotoStream")*@
-                </div>
-            </article>
-
-            <article class="menu-one">
-                <div>
-                    <input type="submit" onclick="'PhotoStream';" value="View PhotoPoint Data">
-                    @*<a asp-action="PhotoStream">dunno</a>*@
-                </div>
-            </article>
-        </nav>
-    </section>
-
-    <section class="content">
-        <section class="main-body">
-            <div class="pending-update">
-                <p><b>&#91;8&#93; pending submissions</b></p>
-            </div>
-
-            <div class="admin-content-first">
-
-                @RenderBody()
-
-            </div>
-
-       
-
-
-        </section>
-    </section>
-
-    <footer class="footer-main">
-        <section class="all-footer-content">
-            <article class="footer-content">
-                <div class="footer-content-one">
-                    <h3>Administration information:</h3>
-                    <p>Contact administration </p>
-                    <p>Phone: </p>
-                    <p>Email: </p>
-                    <p>For technical support call: .</p>
-                </div>
-            </article>
-
-            <article class="footer-content">
-                <div class="footer-content-two">
-                    <p>
-                        <img src="/images/Bothell-Kenmore-Chamber-logo-stacked.png" alt="Bothell Kenmore Chamber" style="width: 100px; height: 100px" />
-                    </p>
-                </div>
-            </article>
-
-            <article class="footer-content">
-                <div class="footer-content-three">
-                    <h3>Friends of North Creek Forest Mission Statement:</h3>
-                    <p>To maintain and improve ecological function of North Creek Forest through Education, Stewardship, and Conservation in perpetuity.</p>
-                    <p>Friends of North Creek Forest is a 501(c)3 non-profit corporation. Donations of any amount are gratefully accepted and are tax deductible as allowed by law. EIN: 27-5439187.</p>
-                </div>
-            </article>
-        </section>
-    </footer>
-
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
