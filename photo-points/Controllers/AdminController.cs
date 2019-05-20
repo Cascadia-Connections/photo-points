@@ -24,7 +24,7 @@ namespace photo_points.Controllers
         {
             _pdc = pdContext;
         }
-
+        // // uncomment above before submission
 
 
         // GET: /<controller>/
@@ -48,12 +48,5 @@ namespace photo_points.Controllers
 
 
 
-
-        [HttpGet]
-        public IActionResult Update(long id)
-        {
-            User user = _pdc.Users.Single(u => u.UserId == id);
-            return View("WelcomeAdmin", user);
-        }
     }
 }

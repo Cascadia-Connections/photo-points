@@ -32,49 +32,26 @@
         </section>
     </header>
 
-    @*<section class="admin-nav">
-        <nav class="menu-options">
-            <article class="menu-one">
-                <div>
-                    <button type="button" onclick="location.href='PhotoStream.cshtml';" value="Go to Photo Stream">Photo Stream</button>
-                </div>
-            </article>
-
-            <article class="menu-two">
-                <div>
-                    <button type="button" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">Pending Photos</button>
-                </div>
-            </article>
-
-            <article class="menu-one">
-                <div>
-                    <button type="button" onclick="location.href='ViewData.html';" value="View PhotoPoint Data">View PhotoPoint Data</button>
-                </div>
-            </article>
-        </nav>
-    </section>*@
-
     <section class="admin-nav">
         <nav class="menu-options">
             <article class="menu-one">
                 <div>
-                    <input type="submit" value="Photo Stream" onclick="location.href='PhotoStream.html'" />
-                    @*actionLink will create a text link*@
-                    @*Html.ActionLink("Photo Stream", "PhotoStream")*@
+
+                    @Html.ActionLink("Photo Stream", "PhotoStream")
                 </div>
             </article>
 
             <article class="menu-two">
                 <div>
-                    <input type="submit" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">
-                    @*Html.ActionLink("Pending", "PhotoStream")*@
+                    @Html.ActionLink("Pending", "Pending")
                 </div>
             </article>
 
-            <article class="menu-one">
+            <article class="menu-three">
                 <div>
                     <input type="submit" onclick="'PhotoStream';" value="View PhotoPoint Data">
-                    @*<a asp-action="PhotoStream">dunno</a>*@
+                    @Html.ActionLink("Edit Data", "newView")
+
                 </div>
             </article>
         </nav>

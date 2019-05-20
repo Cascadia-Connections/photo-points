@@ -10,5 +10,5 @@ namespace photo_points.Models
         IQueryable<Capture> Captures { get; }
         IQueryable<Data> Datas { get; }
         IQueryable<PhotoPoint> PhotoPoints { get; }
-}
+    }
 }
