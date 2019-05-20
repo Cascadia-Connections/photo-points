@@ -14,7 +14,7 @@ namespace photo_points.Models
 
 
         // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
-    public class FakeAdminRepository : IAdminReviewServices
+    public class FakeAdminReviewRepository : IAdminReviewRepository
     {
 
 
@@ -31,16 +31,26 @@ namespace photo_points.Models
 
        
 
-        public IQueryable<User> users => new List<User> {
-            new User { firstName = "Sara", lastName = "Ansari" },
-            new User { firstName = "Sim", lastName = "Ruble" },
-            new User { firstName = "Willie", lastName = "Weber" }
-        }.AsQueryable<User>();
+        //public IQueryable<User> users => new List<User> {
+        //    new User { firstName = "Sara", lastName = "Ansari" },
+        //    new User { firstName = "Sim", lastName = "Ruble" },
+        //    new User { firstName = "Willie", lastName = "Weber" }
+        //}.AsQueryable<User>();
 
-        public IQueryable<Capture> Captures => throw new NotImplementedException();
+        //public IQueryable<Capture> Captures => throw new NotImplementedException();
 
-        public IQueryable<Data> Datas => throw new NotImplementedException();
+        //public IQueryable<Data> Datas => throw new NotImplementedException();
 
-        public IQueryable<PhotoPoint> PhotoPoints => throw new NotImplementedException();
+        //public IQueryable<PhotoPoint> PhotoPoints => throw new NotImplementedException();
+
+        public IQueryable<Capture> GetCaptures()
+        {
+            return captures;
+        }
+
+        public Capture GetCapture(long id)
+        {
+            return captures.SingleOrDefault(r => r.captureID == id);
+        }
     }
 }
