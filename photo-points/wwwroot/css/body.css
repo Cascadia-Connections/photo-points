@@ -85,6 +85,12 @@ body{
 }
 
 
+/*Images content Pening Page*/
+.pendingpics {
+    width: 250px;
+    height: 250px;
+}
+
 /*RESPONSIVE DESIGN*/
 
 @media screen and (min-width: 400px){
