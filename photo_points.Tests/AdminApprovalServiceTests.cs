@@ -9,7 +9,7 @@ namespace photo_points.Tests
     {
 
 
-        private AdminReviewServices Subject()
+        private IAdminReviewServices Subject()
         {
             var fakeAdminRepo = new FakeAdminRepository();
 
