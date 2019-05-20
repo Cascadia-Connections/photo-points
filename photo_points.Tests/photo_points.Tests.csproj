@@ -13,14 +13,12 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
   
-    <ItemGroup>
-<ProjectReference Include="..\photo_points\photo_points.csproj" />
-
-
-</ItemGroup>
-
+    
   
 
 
 
+  <ItemGroup>
+    <ProjectReference Include="..\photo_points\photo_points.csproj" />
+  </ItemGroup>
 </Project>
