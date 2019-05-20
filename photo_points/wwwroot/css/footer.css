@@ -1,0 +1,53 @@
+/*     footer style sheet      */
+
+.footer-main{
+    background-color: white;
+/*    border-style: solid;*/
+    padding: 1.2em;
+    margin-bottom: -0.8em;
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+
+    
+}
+
+
+
+.footer-content-one{
+    text-align:center;
+    padding: .5em; 
+}
+
+ .footer-content-two{
+     text-align: center;
+         padding: .5em; 
+
+}
+
+
+
+.footer-content-three{
+    text-align:center;
+    padding: 0.5em; 
+}
+
+
+
+
+
+
+@media screen and (min-width: 700px){
+    
+        .all-footer-content{
+            display:flex;
+        justify-content: space-between;      
+        }
+
+.footer-content{
+        width: calc(33.333333% - 0.5em);
+    }
+        
+
+    
+}
+
