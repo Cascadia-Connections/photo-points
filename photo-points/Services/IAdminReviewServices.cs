@@ -7,7 +7,7 @@ namespace photo_points.Models
 {
     public interface IAdminReviewServices
 {
-        bool IsCaptureApproved(Capture capture, long CaptureId);
+        bool ApproveCapture(Capture capture, long CaptureId);
         IQueryable<Capture> GetAllCaptures();
         
         // IQueryable<Data> Datas { get; }

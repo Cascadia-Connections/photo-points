@@ -10,7 +10,7 @@ using photo_points.Models;
 namespace photo_points.Models
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-
+    // need to pull and merge issue-22 sara branch 
 
 
         // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
