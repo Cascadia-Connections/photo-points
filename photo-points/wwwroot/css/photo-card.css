@@ -40,3 +40,26 @@
 .card-sm-content h3{
     font-size:1.5em;
 }
+
+.circle {
+    height: 15px;
+    width: 15px;
+    background-color: orange;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 8px;
+    left: 45px;
+}
+
+.admin-buttons {
+    position: relative;
+    top: 140px;
+    left: 600px;
+}
+
+.admin-buttons button {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 10px;
+}

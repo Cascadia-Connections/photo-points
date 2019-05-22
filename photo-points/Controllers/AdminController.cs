@@ -17,15 +17,6 @@ namespace photopoints.Controllers
     {
 
 
-        private PhotoDataContext _pdc;
-
-        public AdminController(PhotoDataContext pdContext)
-
-        {
-            _pdc = pdContext;
-        }
-
-
 
         // GET: /<controller>/
         public IActionResult Index()
@@ -33,15 +24,10 @@ namespace photopoints.Controllers
             return View();
         }
 
-
-
-
-
-        [HttpGet]
-        public IActionResult Update(long id)
+        public IActionResult PhotoCard()
         {
-            User user = _pdc.Users.Single(u => u.UserId == id);
-            return View("WelcomeAdmin", user);
+            return View();
         }
+
     }
 }

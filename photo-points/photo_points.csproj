@@ -9,11 +9,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Remove="Views\Home\PhotoStream.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\PhotoStream.html" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
 </Project>

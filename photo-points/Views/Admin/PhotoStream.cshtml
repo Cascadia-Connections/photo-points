@@ -1,0 +1,10 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Welcome";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>PhotoStream</h2>
+
+<a asp-action="PhotoCard"
+asp-controller="Admin"></a>
