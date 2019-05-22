@@ -10,6 +10,7 @@ namespace photo_points.Models
 {
         bool approve(long CaptureId);
         IQueryable<Capture> GetAllCaptures();
+        IEnumerable<Capture> GetUnapprovedCaptures();
         
         // IQueryable<Data> Datas { get; }
         // IQueryable<PhotoPoint> PhotoPoints { get; }

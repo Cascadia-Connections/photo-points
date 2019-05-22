@@ -31,6 +31,11 @@ namespace photo_points.Services
             return _fakeAdminRepo.GetCaptures();
         }
 
+        public IEnumerable<Capture> GetUnnapprovedCaptures()
+        {
+            return _fakeAdminRepo.
+        }
+
         //public object approve()
         //{
         //    throw new NotImplementedException();
