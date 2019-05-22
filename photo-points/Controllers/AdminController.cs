@@ -17,9 +17,9 @@ namespace photo_points.Controllers
     {
 
 
-        private PhotoDataContext _pdc;
+        private IAdminReviewServices _pdc;
 
-        public AdminController(PhotoDataContext pdContext)
+        public AdminController(IAdminReviewServices pdContext)
 
         {
             _pdc = pdContext;
