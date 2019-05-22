@@ -2,25 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-
-namespace photo_points.Models
-{
-    public class AdminReviewServices
-    {
-        private IAdminReviewRepository _capturerepo;
-
-        public AdminReviewServices(IAdminReviewRepository capturerepo)
-        {
-            _capturerepo = capturerepo;
-        }
-
-        public IQueryable<Capture> GetAllCaptures()
-        {
-            return _capturerepo.GetCaptures();
-        }
-    }
-=======
 using photo_points.Models;
 
 namespace photo_points.Services
@@ -38,14 +19,17 @@ namespace photo_points.Services
         }
 
         // private readonly IAdminReviewServiceRepository _adminRepo;
-        private IAdminReviewServiceRepository _fakeAdminRepo;
+        private IAdminReviewRepository _fakeAdminRepo;
 
-        public AdminReviewServices(IAdminReviewServiceRepository fakeAdminRepo)
+        public AdminReviewServices(IAdminReviewRepository fakeAdminRepo)
         {
             _fakeAdminRepo = fakeAdminRepo;
         }
 
-
+        public IQueryable<Capture> GetAllCaptures()
+        {
+            return _fakeAdminRepo.GetCaptures();
+        }
 
         //public object approve()
         //{
@@ -54,5 +38,4 @@ namespace photo_points.Services
     }
 
    
->>>>>>> issue-22-sara
 }

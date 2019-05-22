@@ -10,7 +10,7 @@ using photo_points.Models;
 namespace photo_points.Models
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    // need to pull and merge issue-22 sara branch 
+
 
 
         // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
@@ -23,10 +23,11 @@ namespace photo_points.Models
             throw new NotImplementedException();
         }
 
+        // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { photo = 240, captureDate = DateTime (4/25/2019) },
-            new Capture { photo = 240, captureDate = DateTime (3/13/2019) },
-            new Capture { photo = 240, captureDate = DateTime(2/3/2019) }
+            new Capture { captureID= 1,photo = 240, captureDate = DateTime (4/25/2019) ,Approved=true },
+            new Capture { captureID=2,photo = 240, captureDate = DateTime (3/13/2019) ,Approved=false},
+            new Capture { captureID=3,photo = 240, captureDate = DateTime(2/3/2019) ,Approved=true}
         }.AsQueryable<Capture>();
 
        
