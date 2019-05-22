@@ -17,13 +17,13 @@ namespace photo_points.Controllers
     {
 
 
-        //private PhotoDataContext _pdc;
+        private PhotoDataContext _pdc;
 
-        //public AdminController(PhotoDataContext pdContext)
+        public AdminController(PhotoDataContext pdContext)
 
-        //{
-        //    _pdc = pdContext;
-        //}
+        {
+            _pdc = pdContext;
+        }
 
         ///UNComment above block of code before commit
 
