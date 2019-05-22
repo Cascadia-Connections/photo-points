@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
 using Microsoft.EntityFrameworkCore;
+using photo_points.Services;
 
 namespace photo_points
 {
@@ -34,7 +35,8 @@ namespace photo_points
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IAdminServiceRepository>();
+            services.AddTransient<IAdminReviewServices, AdminReviewServices>();
+            services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
