@@ -1,5 +1,5 @@
 ﻿@model photo_points.Controllers.AdminController
-@addTagHelper *,Microsfot.AspNetCOre.Mvc.TagHelpers
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_Layout";
     ViewBag.Title = "PhotoStream";
@@ -7,13 +7,14 @@
 
 
 <h2>Photo Stream</h2>
-    <p><i>Card list goes here</i></p>
-    <form asp-action="PhotoStream" asp-controller="Home">
+<p><i>Card list goes here</i></p>
+<form asp-action="PhotoStream" asp-controller="Home">
 
     <div>
         <input type="submit" value="PhotoStream" />
     </div>
     <!-- Card list goes here -->
+
 
 </form>
 

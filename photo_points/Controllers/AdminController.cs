@@ -17,14 +17,15 @@ namespace photo_points.Controllers
     {
 
 
-        //private PhotoDataContext _pdc;
+        private IAdminReviewServices _pdc;
 
-        //public AdminController(PhotoDataContext pdContext)
+        public AdminController(IAdminReviewServices pdContext)
 
-        //{
-        //    _pdc = pdContext;
-        //}
+        {
+            _pdc = pdContext;
+        }
 
+        ///UNComment above block of code before commit
 
 
         // GET: /<controller>/
@@ -47,7 +48,30 @@ namespace photo_points.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Pending()
+        {
+            return View("Pending");
+            //all the new submissions can be displayed
+            // //  if Capture approval is false. 
+            // // display the Capture image and Data. 
+
+        }
+
+        [HttpGet]
+        public IActionResult newView()
+        {
+            return View("newView");
+
+        }
 
 
+        // // // below can be deleted?
+        //[HttpGet]
+        //public IActionResult Update(long id)
+        //{
+        //    User user = _pdc.Users.Single(u => u.UserId == id);
+        //    return View("WelcomeAdmin", user);
+        //}
     }
 }

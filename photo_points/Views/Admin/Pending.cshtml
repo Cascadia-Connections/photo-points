@@ -1,0 +1,27 @@
+﻿@model photo_points.Controllers.AdminController
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Pending";
+}
+
+
+<h2>Pending Submission</h2>
+<p><i>Submissions waiting administration approval</i></p>
+
+<form asp-action="Pending" asp-controller="Admin">
+
+    <!-- Card list goes here -->
+
+
+
+    <img class="pendingpics" src="~/images/blackberry-flower-4070045_640.jpg" />
+    <img class="pendingpics" src="~/images/bleeding-hearts-55120_640.jpg" />
+    <img class="pendingpics" src="~/images/buttercup-4207047_640.jpg" />
+    <img class="pendingpics" src="~/images/fern-1105988_640.jpg" />
+    <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
+    <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />
+
+
+</form>
+
