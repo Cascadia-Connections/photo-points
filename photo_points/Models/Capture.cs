@@ -15,7 +15,7 @@ namespace photo_points.Models
     public long userID { get; set; }
     public User user { get; set; }
     public PhotoPoint PhotoPoint { get; set; }
-
+     public bool Approved { get; set; }
 
     public ICollection<Data> ppData { get; set; }
 
