@@ -31,16 +31,16 @@ namespace photo_points.Services
             return _fakeAdminRepo.GetCaptures();
         }
 
-        public IEnumerable<Capture> GetUnnapprovedCaptures()
+        public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return _fakeAdminRepo.GetCaptures();
+            return _fakeAdminRepo.GetAllUnapproved();
             ////Eric: is the line above correct? everything after the dot . was missing and I filled it in
         }
 
-        public IEnumerable<Capture> GetUnapprovedCaptures()
-        {
-            throw new NotImplementedException();
-        }
+        //public IEnumerable<Capture> GetUnapprovedCaptures()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         //public object approve()
         //{
