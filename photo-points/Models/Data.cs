@@ -11,8 +11,9 @@ namespace photo_points.Models
     public string type { get; set; }
     public string value { get; set; }
     public string comment { get; set; }
+    
 
-    public Capture Capture { get; set; }
+    public Capture capture { get; set; }
 
 
     ////Contest Rating
