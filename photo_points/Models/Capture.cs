@@ -9,6 +9,7 @@ namespace photo_points.Models
     public class Capture
 {
     public long captureID { get; set; }
+    [Required]
     public byte[] photo { get; set; }
     public DateTime captureDate { get; set; }
 
@@ -25,7 +26,9 @@ namespace photo_points.Models
     
     public ICollection<Data> data { get; set; }
     public ICollection<Tag> tags {get; set; }
+    [Required]
     public User user { get; set; }
+    [Required]
     public PhotoPoint PhotoPoint { get; set; } 
 }
 }
