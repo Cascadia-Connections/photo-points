@@ -1,6 +1,7 @@
 using System;
 using photo_points;
 using photo_points.Models;
+using photo_points.Repositories;
 using photo_points.Services;
 using Xunit;
 

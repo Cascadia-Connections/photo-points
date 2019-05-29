@@ -13,9 +13,10 @@ namespace photo_points.Services
         
         public bool approve(long captureID)
         {
-        // this will be uncomment after Eric pull my branch
-            //  new Capture capt =_fakeAdminRepo.GetCapture(captureID);
-          
+            // this will be uncomment after Eric pull my branch
+            //Capture capt = _fakeAdminRepo.GetCapture(captureID);
+            //capt.approved = true;
+
             return true;
         }
 
