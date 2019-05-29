@@ -12,8 +12,5 @@ namespace photo_points.Services
         void ApproveOrReject(long CaptureId, bool choice);
         IEnumerable<Capture> GetUnapprovedCaptures();
         IEnumerable<Capture> GetApprovedCaptures();
-
-        // IQueryable<Data> Datas { get; }
-        // IQueryable<PhotoPoint> PhotoPoints { get; }
     }
 }

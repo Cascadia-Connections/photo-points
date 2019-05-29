@@ -9,21 +9,14 @@ using photo_points.Models;
 
 namespace photo_points.Repositories
 {
-    // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
 
-
-
-        // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
     public class FakeAdminReviewRepository : IAdminReviewRepository
     {
-
-
         private DateTime DateTime(int v)
         {
             throw new NotImplementedException();
         }
 
-        // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => new List<Capture> {
             new Capture { captureID= 1,photo = 240, captureDate = DateTime (4/25/2019) ,approved=true },
             new Capture { captureID=2,photo = 240, captureDate = DateTime (3/13/2019) ,approved=false},
