@@ -9,7 +9,9 @@ namespace photo_points.Models
     public class Capture
 {
     public long captureID { get; set; }
+    [Display(Name = "Upload Photo")]
     [Required]
+    [DataType(DataType.ImageUrl)]
     public byte[] photo { get; set; }
     public DateTime captureDate { get; set; }
 
