@@ -10,7 +10,7 @@ namespace photo_points.Models
 {
     public long captureID { get; set; }
     [Display(Name = "Upload Photo")]
-    [Required]
+    [Required(ErrorMessage = "Must add a photo.")]
     [DataType(DataType.ImageUrl)]
     public byte[] photo { get; set; }
     public DateTime captureDate { get; set; }
@@ -28,9 +28,9 @@ namespace photo_points.Models
     
     public ICollection<Data> data { get; set; }
     public ICollection<Tag> tags {get; set; }
-    [Required]
+    [Required(ErrorMessage = "Must have a user.")]
     public User user { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Must have a PhotoPoint")]
     public PhotoPoint PhotoPoint { get; set; } 
 }
 }
