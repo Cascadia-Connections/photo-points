@@ -9,7 +9,7 @@ namespace photo_points.Models
     public class Capture
 {
     public long captureID { get; set; }
-    public byte photo { get; set; }
+    public byte[] photo { get; set; }
     public DateTime captureDate { get; set; }
     public bool approved { get; set; }
     
