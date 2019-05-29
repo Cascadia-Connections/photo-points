@@ -10,15 +10,6 @@ namespace photo_points.Services
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class AdminReviewServices  : IAdminReviewServices
     {
-        
-        public bool approve(long captureID)
-        {
-            // this will be uncomment after Eric pull my branch
-            //Capture capt = _fakeAdminRepo.GetCapture(captureID);
-            //capt.approved = true;
-
-            return true;
-        }
 
         // private readonly IAdminReviewServiceRepository _adminRepo;
         private IAdminReviewRepository _fakeAdminRepo;
@@ -28,15 +19,23 @@ namespace photo_points.Services
             _fakeAdminRepo = fakeAdminRepo;
         }
 
-        public IQueryable<Capture> GetAllCaptures()
+        public void ApproveOrReject(long captureID, bool choice)
         {
-            return _fakeAdminRepo.GetCaptures();
+            // this will be uncomment after Eric pull my branch
+            Capture capt = _fakeAdminRepo.GetCapture(captureID);
+            capt.approved = choice;
+
         }
 
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return _fakeAdminRepo.GetAllUnapproved();
+            return _fakeAdminRepo.GetCaptures().Where(a => a.approved == false);
             ////Eric: is the line above correct? everything after the dot . was missing and I filled it in
+        }
+
+        public IEnumerable<Capture> GetApprovedCaptures()
+        {
+            return _fakeAdminRepo.GetCaptures().Where(a => a.approved == true);
         }
 
         //public IEnumerable<Capture> GetUnapprovedCaptures()

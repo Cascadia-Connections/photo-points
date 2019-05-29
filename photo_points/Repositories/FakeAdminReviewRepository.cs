@@ -54,10 +54,5 @@ namespace photo_points.Repositories
             return captures.SingleOrDefault(r => r.captureID == id);
         }
 
-        public IEnumerable<Capture> GetAllUnapproved()
-        {
-            return captures.Where(a => a.approved == true);
-            //Needs Willie's updated Capture model with approved property
-        }
     }
 }

@@ -10,6 +10,5 @@ namespace photo_points.Repositories
     {
         IQueryable<Capture> GetCaptures();
         Capture GetCapture(long captureId);
-        IEnumerable<Capture> GetAllUnapproved();
     }
 }
