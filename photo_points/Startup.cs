@@ -34,7 +34,7 @@ namespace photo_points
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddTransient<IAdminReviewServices, IAdminReviewServices>();
+            //services.AddTransient<IAdminReviewServices, IAdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
 
         }

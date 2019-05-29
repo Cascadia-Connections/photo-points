@@ -10,23 +10,23 @@ namespace photo_points.Tests
     {
 
 
-        private IAdminReviewServices Subject()
-        {
-            var fakeAdminRepo = new FakeAdminReviewRepository();
+        //private IAdminReviewServices Subject()
+        //{
+        //    var fakeAdminRepo = new FakeAdminReviewRepository();
 
-            return new AdminReviewServices(fakeAdminRepo);
-        }
+        //    return new AdminReviewServices(fakeAdminRepo);
+        //}
 
-        [Fact]
-        public void IsAdminApproval_Valid()
-        {
+        //[Fact]
+        //public void IsAdminApproval_Valid()
+        //{
 
-          var service = Subject();
-          var isValid = service.approve(2);
-          Assert.Equal(isValid,false);
+        //  var service = Subject();
+        //  var isValid = service.approve(2);
+        //  Assert.Equal(isValid,false);
 
 
-        }
+        //}
 
 
     }

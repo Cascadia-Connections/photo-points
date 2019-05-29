@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace photo_points.Models
 {
-    public interface IAdminReviewServices
-    {
-        bool approve(long CaptureId);
-        IQueryable<Capture> GetAllCaptures();
-        IEnumerable<Capture> GetUnapprovedCaptures();
+    //public interface IAdminReviewServices
+    //{
+    //    bool approve(long CaptureId);
+    //    IQueryable<Capture> GetAllCaptures();
+    //    IEnumerable<Capture> GetUnapprovedCaptures();
 
-        // IQueryable<Data> Datas { get; }
-        // IQueryable<PhotoPoint> PhotoPoints { get; }
-    }
+    //    // IQueryable<Data> Datas { get; }
+    //    // IQueryable<PhotoPoint> PhotoPoints { get; }
+    //}
 }
