@@ -10,8 +10,10 @@ namespace photo_points.Models
     public long userID { get; set; }
     public string firstName { get; set; }
     public string lastName { get; set; }
+    public string email { get; set; }
 
     public ICollection<Capture> captures { get; set; }
+    public ICollection<Tag> tags { get; set; }
 
 }
 }
