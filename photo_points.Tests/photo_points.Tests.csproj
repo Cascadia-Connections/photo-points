@@ -16,4 +16,12 @@
   <ItemGroup>
     <ProjectReference Include="..\photo_points\photo_points.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="maple-leaf-888807_640.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="maple-leaf-888807_640.jpg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

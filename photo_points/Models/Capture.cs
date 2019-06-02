@@ -7,15 +7,24 @@ using System.Threading.Tasks;
 namespace photo_points.Models
 {
     public class Capture
-{
-    public long captureID { get; set; }
-    public byte photo { get; set; }
-    public DateTime captureDate { get; set; }
-    public bool approved { get; set; }
-    
-    public ICollection<Data> data { get; set; }
-    public ICollection<Tag> tags {get; set; }
-    public User user { get; set; }
-    public PhotoPoint PhotoPoint { get; set; } 
-}
+    {
+        public long captureID { get; set; }
+        public byte[] photo { get; set; }
+        public DateTime captureDate { get; set; }
+
+        //Determines whether a photo should be displayed.
+        public ApprovalType approval { get; set; }
+
+        public enum ApprovalType
+        {
+            Pending,
+            Approve,
+            Reject
+        }
+
+        public ICollection<Data> data { get; set; }
+        public ICollection<Tag> tags { get; set; }
+        public User user { get; set; }
+        public PhotoPoint PhotoPoint { get; set; }
+    }
 }
