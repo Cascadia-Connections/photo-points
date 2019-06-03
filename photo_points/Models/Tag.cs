@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace photo_points.Models
 {
     public class Tag
     {
         public long tagID { get; set; }
+        [Display(Name = "Tag Name")]
+        [Required(ErrorMessage = "Tag name is required.")]
         public string tagName { get; set; }
 
         public ICollection<User> users { get; set; }

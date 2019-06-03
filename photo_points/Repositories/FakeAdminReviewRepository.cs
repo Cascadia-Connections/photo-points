@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
 
 
-
 namespace photo_points.Repositories
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
@@ -32,7 +31,6 @@ namespace photo_points.Repositories
 
         byte[] imgdata2 = System.IO.File.ReadAllBytes ("/wwwroot/images/fern-1105988_640.jpg");
 
-
         // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => new List<Capture> {
             new Capture { captureID= 1, photo = imgdata, captureDate = DateTime (4/25/2019) ,approval=Capture.ApprovalType.Approve },
@@ -40,11 +38,6 @@ namespace photo_points.Repositories
             new Capture { captureID=3, photo = imgdata2 , captureDate = DateTime(2/3/2019) ,approval=Capture.ApprovalType.Pending}
 
         }.AsQueryable<Capture>();
-
-
-
-
-
 
         //public IQueryable<User> users => new List<User> {
         //    new User { firstName = "Sara", lastName = "Ansari" },
