@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
+using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
-namespace photo_points.Models
+
+namespace photo_points.Repositories // .Model changed to .Repositories    added from issue #47
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
 
@@ -59,5 +62,12 @@ namespace photo_points.Models
             return captures.Where(a => a.approved == true);
             //Needs Willie's updated Capture model with approved property
         }
+
+        //public Image byteArrayToImage(byte[] byteArrayIn)
+        //{
+        //    MemoryStream ms = new MemoryStream(byteArrayIn);
+        //    Image returnImage = Image.FromStream(ms);
+        //    return returnImage;
+        //}
     }
 }

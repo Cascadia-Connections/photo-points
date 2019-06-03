@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
 using photo_points.Controllers;
-
+using photo_points.Services; // added from issue #47
+using static System.Net.Mime.MediaTypeNames;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,15 +16,14 @@ namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
+   
+        private IAdminReviewServices _pdc;
 
+        public AdminController(IAdminReviewServices pdContext)
 
-        //private IAdminReviewServices _pdc;
-
-        //public AdminController(IAdminReviewServices pdContext)
-
-        //{
-        //    _pdc = pdContext;
-        //}
+        {
+            _pdc = pdContext;
+        }
 
         ///UNComment above block of code before commit
 
@@ -72,6 +72,15 @@ namespace photo_points.Controllers
         //{
         //    User user = _pdc.Users.Single(u => u.UserId == id);
         //    return View("WelcomeAdmin", user);
+        //}
+
+
+        //to add the picture//from Sara
+        //public Image byteArrayToImage(byte[] byteArrayIn)
+        //{
+        //    MemoryStream ms = new MemoryStream(byteArrayIn);
+        //    Image returnImage = Image.FromStream(ms);
+        //    return returnImage;
         //}
     }
 }
