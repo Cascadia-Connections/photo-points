@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using photo_points.Models;
+using photo_points.Repositories;
 
 namespace photo_points.Services
 {
