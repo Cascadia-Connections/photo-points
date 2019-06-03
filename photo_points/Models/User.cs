@@ -17,7 +17,7 @@ namespace photo_points.Models
         public string lastName { get; set; }
         [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required.")]
-        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$"]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")]
         [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string email { get; set; }
 
