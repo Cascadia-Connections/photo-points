@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
 
@@ -73,5 +74,12 @@ namespace photo_points.Repositories
          return captures.Where(a => a.approval == Capture.ApprovalType.Approve);
 
         }
+
+        public IQueryable<Capture> SavedCaptures()
+        {
+            return captures;
+        }
+
+      
     }
 }
