@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace photo_points.Models
 {
     public class Data
 {
     public long dataID { get; set; }
+    [Display(Name = "Data Type")]
     public string type { get; set; }
+    [Display(Name = "Value of Data")]
     public string value { get; set; }
+    [Display(Name = "Comments")]
     public string comment { get; set; }
 
     public Capture Capture { get; set; }

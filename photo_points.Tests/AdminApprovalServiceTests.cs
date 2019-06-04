@@ -1,7 +1,7 @@
 using System;
 using photo_points;
 using photo_points.Models;
-using photo_points.Repositories; // added from issue #47
+using photo_points.Repositories;
 using photo_points.Services;
 using Xunit;
 
@@ -9,6 +9,7 @@ namespace photo_points.Tests
 {
     public class AdminApprovalServiceTests
     {
+
 
         private IAdminReviewServices Subject()
         {
@@ -27,6 +28,7 @@ namespace photo_points.Tests
 
 
         }
+
 
     }
 }

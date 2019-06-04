@@ -6,16 +6,30 @@ using System.Threading.Tasks;
 
 namespace photo_points.Models
 {
-    public class Capture
-{
+    public class Capture { 
+
     public long captureID { get; set; }
-    public byte photo { get; set; }
+    [Display(Name = "Upload Photo")]
+    [Required(ErrorMessage = "Must add a photo.")]
+    [DataType(DataType.ImageUrl)]
+    public byte[] photo { get; set; }
     public DateTime captureDate { get; set; }
-    public bool approved { get; set; }
-    
-    public ICollection<Data> data { get; set; }
-    public ICollection<Tag> tags {get; set; }
-    public User user { get; set; }
-    public PhotoPoint PhotoPoint { get; set; } 
-}
+
+    //Determines whether a photo should be displayed.
+    public ApprovalType approval { get; set; }
+
+    public enum ApprovalType
+        {
+            //Pending is the default. So when a new capture is created it will be waiting for admin approval.
+
+            Pending,
+            Approve,
+            Reject
+        }
+
+        public ICollection<Data> data { get; set; }
+        public ICollection<Tag> tags { get; set; }
+        public User user { get; set; }
+        public PhotoPoint PhotoPoint { get; set; }
+    }
 }

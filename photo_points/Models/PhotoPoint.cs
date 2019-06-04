@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace photo_points.Models
 {
     public class PhotoPoint
 {
     public long photoPointID { get; set; }
+    [Display(Name = "Location Name")]
+    [Required(ErrorMessage = "Location name is required.")]
     public string locationName { get; set; }
     public FeatureType feature { get; set; }
 

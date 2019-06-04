@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using photo_points.Models;
 
-namespace photo_points.Services //changed from .Models to .Services // from issue #47
+
+namespace photo_points.Services
 {
     public interface IAdminReviewServices
     {
