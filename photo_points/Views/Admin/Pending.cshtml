@@ -1,6 +1,6 @@
 ﻿@*@model photo_points.Controllers.AdminController*@
 @*@model photo_points.Models.Capture*@
-@model IEnumerable<photo_points.Models.Capture>
+@model IEnumerable<photo_points.Models.Capture> 
 
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -27,17 +27,13 @@
 
 
 
-    @*@foreach (photo_points.Models.Capture approve in @Models)
-        {
-            if(approve == pending)
-            {
-                //Card list html will go here
-            }
 
-        }*@
+    @*<th>
+        <td>
+            @Html.DisplayFor(modelItem =>)
+        </td>
 
-    @*foreach (approved in IEnumerable)*@
-
+    </th>*@
 
 </form>
 
