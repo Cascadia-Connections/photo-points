@@ -59,46 +59,28 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            //build a view model 
-
+            //build a view model //
             PendingViewModel pvm = new PendingViewModel();
 
-            _adminReviewServices.GetUnapprovedCaptures(); 
+           // _adminReviewServices.GetUnapprovedCaptures(); ////the repository is calling the getunapproved captures
+
+            IEnumerable<Capture> pendingImages = _adminReviewServices.GetUnapprovedCaptures();
+            //string mimeType = /* Get mime type somehow (e.g. "image/png") */;
+            //string base64 = Convert.ToBase64String(yourImageBytes);
+            //return string.Format("data:{0};base64,{1}", mimeType, base64);
 
             //create a foreach loop that goes thru the list and pulls out images that have NOT been approved. 
-           
+            foreach (Capture img in pendingImages) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
+            {
+                if (pvm.ImageSource != null)
+                    ViewBag.Display = "flex";
+                else
+                    ViewBag.Display = "none";
 
-            //if()
-            //{
+                return View("Pending", pvm);
+                // return View("Pending", img);
+            }
                 return View("Pending");
-
-            //}
-
-
-            //return View("Pending");
-            //all the new submissions can be displayed
-            // //  if Capture approval is false. 
-            // // display the Capture image and Data. 
-
-
-
-            //foreach(photo_points.Models.Capture approve in @Models)
-            //    {
-            //    if (approve == false)
-            //    {
-            //        //Card list html will go here
-
-            // // Below 3 lines of code are from Brian 
-
-                    //string mimeType = /* Get mime type somehow (e.g. "image/png") */;
-                    //string base64 = Convert.ToBase64String(yourImageBytes);
-                    //return string.Format("data:{0};base64,{1}", mimeType, base64); 
-
-            //    }
-
-            //}
-            //foreach (approved in IEnumerable) 
-
         }
 
         [HttpGet]
@@ -109,21 +91,5 @@ namespace photo_points.Controllers
         }
 
 
-        // // // below can be deleted?
-        //[HttpGet]
-        //public IActionResult Update(long id)
-        //{
-        //    User user = _pdc.Users.Single(u => u.UserId == id);
-        //    return View("WelcomeAdmin", user);
-        //}
-
-
-        //to add the picture//from Sara
-        //public Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
     }
 }
