@@ -47,5 +47,6 @@ namespace photo_points.Repositories
             return captures.SingleOrDefault(r => r.captureID == id);
         }
 
+
     }
 }
