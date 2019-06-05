@@ -18,20 +18,20 @@ namespace photo_points.Services
             _AdminRepo = AdminRepo;
         }
 
-        public void ApproveOrReject(long captureID, bool choice)
+        public void ApproveOrReject(long captureID, Capture.ApprovalType choice)
         {
             Capture capt = _AdminRepo.GetCapture(captureID);
-            capt.approved = choice;
+            capt.approval = choice;
         }
 
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return _AdminRepo.GetCaptures().Where(a => a.approved == false);
+            return _AdminRepo.GetCaptures().Where(a => a.approval == Capture.ApprovalType.Pending);
         }
 
         public IEnumerable<Capture> GetApprovedCaptures()
         {
-            return _AdminRepo.GetCaptures().Where(a => a.approved == true);
+            return _AdminRepo.GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
         }
 
     }

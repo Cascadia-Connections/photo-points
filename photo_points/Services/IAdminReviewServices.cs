@@ -9,7 +9,7 @@ namespace photo_points.Services
 {
     public interface IAdminReviewServices
     {
-        void ApproveOrReject(long CaptureId, bool choice);
+        void ApproveOrReject(long CaptureId, Capture.ApprovalType choice);
         IEnumerable<Capture> GetUnapprovedCaptures();
         IEnumerable<Capture> GetApprovedCaptures();
     }
