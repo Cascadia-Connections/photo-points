@@ -77,10 +77,10 @@ namespace photo_points.Controllers
                 else
                     ViewBag.Display = "none";
 
-                return View("Pending", pvm);
+
                 // return View("Pending", img);
             }
-                return View("Pending");
+            return View("Pending", pvm);
         }
         // // whould this be followed by a GetEnumerator?
 

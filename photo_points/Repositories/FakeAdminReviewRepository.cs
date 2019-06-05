@@ -19,9 +19,10 @@ namespace photo_points.Repositories
     {
 
 
-        private DateTime DateTime(int v)
+        private DateTime dateTime(int v)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return DateTime.Now;
         }
 
         byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
@@ -32,9 +33,9 @@ namespace photo_points.Repositories
 
         // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { captureID= 1, photo = imgdata, captureDate = DateTime (4/25/2019) ,approval=Capture.ApprovalType.Approve },
-            new Capture { captureID=2, photo = imgdata1, captureDate = DateTime (3/13/2019) ,approval=Capture.ApprovalType.Reject},
-            new Capture { captureID=3, photo = imgdata2 , captureDate = DateTime(2/3/2019) ,approval=Capture.ApprovalType.Pending}
+            new Capture { captureID= 1, photo = imgdata, captureDate = dateTime (4/25/2019) ,approval=Capture.ApprovalType.Approve },
+            new Capture { captureID=2, photo = imgdata1, captureDate = dateTime (3/13/2019) ,approval=Capture.ApprovalType.Reject},
+            new Capture { captureID=3, photo = imgdata2 , captureDate = dateTime(2/3/2019) ,approval=Capture.ApprovalType.Pending}
 
         }.AsQueryable<Capture>();
 

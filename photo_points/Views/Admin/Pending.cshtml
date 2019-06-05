@@ -1,6 +1,6 @@
 ﻿@*@model photo_points.Controllers.AdminController*@
 @*@model photo_points.Models.Capture*@
-@model IEnumerable<photo_points.Models.Capture> 
+@model photo_points.ViewModels.PendingViewModel;
 
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -23,9 +23,9 @@
     <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
     <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />*@
 
-    @foreach (Capture imgSource in @Model)
+    @foreach (string imgSource in @Model.ImageSource)
     {
-        <img src="" alt="" style="display:@ViewBag.Display"/>
+        <img src="imgSource"/>
     }
 
 
