@@ -16,8 +16,12 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/photo-card.css" />
+    <link rel="stylesheet" href="~/css/body.css" />
     <link rel="stylesheet" href="~/css/style.css" />
-    <link rel="stylesheet" href="~/images" />
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../wwwroot/css/photo-card.css" />*@
 </head>
 <body>
     <header>
@@ -63,23 +67,20 @@
         <nav class="menu-options">
             <article class="menu-one">
                 <div>
-                    <input type="submit" value="Photo Stream" onclick="location.href='PhotoStream.html'" />
                     @*actionLink will create a text link*@
-                    @*Html.ActionLink("Photo Stream", "PhotoStream")*@
+                    <button>@Html.ActionLink("Photo Stream", "PhotoStream")</button>
                 </div>
             </article>
 
             <article class="menu-two">
                 <div>
-                    <input type="submit" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">
-                    @*Html.ActionLink("Pending", "PhotoStream")*@
+                    <button>@Html.ActionLink("Pending", "PhotoStream")</button>
                 </div>
             </article>
 
             <article class="menu-one">
                 <div>
-                    <input type="submit" onclick="'PhotoStream';" value="View PhotoPoint Data">
-                    @*<a asp-action="PhotoStream">dunno</a>*@
+                    <button>Other</button>
                 </div>
             </article>
         </nav>
@@ -115,7 +116,7 @@
                 </div>
             </article>
 
-            <article class="footer-content">
+            @*<article class="footer-content">
                 <div class="footer-content-two">
                     <p>
                         <img src="/images/Bothell-Kenmore-Chamber-logo-stacked.png" alt="Bothell Kenmore Chamber" style="width: 100px; height: 100px" />
@@ -129,7 +130,7 @@
                     <p>To maintain and improve ecological function of North Creek Forest through Education, Stewardship, and Conservation in perpetuity.</p>
                     <p>Friends of North Creek Forest is a 501(c)3 non-profit corporation. Donations of any amount are gratefully accepted and are tax deductible as allowed by law. EIN: 27-5439187.</p>
                 </div>
-            </article>
+            </article>*@
         </section>
     </footer>
 

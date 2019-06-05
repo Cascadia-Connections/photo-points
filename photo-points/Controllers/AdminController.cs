@@ -29,5 +29,10 @@ namespace photopoints.Controllers
             return View();
         }
 
+        public IActionResult PhotoStream()
+        {
+            return View();
+        }
+
     }
 }
