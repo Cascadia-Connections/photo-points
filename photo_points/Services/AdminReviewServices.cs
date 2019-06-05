@@ -22,6 +22,7 @@ namespace photo_points.Services
         {
             Capture capt = _AdminRepo.GetCapture(captureID);
             capt.approval = choice;
+            _AdminRepo.SaveChanges(capt);
         }
 
         public IEnumerable<Capture> GetUnapprovedCaptures()
