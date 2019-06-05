@@ -82,14 +82,18 @@ namespace photo_points.Controllers
             }
                 return View("Pending");
         }
+        // // whould this be followed by a GetEnumerator?
 
         [HttpGet]
-        public IActionResult newView()
+        public IActionResult SearchPhotoPoints()
         {
-            return View("newView");
-
+               return View("SearchPhotoPoints");
         }
 
-
+        [HttpGet]
+        public IActionResult Collaborators()
+        {
+            return View("Collaborators");
+        }
     }
 }

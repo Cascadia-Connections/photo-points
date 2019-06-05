@@ -35,7 +35,6 @@ namespace photo_points.Services
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
             return _fakeAdminRepo.GetAllUnapproved();
-            ////Eric: is the line above correct? everything after the dot . was missing and I filled it in
         }
 
         //public IEnumerable<Capture> GetUnapprovedCaptures()
