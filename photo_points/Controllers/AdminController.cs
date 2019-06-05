@@ -64,13 +64,13 @@ namespace photo_points.Controllers
 
            // _adminReviewServices.GetUnapprovedCaptures(); ////the repository is calling the getunapproved captures
 
-            IEnumerable<Capture> pendingImages = _adminReviewServices.GetUnapprovedCaptures();
+            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
             //string mimeType = /* Get mime type somehow (e.g. "image/png") */;
             //string base64 = Convert.ToBase64String(yourImageBytes);
             //return string.Format("data:{0};base64,{1}", mimeType, base64);
 
             //create a foreach loop that goes thru the list and pulls out images that have NOT been approved. 
-            foreach (Capture img in pendingImages) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
+            foreach (Capture capture in pendingCaptures) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
             {
                 if (pvm.ImageSource != null)
                     ViewBag.Display = "flex";
