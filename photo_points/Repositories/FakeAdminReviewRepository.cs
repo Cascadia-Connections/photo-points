@@ -68,10 +68,14 @@ namespace photo_points.Repositories
 
         }
 
-        public IQueryable<Capture> SavedCaptures()
-        {
-            return captures;
-        }
+
+
+
+        // to connect to future method to save changes, as there is nothing to save currently
+        //public IQueryable<Capture> SavedCaptures()
+        //{
+        //    return captures;
+        //}
 
       
     }

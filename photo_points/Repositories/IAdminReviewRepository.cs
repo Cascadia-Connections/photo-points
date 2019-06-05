@@ -12,7 +12,9 @@ namespace photo_points.Repositories
         Capture GetCapture(long captureId);
         IEnumerable<Capture> GetAllUnapproved();
 
-        IQueryable<Capture> SavedCaptures();
+
+       //to connect to future method to save changes, as there is nothing to save currently
+        //IQueryable<Capture> SavedCaptures();
 
 
     }
