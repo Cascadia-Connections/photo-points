@@ -54,8 +54,8 @@ body{
 
 .admin-content-first{
     background-color: #9daeab;
-    border-style: solid;
-    border-color: white; 
+    /*border-style: solid;
+    border-color: white;*/ 
     padding: 0.5em;
     /*float:inherit;*/
 }
