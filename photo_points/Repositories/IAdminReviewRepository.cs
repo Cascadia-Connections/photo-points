@@ -10,5 +10,6 @@ namespace photo_points.Repositories
     {
         IQueryable<Capture> GetCaptures();
         Capture GetCapture(long captureId);
+        void SaveChanges(Capture capt);
     }
 }
