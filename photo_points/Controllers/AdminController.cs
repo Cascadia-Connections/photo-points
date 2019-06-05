@@ -95,5 +95,7 @@ namespace photo_points.Controllers
         {
             return View("Collaborators");
         }
+
+
     }
 }
