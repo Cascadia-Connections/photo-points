@@ -12,26 +12,8 @@
 <h2>PhotoStream</h2>
 
 @*@foreach (photo_points.Models.PhotoPoint photoPoint in @Model) {*@
-<div class="container card-body-sm">
-    <div class="row">
-        <img class="card-img-sm" src="~/images/fern.jpg" />
-    </div>
-    <div class="row card-sm-content">
-        <h3>Photopoint Name</h3>
-        <div class="col-sm-10">
-            <div class="row">
-                <h6>Jan 15, 2013</h6>
-            </div>
 
-            <div class="row">
-                <h6>User1</h6>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <span class="circle"></span>
-        </div>
-    </div>
-</div>
+@for (var i = 0; i < 5; i++) {
 
 <div class="container card-body-sm">
     <div class="row">
@@ -53,69 +35,8 @@
         </div>
     </div>
 </div>
+}
 
-<div class="container card-body-sm">
-    <div class="row">
-        <img class="card-img-sm" src="~/images/fern.jpg" />
-    </div>
-    <div class="row card-sm-content">
-        <h3>Photopoint Name</h3>
-        <div class="col-sm-10">
-            <div class="row">
-                <h6>Jan 15, 2013</h6>
-            </div>
-
-            <div class="row">
-                <h6>User1</h6>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <span class="circle"></span>
-        </div>
-    </div>
-</div>
-
-<div class="container card-body-sm">
-    <div class="row">
-        <img class="card-img-sm" src="~/images/fern.jpg" />
-    </div>
-    <div class="row card-sm-content">
-        <h3>Photopoint Name</h3>
-        <div class="col-sm-10">
-            <div class="row">
-                <h6>Jan 15, 2013</h6>
-            </div>
-
-            <div class="row">
-                <h6>User1</h6>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <span class="circle"></span>
-        </div>
-    </div>
-</div>
-
-<div class="container card-body-sm">
-    <div class="row">
-        <img class="card-img-sm" src="~/images/fern.jpg" />
-    </div>
-    <div class="row card-sm-content">
-        <h3>Photopoint Name</h3>
-        <div class="col-sm-10">
-            <div class="row">
-                <h6>Jan 15, 2013</h6>
-            </div>
-
-            <div class="row">
-                <h6>User1</h6>
-            </div>
-        </div>
-        <div class="col-sm-2">
-            <span class="circle"></span>
-        </div>
-    </div>
-</div>
 @*}*@
 
 
