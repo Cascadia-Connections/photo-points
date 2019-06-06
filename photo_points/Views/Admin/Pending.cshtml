@@ -15,18 +15,22 @@
 <form asp-action="Pending" asp-controller="Admin">
 
 
-    @*//default images to show what page would look like with viewbag 
-    <img class="pendingpics" src="~/images/blackberry-flower-4070045_640.jpg" />
-    <img class="pendingpics" src="~/images/bleeding-hearts-55120_640.jpg" />
-    <img class="pendingpics" src="~/images/buttercup-4207047_640.jpg" />
-    <img class="pendingpics" src="~/images/fern-1105988_640.jpg" />
-    <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
-    <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />*@
+    @*//default images to show what page would look like with viewbag
+        <img class="pendingpics" src="~/images/blackberry-flower-4070045_640.jpg" />
+        <img class="pendingpics" src="~/images/bleeding-hearts-55120_640.jpg" />
+        <img class="pendingpics" src="~/images/buttercup-4207047_640.jpg" />
+        <img class="pendingpics" src="~/images/fern-1105988_640.jpg" />
+        <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
+        <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />*@
 
-    @foreach (string mimeSource in @Model.ImageSource)
-    {
-        <img src="mimeSource"/>
-    }
+
+    @*@foreach (List<string> mimeSource in @Model.ImageSource)*@
+
+        @foreach (string mimeSource in @Model.ImageSource)
+        {
+            
+            <img src="mimeSource" />
+        }
 
 
 

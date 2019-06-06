@@ -60,24 +60,23 @@ namespace photo_points.Controllers
         public IActionResult Pending()
         {
             //build a view model //
-            PendingViewModel pvm = new PendingViewModel();
-         
+             PendingViewModel pvm = new PendingViewModel(); //// or below line of code
+            //List<PendingViewModel> pvm = new List<PendingViewModel>();
+
             IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
 
             //create a foreach loop that goes thru the list and pulls out images that have NOT been approved. 
             foreach (Capture capture in pendingCaptures) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
             {
-
                 string mimeType = capture.photo;
-                List<string> base64 = Convert.ToBase64String(capture.photo);
-                // return string.Format("fate:{0}; base64,{1}", mimeType, base64);
+                string base64 = Convert.ToBase64String(capture.photo); ////or below line of code ?
+                //List<string> base64 = Convert.ToBase64String(capture.photo);
+                 //return string.Format("fate:{0}; base64,{1}", mimeType, base64);
 
                 pvm = base64;
                 return View("Pending", pvm);
-
             }
-
-            return ViewModels("Pending");
+            return View("Pending");
         }
         // // whould this be followed by a GetEnumerator?
 
