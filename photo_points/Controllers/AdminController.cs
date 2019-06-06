@@ -82,9 +82,41 @@ namespace photo_points.Controllers
             }
             return View("Pending", pvm);
         }
-        // // whould this be followed by a GetEnumerator?
 
-        [HttpGet]
+
+    //    //build a view model // // replace inner code with below // get an runtime error 502.4
+    //    PendingViewModel pvm = new PendingViewModel();
+
+    //    IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
+
+    //        //create a foreach loop that goes thru the list and pulls out images that have NOT been approved. 
+    //        foreach (Capture capture in pendingCaptures) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
+    //        {
+
+    //            string mimeType = capture.photo;
+    //    List<string> base64 = Convert.ToBase64String(capture.photo);
+    //    // return string.Format("fate:{0}; base64,{1}", mimeType, base64);
+
+    //    pvm = base64;
+    //            return View("Pending", pvm);
+
+    //}
+
+    //        return ViewModels("Pending");
+
+
+
+
+
+
+
+
+
+
+
+    // // whould this be followed by a GetEnumerator?
+
+    [HttpGet]
         public IActionResult SearchPhotoPoints()
         {
                return View("SearchPhotoPoints");
