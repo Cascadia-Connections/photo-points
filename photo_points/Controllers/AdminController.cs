@@ -67,32 +67,17 @@ namespace photo_points.Controllers
             //create a foreach loop that goes thru the list and pulls out images that have NOT been approved. 
             foreach (Capture capture in pendingCaptures) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
             {
-                //if (pvm.ImageSource != null)
-                //    ViewBag.Display = "flex";
-                //else
-                //    ViewBag.Display = "none";
-
-               // if(capture.photo == null)
-                //{
-                  //  return View("Pending");
-                //}
-
-               // else
-               // {
+               
                     string mimeType = capture.photo;
                     List<string> base64 = Convert.ToBase64String(capture.photo);
                    // return string.Format("fate:{0}; base64,{1}", mimeType, base64);
 
-                pvm = base64;
-               // }
-
-                // // // // code review comment and direction
-                //inside the loop. take each captures photo data and convert it into a base64 string, then 
-                ////store it in your ViewModel as a collection of string List<string>
-
+                      pvm = base64;
+                return View("Pending", pvm);
 
             }
-            return View("Pending", pvm);
+            
+            return ViewModels("Pending");
         }
         // // whould this be followed by a GetEnumerator?
 
