@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace photo_points.ViewModels
 {
-    public class SearchViewModels
+    public class SearchViewModel
     {
         // // need to add to controllers to convert to the view 
         public long photoPointId { get; set; } // create action in controller to feed the view the information

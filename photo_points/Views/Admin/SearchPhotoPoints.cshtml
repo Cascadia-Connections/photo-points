@@ -1,5 +1,5 @@
 @*@model photo_points.Controllers.AdminController*@
-@model photo_points.ViewModels.SearchViewModels
+@model photo_points.ViewModels.SearchViewModel
 
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -42,6 +42,7 @@
             <input />
         </td>
     </tr>
+
     <tr>
         <td>
             Tag:
@@ -55,6 +56,21 @@
                 <option>Tag 4</option>
                 <option>Tag 5</option>
                 <option>Tag 6</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Approval Type:
+        </td>
+        <td>
+            <select>
+                <option selected disabled> Approval Type</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+                <option>Pending</option>
+                <option>All</option>
+
             </select>
         </td>
     </tr>
