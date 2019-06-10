@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,9 +24,17 @@ namespace photo_points.Repositories
 
         byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
 
+<<<<<<< HEAD
         byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
 
 
+=======
+        byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
+
+        byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
+
+        byte[] imgdata2 = System.IO.File.ReadAllBytes ("wwwroot/images/fern-1105988_640.jpg");
+>>>>>>> c94f08371050509ac47d398657396de51abf42d6
 
 
         List<Capture> repo = new List<Capture> {
@@ -86,6 +94,7 @@ namespace photo_points.Repositories
             return captures.SingleOrDefault(r => r.captureID == id);
         }
 
+<<<<<<< HEAD
         public IEnumerable<Capture> GetAllUnapproved()
         {
            // return captures.Where(a => a.approve == true);
@@ -125,5 +134,13 @@ namespace photo_points.Repositories
 
 
 
+=======
+        //public IEnumerable<Capture> GetAllUnapproved()
+        //{
+        //   // return captures.Where(a => a.approve == true);
+        // return captures.Where(a => a.approval == Capture.ApprovalType.Approve);
+
+        //}
+>>>>>>> c94f08371050509ac47d398657396de51abf42d6
     }
 }
