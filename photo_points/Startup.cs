@@ -11,8 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
 using Microsoft.EntityFrameworkCore;
-using photo_points.Repositories;
 using photo_points.Services;
+using photo_points.Repositories;
 
 namespace photo_points
 {

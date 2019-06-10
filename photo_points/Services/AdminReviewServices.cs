@@ -8,44 +8,33 @@ using photo_points.Repositories;
 namespace photo_points.Services
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class AdminReviewServices : IAdminReviewServices
+    public class AdminReviewServices  : IAdminReviewServices
     {
-        
-        public bool approve(long captureID)
+
+        private IAdminReviewRepository _AdminRepo;
+
+        public AdminReviewServices(IAdminReviewRepository AdminRepo)
         {
-        // this will be uncomment after Eric pull my branch
-            // new Capture capt =_fakeAdminRepo.GetCapture(captureID);
-          
-            return true;
+            _AdminRepo = AdminRepo;
         }
 
-        // private readonly IAdminReviewServiceRepository _adminRepo;
-        private IAdminReviewRepository _fakeAdminRepo;
-
-        public AdminReviewServices(IAdminReviewRepository fakeAdminRepo)
+        public void ApproveOrReject(long captureID, Capture.ApprovalType choice)
         {
-            _fakeAdminRepo = fakeAdminRepo;
-        }
-
-        public IQueryable<Capture> GetAllCaptures()
-        {
-            return _fakeAdminRepo.GetCaptures();
+            Capture capt = _AdminRepo.GetCapture(captureID);
+            capt.approval = choice;
+            _AdminRepo.SaveChanges(capt);
         }
 
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return _fakeAdminRepo.GetAllUnapproved();
+            return _AdminRepo.GetCaptures().Where(a => a.approval == Capture.ApprovalType.Pending);
         }
 
-        //public IEnumerable<Capture> GetUnapprovedCaptures()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IEnumerable<Capture> GetApprovedCaptures()
+        {
+            return _AdminRepo.GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
+        }
 
-        //public object approve()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 
    
