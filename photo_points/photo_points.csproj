@@ -18,9 +18,17 @@
   <ItemGroup>
     <Content Remove="Views\Admin\PhotoStream.cshtml" />
     <Content Remove="Views\Shared\_Layout.cshtml" />
+    <Content Remove="wwwroot\css\body.css" />
+    <Content Remove="wwwroot\css\footer.css" />
+    <Content Remove="wwwroot\css\photo-card.css" />
+    <Content Remove="wwwroot\images\fern.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Admin\PhotoStream.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="wwwroot\css\body.css" />
+    <None Include="wwwroot\css\footer.css" />
+    <None Include="wwwroot\css\photo-card.css" />
+    <None Include="wwwroot\images\fern.jpg" />
   </ItemGroup>
 </Project>

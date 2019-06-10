@@ -20,25 +20,19 @@ body{
 /*    Administration Navigation    */
 
 
-.admin-nav button {
-    /*margin: 5px;*/
-    padding: 10px;
-    background-color: #4c8c3e;
-    list-style-type: none;
-    text-align: center;
-    font-size: 15px;
-    width: 100%;
-}
-
-    .admin-nav input {
+    .admin-nav button {
         /*margin: 5px;*/
         padding: 10px;
         background-color: #4c8c3e;
         list-style-type: none;
         text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        color: antiquewhite;
         font-size: 15px;
-        width: 100%;
+        width: 200px;
     }
+
+
 
 /*tried the disply:flex; with @media screen // but it didnt work*/
 
@@ -50,22 +44,20 @@ body{
 }
 
 .main-body{
-    /*margin: 2em; 
-    padding: 2em;*/ 
+    margin: 1em; 
+    padding: 2em; 
 }
 
 
 
 /*'Title' Administrative view on Landing Page*/
 
-.content{
-    margin-bottom: 100px;
-}
 .admin-content-first{
     background-color: #9daeab;
-    border-style: solid;
-    border-color: white; 
+    /*border-style: solid;
+    border-color: white;*/ 
     padding: 0.5em;
+    /*float:inherit;*/
 }
 
 .main-body{
@@ -77,19 +69,13 @@ body{
 .pending-update{
 
 /*    color:green;*/
-    color:darkred;
+    color:red;
     padding: .5em;
 
     /*position: clear;*/
 
 }
 
-
-/*Images content Pening Page*/
-.pendingpics {
-    width: 250px;
-    height: 250px;
-}
 
 /*RESPONSIVE DESIGN*/
 
@@ -134,9 +120,9 @@ body{
         margin-bottom: 2px;
     }
 
-    .footer{
+    /*.footer{
         margin-bottom: -20px;
-    }
+    }*/
     
 }
 

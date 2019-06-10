@@ -4,23 +4,26 @@
     background-color: white;
     /*    border-style: solid;*/
     /*padding: 1.2em;*/
-    /*margin-bottom: -0.8em;*/
-    margin-bottom: -25px;
+    /*margin-bottom: -0.8em;
     margin-left: -0.5em;
-    margin-right: -0.5em;
+    margin-right: -0.5em;*/
+
     position: absolute;
-    bottom: 0;
+    bottom: -400px;
     width: 100%;
 }
 
 
 
-.footer-content-one{
-    text-align:center;
-    padding: .5em; 
+.footer-content-one {
+    text-align: center;
+    vertical-align: middle;
+    padding: .5em;
+    margin-left: auto;
+    margin-right: auto;
 }
 
- .footer-content-two{
+ /*.footer-content-two{
      text-align: center;
          padding: .5em; 
 
@@ -31,7 +34,7 @@
 .footer-content-three{
     text-align:center;
     padding: 0.5em; 
-}
+}*/0
 
 
 
@@ -46,13 +49,11 @@
         }
 
 .footer-content{
-        width: calc(33.333333% - 0.5em);
+        /*width: calc(33.333333% - 0.5em);*/
+        width: 100%;
     }
+        
 
-    /*.footer-main {
-        position: absolute;
-        bottom: 0;
-    }*/
     
 }
 
