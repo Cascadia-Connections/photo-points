@@ -33,8 +33,8 @@ namespace photo_points.Repositories
 
         // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { captureID= 1, photo = imgdata, captureDate = dateTime (4/25/2019) ,approval=Capture.ApprovalType.Approve },
-            new Capture { captureID=2, photo = imgdata1, captureDate = dateTime (3/13/2019) ,approval=Capture.ApprovalType.Reject},
+            new Capture { captureID= 1, photo = imgdata, captureDate = dateTime (4/25/2019) ,approval=Capture.ApprovalType.Pending },
+            new Capture { captureID=2, photo = imgdata1, captureDate = dateTime (3/13/2019) ,approval=Capture.ApprovalType.Pending},
             new Capture { captureID=3, photo = imgdata2 , captureDate = dateTime(2/3/2019) ,approval=Capture.ApprovalType.Pending}
 
         }.AsQueryable<Capture>();
@@ -64,7 +64,7 @@ namespace photo_points.Repositories
         public IEnumerable<Capture> GetAllUnapproved()
         {
            // return captures.Where(a => a.approve == true);
-         return captures.Where(a => a.approval == Capture.ApprovalType.Approve);
+         return captures.Where(a => a.approval == Capture.ApprovalType.Pending);
 
         }
     }

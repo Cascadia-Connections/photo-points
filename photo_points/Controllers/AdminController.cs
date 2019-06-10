@@ -61,6 +61,7 @@ namespace photo_points.Controllers
         {
             //build a view model //
              PendingViewModel pvm = new PendingViewModel();
+            pvm.ImageSource = new List<string>();
             
             //start with entire collection
             IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
@@ -68,12 +69,12 @@ namespace photo_points.Controllers
             //create a foreach loop that goes thru the list and converts bytes to string. 
             foreach (Capture capture in pendingCaptures) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
             {
-                string mimeType = "images/jpeg";
+                string mimeType = "image/jpeg";
                 string base64 = Convert.ToBase64String(capture.photo); ////
                // string.Format("fate:{0}; base64,{1}", mimeType, base64);
-                pvm.ImageSource.Add(string.Format("fate:{0}; base64,{1}", mimeType, base64));
+                pvm.ImageSource.Add(string.Format("data:{0}; base64,{1}", mimeType, base64));
             }
-            return View("Pending", pvm.ImageSource);
+            return View("Pending", pvm);
         }
 
 
