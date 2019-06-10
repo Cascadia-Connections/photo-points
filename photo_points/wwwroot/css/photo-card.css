@@ -5,7 +5,7 @@
     background-color: aliceblue;
 }
 
-.mini-image {
+.mini-image img {
     position: fixed;
     height: 250px;
     width: 250px;
@@ -14,6 +14,91 @@
 }
 
 .ppname {
-    position: absolute;
+    padding-top: 20px;
+    /*position: absolute;*/
     left: auto;
 }
+
+.card-body-sm {
+    float: left;
+    width: 300px;
+    height: 380px;
+    background-color: whitesmoke;
+    overflow: hidden;
+    margin: 10px;
+}
+
+@media only screen and (max-width: 1500px) {
+    .card-body-sm {
+        width: 180px;
+        height: 240px;
+    }
+
+    .mini-image img {
+        position: fixed;
+        height: 100px;
+        width: 100px;
+        background-color: lightgrey;
+        margin: 20px;
+    }
+
+    .card-sm-content {
+        margin-top: 3px;
+        margin-left: 1px;
+    }
+
+        .card-sm-content h3 {
+            font-size: 15px
+        }
+
+    /*.circle {*/
+        /*height: 15px;
+        width: 15px;
+        background-color: orange;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+        right: 5px;
+        visibility: hidden;*/
+    /*}*/
+}
+
+.card-img-sm {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.card-sm-content {
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+    .card-sm-content h3 {
+        font-size: 1.5em;
+    }
+
+.circle {
+    height: 15px;
+    width: 15px;
+    background-color: orange;
+    border-radius: 50%;
+    /*display: inline-block;*/
+    position: absolute;
+    /*top: 8px;
+        right: 0px;*/
+}
+
+.admin-buttons {
+    position: relative;
+    top: 140px;
+    left: 600px;
+}
+
+    .admin-buttons button {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+    }

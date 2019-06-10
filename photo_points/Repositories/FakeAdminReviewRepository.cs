@@ -16,42 +16,45 @@ namespace photo_points.Repositories
 
 
 
-    // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
     public class FakeAdminReviewRepository : IAdminReviewRepository
-    { 
+    {
 
+
+        private DateTime dateTime(int v)
+        {
+            throw new NotImplementedException();
+        }
 
         byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
 
         byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
 
-        byte[] imgdata2 = System.IO.File.ReadAllBytes ("wwwroot/images/fern-1105988_640.jpg");
+        byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
 
+        // Need to pull Willie's updated entity model with "Approved" property
+        public List<Capture> repo = new List<Capture> {
+                new Capture {
+                    captureID= 1,
+                    photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Pending
+                    },
+                new Capture {
+                captureID=2,
+                photo =System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg"),
+                 captureDate = DateTime.Now ,
+                 approval=Capture.ApprovalType.Pending
+                 },
 
-
-        List<Capture> repo = new List<Capture> {
-            new Capture {
-                captureID= 1,
-                photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
-                captureDate = DateTime.Now,
-                approval=Capture.ApprovalType.Approve
-                },
-            new Capture {
-            captureID=2,
-            photo =System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg"),
-             captureDate = DateTime.Now ,
-             approval=Capture.ApprovalType.Reject
-             },
-
-            new Capture {
-            captureID=3, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
-            captureDate = DateTime.Now ,
-            approval=Capture.ApprovalType.Pending}
+                new Capture {
+                captureID=3, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
+                captureDate = DateTime.Now ,
+                approval=Capture.ApprovalType.Pending}
         };
 
 
 
-       
+
 
         // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => repo.AsQueryable<Capture>();
@@ -70,13 +73,10 @@ namespace photo_points.Repositories
 
         public IEnumerable<Capture> GetAllUnapproved()
         {
-           // return captures.Where(a => a.approve == true);
-         return captures.Where(a => a.approval == Capture.ApprovalType.Pending);
+            // return captures.Where(a => a.approve == true);
+            return captures.Where(a => a.approval == Capture.ApprovalType.Pending); // Approve//Pening//or Reject to test 
 
         }
-
-
-
 
         public void SaveChanges(Capture capt)
         {
@@ -100,12 +100,7 @@ namespace photo_points.Repositories
 
 
 
+
         }
-
-
-
-
-
-
     }
 }

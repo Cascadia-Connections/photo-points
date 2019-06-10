@@ -1,4 +1,7 @@
-﻿@model photo_points.Controllers.AdminController
+﻿@*@model photo_points.Controllers.AdminController*@
+@*@model photo_points.Models.Capture*@
+@model photo_points.ViewModels.PendingViewModel;
+
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = "_Layout";
@@ -11,16 +14,42 @@
 
 <form asp-action="Pending" asp-controller="Admin">
 
-    <!-- Card list goes here -->
+
+    @*//default images to show what page would look like with viewbag
+        <img class="pendingpics" src="~/images/blackberry-flower-4070045_640.jpg" />
+        <img class="pendingpics" src="~/images/bleeding-hearts-55120_640.jpg" />
+        <img class="pendingpics" src="~/images/buttercup-4207047_640.jpg" />
+        <img class="pendingpics" src="~/images/fern-1105988_640.jpg" />
+        <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
+        <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />*@
 
 
+    @*@foreach (List<string> mimeSource in @Model.ImageSource)*@
 
-    <img class="pendingpics" src="~/images/blackberry-flower-4070045_640.jpg" />
-    <img class="pendingpics" src="~/images/bleeding-hearts-55120_640.jpg" />
-    <img class="pendingpics" src="~/images/buttercup-4207047_640.jpg" />
-    <img class="pendingpics" src="~/images/fern-1105988_640.jpg" />
-    <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
-    <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />
+        @foreach (string mimeSource in @Model.ImageSource)
+        {
+            
+            <div class="container card-body-sm">
+                <div class="row">
+                    <img class="card-img-sm" src="@mimeSource" />
+                </div>
+                <div class="row card-sm-content">
+                    <h3>Photopoint Name</h3>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <h6>Jan 15, 2013</h6>
+                        </div>
+                        <div class="row">
+                            <h6>User1</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="circle"></span>
+                    </div>
+                </div>
+            </div>
+         }
+
 
 
 </form>
