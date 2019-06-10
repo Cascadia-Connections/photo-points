@@ -60,6 +60,11 @@ namespace photo_points.Repositories
             return captures.SingleOrDefault(r => r.captureID == id);
         }
 
+        public void SaveChanges(Capture capt)
+        {
+            throw new NotImplementedException();
+        }
+
         //public IEnumerable<Capture> GetAllUnapproved()
         //{
         //   // return captures.Where(a => a.approve == true);
