@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
+using photo_points.Services;
 
 
 namespace photo_points.Repositories
@@ -17,28 +18,51 @@ namespace photo_points.Repositories
 
     // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
     public class FakeAdminReviewRepository : IAdminReviewRepository
-    {
-
-
-        private DateTime datetime(int v)
-        {
-            //throw new NotImplementedException();
-            return DateTime.Now;
-        }
+    { 
 
         byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
 
         byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
 
-        byte[] imgdata2 = System.IO.File.ReadAllBytes ("wwwroot/images/fern-1105988_640.jpg");
+        byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
+
+
+
+
+        List<Capture> repo = new List<Capture> {
+            new Capture {
+                captureID= 1,
+                photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
+                captureDate = DateTime.Now,
+                approval=Capture.ApprovalType.Approve
+                },
+            new Capture {
+            captureID=2,
+            photo =System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg"),
+             captureDate = DateTime.Now ,
+             approval=Capture.ApprovalType.Reject
+             },
+
+            new Capture {
+            captureID=3, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
+            captureDate = DateTime.Now ,
+            approval=Capture.ApprovalType.Pending}
+        };
+
+
+
+       
+        /// doesnt need for fake repository 
+
+        // private DateTime datetime(string v)
+        //{
+        //    //convert to datetime;
+        //    return;
+        //}
+
 
         // Need to pull Willie's updated entity model with "Approved" property
-        public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { captureID= 1, photo = imgdata, captureDate = datetime (4/25/2019) ,approval=Capture.ApprovalType.Approve },
-            new Capture { captureID=2, photo =imgdata1, captureDate = datetime (3/13/2019) ,approval=Capture.ApprovalType.Reject},
-            new Capture { captureID=3, photo = imgdata2 , captureDate = datetime(2/3/2019) ,approval=Capture.ApprovalType.Pending}
-
-        }.AsQueryable<Capture>();
+        public IQueryable<Capture> captures => repo.AsQueryable<Capture>();
 
         //public IQueryable<User> users => new List<User> {
         //    new User { firstName = "Sara", lastName = "Ansari" },
@@ -73,11 +97,25 @@ namespace photo_points.Repositories
 
 
         // to connect to future method to save changes, as there is nothing to save currently
-        //public IQueryable<Capture> SavedCaptures()
-        //{
-        //    return captures;
-        //}
+        public void SavedChanges(Capture capture)
+        {
+            foreach (photo_points.Models.Capture c in repo)
+            {
 
-      
+                if (repo.captureID == Services.captureID)
+
+                {
+                    return Capture.ApprovalType.Approve;
+                }
+                else
+                {
+                    return Capture.ApprovalType.Reject;
+                }
+            }
+        }
+
+
+
+
     }
 }
