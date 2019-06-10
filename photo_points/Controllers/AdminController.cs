@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
 using photo_points.ViewModels;
 using photo_points.Controllers;
-using photo_points.Services; // added from issue #47
+using photo_points.Services; 
 using System.IO;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -26,7 +26,6 @@ namespace photo_points.Controllers
             _adminReviewServices = adminServiceReview;
         }
 
-        ///UNComment above block of code before commit
         ///
         // private Image byteArrayToImage(byte[] byteArrayIn)
         //{
@@ -61,13 +60,13 @@ namespace photo_points.Controllers
         {
             //build a view model //
              PendingViewModel pvm = new PendingViewModel();
-            pvm.ImageSource = new List<string>();
+             pvm.ImageSource = new List<string>();
             
             //start with entire collection
             IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
 
             //create a foreach loop that goes thru the list and converts bytes to string. 
-            foreach (Capture capture in pendingCaptures) // looking at comments on line 18 and 23 in Capture.cs // should we display all images since they are the default?
+            foreach (Capture capture in pendingCaptures) 
             {
                 string mimeType = "image/jpeg";
                 string base64 = Convert.ToBase64String(capture.photo); ////
