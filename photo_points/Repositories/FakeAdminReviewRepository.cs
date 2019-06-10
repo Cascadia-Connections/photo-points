@@ -14,7 +14,6 @@ namespace photo_points.Repositories
 
 
 
-    // FakePhotoRepository And IPhotoRepository changed by Eric's Codes//
     public class FakeAdminReviewRepository : IAdminReviewRepository
     {
 
