@@ -14,7 +14,7 @@ namespace photo_points.Repositories
 
 
        //to connect to future method to save changes, as there is nothing to save currently
-        //IQueryable<Capture> SavedCaptures();
+       // IQueryable<Capture> SavedCaptures();
 
 
     }
