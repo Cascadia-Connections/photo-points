@@ -15,4 +15,12 @@
   <ItemGroup>
     <Folder Include="Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Admin\PhotoStream.cshtml" />
+    <Content Remove="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Admin\PhotoStream.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
 </Project>
