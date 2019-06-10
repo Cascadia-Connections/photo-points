@@ -70,10 +70,10 @@ namespace photo_points.Controllers
             {
                 string mimeType = "images/jpeg";
                 string base64 = Convert.ToBase64String(capture.photo); ////
-                string.Format("fate:{0}; base64,{1}", mimeType, base64);
+               // string.Format("fate:{0}; base64,{1}", mimeType, base64);
                 pvm.ImageSource.Add(string.Format("fate:{0}; base64,{1}", mimeType, base64));
             }
-            return View("Pending", pvm);
+            return View("Pending", pvm.ImageSource);
         }
 
 
