@@ -10,7 +10,6 @@ namespace photo_points.Repositories
     {
         IQueryable<Capture> GetCaptures();
         Capture GetCapture(long captureId);
-<<<<<<< HEAD
         IEnumerable<Capture> GetAllUnapproved();
 
 
@@ -18,8 +17,6 @@ namespace photo_points.Repositories
        // IQueryable<Capture> SavedCaptures();
 
 
-=======
         void SaveChanges(Capture capt);
->>>>>>> c94f08371050509ac47d398657396de51abf42d6
     }
 }

@@ -20,21 +20,13 @@ namespace photo_points.Repositories
     public class FakeAdminReviewRepository : IAdminReviewRepository
     { 
 
-        byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
 
-        byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
-
-<<<<<<< HEAD
-        byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
-
-
-=======
         byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
 
         byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
 
         byte[] imgdata2 = System.IO.File.ReadAllBytes ("wwwroot/images/fern-1105988_640.jpg");
->>>>>>> c94f08371050509ac47d398657396de51abf42d6
+
 
 
         List<Capture> repo = new List<Capture> {
@@ -60,29 +52,10 @@ namespace photo_points.Repositories
 
 
        
-        /// doesnt need for fake repository 
-
-        // private DateTime datetime(string v)
-        //{
-        //    //convert to datetime;
-        //    return;
-        //}
-
 
         // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => repo.AsQueryable<Capture>();
 
-        //public IQueryable<User> users => new List<User> {
-        //    new User { firstName = "Sara", lastName = "Ansari" },
-        //    new User { firstName = "Sim", lastName = "Ruble" },
-        //    new User { firstName = "Willie", lastName = "Weber" }
-        //}.AsQueryable<User>();
-
-        //public IQueryable<Capture> Captures => throw new NotImplementedException();
-
-        //public IQueryable<Data> Datas => throw new NotImplementedException();
-
-        //public IQueryable<PhotoPoint> PhotoPoints => throw new NotImplementedException();
 
         public IQueryable<Capture> GetCaptures()
         {
@@ -94,7 +67,7 @@ namespace photo_points.Repositories
             return captures.SingleOrDefault(r => r.captureID == id);
         }
 
-<<<<<<< HEAD
+
         public IEnumerable<Capture> GetAllUnapproved()
         {
            // return captures.Where(a => a.approve == true);
@@ -105,7 +78,7 @@ namespace photo_points.Repositories
 
 
 
-        public void SavedChanges(Capture capt)
+        public void SaveChanges(Capture capt)
         {
             foreach (photo_points.Models.Capture c in repo)
             {
@@ -134,13 +107,5 @@ namespace photo_points.Repositories
 
 
 
-=======
-        //public IEnumerable<Capture> GetAllUnapproved()
-        //{
-        //   // return captures.Where(a => a.approve == true);
-        // return captures.Where(a => a.approval == Capture.ApprovalType.Approve);
-
-        //}
->>>>>>> c94f08371050509ac47d398657396de51abf42d6
     }
 }
