@@ -96,23 +96,31 @@ namespace photo_points.Repositories
 
 
 
-        // to connect to future method to save changes, as there is nothing to save currently
-        public void SavedChanges(Capture capture)
+        public void SavedChanges(Capture capt)
         {
             foreach (photo_points.Models.Capture c in repo)
             {
-
-                if (repo.captureID == Services.captureID)
+                //it will compare properties in fake repository with service changes
+                //it will save and replace new info to repo
+                if (c.captureID == capt.captureID)
 
                 {
-                    return Capture.ApprovalType.Approve;
+                    c.approval = capt.approval;
+                    c.captureDate = capt.captureDate;
+                    c.data = capt.data;
+                    c.photo = capt.photo;
+                    c.PhotoPoint = capt.PhotoPoint;
+                    c.tags = capt.tags;
+                    c.user = capt.user;
                 }
-                else
-                {
-                    return Capture.ApprovalType.Reject;
-                }
+
             }
+
+
+
         }
+
+
 
 
 
