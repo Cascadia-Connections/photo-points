@@ -23,14 +23,33 @@
         <img class="pendingpics" src="~/images/huckleberry-3677745_640.jpg" />
         <img class="pendingpics" src="~/images/maple-leaf-888807_640.jpg" />*@
 
-    @*@foreach (string imgSource in @Model.ImageSource)
-    {
-        <img src="imgSource" />
-    }*@
-    @foreach (string imgSource in @Model.ImageSource)
-    {
-        <img src="imgSource" />
-    }
+
+    @*@foreach (List<string> mimeSource in @Model.ImageSource)*@
+
+        @foreach (string mimeSource in @Model.ImageSource)
+        {
+            
+            <div class="container card-body-sm">
+                <div class="row">
+                    <img class="card-img-sm" src="@mimeSource" />
+                </div>
+                <div class="row card-sm-content">
+                    <h3>Photopoint Name</h3>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <h6>Jan 15, 2013</h6>
+                        </div>
+                        <div class="row">
+                            <h6>User1</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="circle"></span>
+                    </div>
+                </div>
+            </div>
+         }
+
 
 
 </form>

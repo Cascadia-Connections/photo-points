@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
+using photo_points.Services;
 
 
 namespace photo_points.Repositories
@@ -15,40 +17,48 @@ namespace photo_points.Repositories
 
 
     public class FakeAdminReviewRepository : IAdminReviewRepository
-    {
+    { 
 
 
         private DateTime dateTime(int v)
         {
-            //throw new NotImplementedException();
-            return DateTime.Now;
+            throw new NotImplementedException();
         }
 
-        byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
+        byte[] imgdata = System.IO.File.ReadAllBytes("/wwwroot/images/maple-leaf-888807_640.jpg");
 
-        byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
+        byte[] imgdata1 = System.IO.File.ReadAllBytes("/wwwroot/images/blackberry-flower-4070045_640.jpg");
 
-        byte[] imgdata2 = System.IO.File.ReadAllBytes ("wwwroot/images/fern-1105988_640.jpg");
+        byte[] imgdata2 = System.IO.File.ReadAllBytes ("/wwwroot/images/fern-1105988_640.jpg");
 
         // Need to pull Willie's updated entity model with "Approved" property
-        public IQueryable<Capture> captures => new List<Capture> {
-            new Capture { captureID= 1, photo = imgdata, captureDate = dateTime (4/25/2019) ,approval=Capture.ApprovalType.Approve },
-            new Capture { captureID=2, photo = imgdata1, captureDate = dateTime (3/13/2019) ,approval=Capture.ApprovalType.Reject},
-            new Capture { captureID=3, photo = imgdata2 , captureDate = dateTime(2/3/2019) ,approval=Capture.ApprovalType.Pending}
+        public List<Capture> repo = new List<Capture> {
+                new Capture {
+                    captureID= 1,
+                    photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Approve
+                    },
+                new Capture {
+                captureID=2,
+                photo =System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg"),
+                 captureDate = DateTime.Now ,
+                 approval=Capture.ApprovalType.Reject
+                 },
 
-        }.AsQueryable<Capture>();
+                new Capture {
+                captureID=3, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
+                captureDate = DateTime.Now ,
+                approval=Capture.ApprovalType.Pending}
+        };
 
-        //public IQueryable<User> users => new List<User> {
-        //    new User { firstName = "Sara", lastName = "Ansari" },
-        //    new User { firstName = "Sim", lastName = "Ruble" },
-        //    new User { firstName = "Willie", lastName = "Weber" }
-        //}.AsQueryable<User>();
 
-        //public IQueryable<Capture> Captures => throw new NotImplementedException();
 
-        //public IQueryable<Data> Datas => throw new NotImplementedException();
+       
 
-        //public IQueryable<PhotoPoint> PhotoPoints => throw new NotImplementedException();
+        // Need to pull Willie's updated entity model with "Approved" property
+        public IQueryable<Capture> captures => repo.AsQueryable<Capture>();
+
 
         public IQueryable<Capture> GetCaptures()
         {
@@ -60,11 +70,36 @@ namespace photo_points.Repositories
             return captures.SingleOrDefault(r => r.captureID == id);
         }
 
-        //public IEnumerable<Capture> GetAllUnapproved()
-        //{
-        //   // return captures.Where(a => a.approve == true);
-        // return captures.Where(a => a.approval == Capture.ApprovalType.Approve);
 
-        //}
-    }
+        public IEnumerable<Capture> GetAllUnapproved()
+        {
+           // return captures.Where(a => a.approve == true);
+         return captures.Where(a => a.approval == Capture.ApprovalType.Approve);
+
+        }
+
+        public void SaveChanges(Capture capt)
+        {
+            foreach (photo_points.Models.Capture c in repo)
+            {
+                //it will compare properties in fake repository with service changes
+                //it will save and replace new info to repo
+                if (c.captureID == capt.captureID)
+
+                {
+                    c.approval = capt.approval;
+                    c.captureDate = capt.captureDate;
+                    c.data = capt.data;
+                    c.photo = capt.photo;
+                    c.PhotoPoint = capt.PhotoPoint;
+                    c.tags = capt.tags;
+                    c.user = capt.user;
+                }
+
+            }
+
+
+
+
+        }
 }
