@@ -20,7 +20,7 @@ body{
 /*    Administration Navigation    */
 
 
-    .admin-nav button {
+.admin-nav button {
         padding: 10px;
         background-color: #4c8c3e;
         list-style-type: none;
@@ -29,7 +29,7 @@ body{
         color: antiquewhite;
         font-size: 15px;
         width: 200px;
-    }
+}
 
 
 
