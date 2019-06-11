@@ -46,10 +46,10 @@
         margin-top: 3px;
         margin-left: 1px;
     }
-
-        .card-sm-content h3 {
-            font-size: 15px
-        }
+    
+    .card-sm-content h3 {
+        font-size: 15px
+    }
 
     /*.circle {*/
         /*height: 15px;
@@ -73,22 +73,29 @@
 
 .card-sm-content {
     margin-top: 5px;
+    margin-left: 10px;
     overflow: hidden;
 }
 
-    .card-sm-content h3 {
+.card-sm-content h3 {
+    font-size: 1.5em;
+    overflow: hidden;
+}
+
+.card-sm-content h3 {
         font-size: 1.5em;
-    }
+}
 
 .circle {
     height: 15px;
     width: 15px;
     background-color: orange;
     border-radius: 50%;
+    position: absolute;
     /*display: inline-block;*/
     position: absolute;
     /*top: 8px;
-        right: 0px;*/
+    right: 0px;*/
 }
 
 .admin-buttons {
@@ -97,8 +104,9 @@
     left: 600px;
 }
 
-    .admin-buttons button {
+.admin-buttons button {
         padding-left: 20px;
         padding-right: 20px;
         margin: 10px;
-    }
+}
+

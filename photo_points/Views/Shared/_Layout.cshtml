@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+<html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,24 +14,23 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-
-        <link rel="stylesheet" href="~/css/photo-card.css" />
     </environment>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/photo-card.css" />
+    <link rel="stylesheet" href="~/css/body.css" />
     <link rel="stylesheet" href="~/css/style.css" />
-    <link rel="stylesheet" href="~/images" />
-
-   
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="../../wwwroot/css/photo-card.css" />*@
 </head>
 <body>
     <header>
         <section class="top-banner">
             <div class="logo">
-                <a href="~/WelcomeAdmin.html"><img src="/images/fncf-rgb-horizontal-logo_1.jpg" alt="Northcreek Forest" /></a>
+                <a href="WelcomeAdmin.html"><img src="/images/fncf-rgb-horizontal-logo_1.jpg" alt="Northcreek Forest" /></a>
             </div>
 
             <div class="logout">
-                @*there is no Logout page yet*@
                 <input type="button" onclick="location.href = '/Logout.html';" value="Log Out">
             </div>
         </section>
@@ -39,37 +38,49 @@
         <section class="banner">
             <div>
                 <h1>Welcome, &#91;Administrator&#93;</h1>
-                @*once Models have been initiated below line can be uncommented*@
-                @*<h1> Welcome, @Model.firstName</h1>*@
-</div>
+                @*User.firstName ???*@
+            </div>
         </section>
     </header>
 
+    @*<section class="admin-nav">
+            <nav class="menu-options">
+                <article class="menu-one">
+                    <div>
+                        <button type="button" onclick="location.href='PhotoStream.cshtml';" value="Go to Photo Stream">Photo Stream</button>
+                    </div>
+                </article>
+                <article class="menu-two">
+                    <div>
+                        <button type="button" onclick="location.href = 'PendingPhotos.html';" value="Pending Photos">Pending Photos</button>
+                    </div>
+                </article>
+                <article class="menu-one">
+                    <div>
+                        <button type="button" onclick="location.href='ViewData.html';" value="View PhotoPoint Data">View PhotoPoint Data</button>
+                    </div>
+                </article>
+            </nav>
+        </section>*@
 
     <section class="admin-nav">
         <nav class="menu-options">
             <article class="menu-one">
                 <div>
-                    @Html.ActionLink("Photo Stream", "PhotoStream")
+                    @*actionLink will create a text link*@
+                    <button>@Html.ActionLink("Photo Stream", "PhotoStream")</button>
                 </div>
             </article>
 
             <article class="menu-two">
                 <div>
-                    @Html.ActionLink("Pending", "Pending")
+                    <button>@Html.ActionLink("Pending", "PhotoStream")</button>
                 </div>
             </article>
 
             <article class="menu-one">
                 <div>
-                    @Html.ActionLink("Collaborators", "Collaborators")
-
-                </div>
-            </article>
-
-            <article class="menu-three">
-                <div>
-                    @Html.ActionLink("Seach Photo Points", "SearchPhotoPoints")
+                    <button>Other</button>
                 </div>
             </article>
         </nav>
@@ -77,9 +88,9 @@
 
     <section class="content">
         <section class="main-body">
-            @*<div class="pending-update">
+            <div class="pending-update">
                 <p><b>&#91;8&#93; pending submissions</b></p>
-            </div>*@
+            </div>
 
             <div class="admin-content-first">
 
@@ -95,31 +106,32 @@
 
     <footer class="footer-main">
         <section class="all-footer-content">
-
-
-            @*<article class="footer-content">
-            <div class="footer-content-two">
-                <p>
-                    <img src="/images/Bothell-Kenmore-Chamber-logo-stacked.png" alt="Bothell Kenmore Chamber" style="width: 100px; height: 100px" />
-                </p>
-            </div>
-        </article>*@
             <article class="footer-content">
                 <div class="footer-content-one">
                     <h3>Administration information:</h3>
-                    <p>Technical Support: Bob Covey </p>
+                    <p>Contact administration </p>
                     <p>Phone: </p>
                     <p>Email: </p>
+                    <p>For technical support call: .</p>
                 </div>
             </article>
+
             @*<article class="footer-content">
-            <div class="footer-content-three">
-                <h3>Friends of North Creek Forest Mission Statement:</h3>
-                <p>To maintain and improve ecological function of North Creek Forest through Education, Stewardship, and Conservation in perpetuity.</p>
-                <p>Friends of North Creek Forest is a 501(c)3 non-profit corporation. Donations of any amount are gratefully accepted and are tax deductible as allowed by law. EIN: 27-5439187.</p>
-            </div>
-        </article>*@
+                    <div class="footer-content-two">
+                        <p>
+                            <img src="/images/Bothell-Kenmore-Chamber-logo-stacked.png" alt="Bothell Kenmore Chamber" style="width: 100px; height: 100px" />
+                        </p>
+                    </div>
+                </article>
+                <article class="footer-content">
+                    <div class="footer-content-three">
+                        <h3>Friends of North Creek Forest Mission Statement:</h3>
+                        <p>To maintain and improve ecological function of North Creek Forest through Education, Stewardship, and Conservation in perpetuity.</p>
+                        <p>Friends of North Creek Forest is a 501(c)3 non-profit corporation. Donations of any amount are gratefully accepted and are tax deductible as allowed by law. EIN: 27-5439187.</p>
+                    </div>
+                </article>*@
         </section>
     </footer>
 
 </body>
+</html>
