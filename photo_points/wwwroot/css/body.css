@@ -21,7 +21,6 @@ body{
 
 
     .admin-nav button {
-        /*margin: 5px;*/
         padding: 10px;
         background-color: #4c8c3e;
         list-style-type: none;
@@ -44,8 +43,7 @@ body{
 }
 
 .main-body{
-    margin: 1em; 
-    padding: 2em; 
+    padding: 0.8em; 
 }
 
 
