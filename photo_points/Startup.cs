@@ -62,7 +62,7 @@ namespace photo_points
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Admin}/{action=WelcomeAdmin}/{id?}");
+                    template: "{controller=Admin}/{action=WelcomeAdmin}");
             });
         }
     }

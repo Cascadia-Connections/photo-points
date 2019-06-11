@@ -1,0 +1,80 @@
+@*@model photo_points.Controllers.AdminController*@
+@model photo_points.ViewModels.SearchViewModel
+
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Search";
+}
+
+<h3>Search Photos</h3>
+
+<table>
+    <tr>
+        <th>
+            Search:
+        </th>
+        <th>
+            @*Content:*@
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Photo Point ID:
+        </td>
+        <td>
+            <input />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            From Date:
+        </td>
+        <td>
+            <input />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            To Date:
+        </td>
+        <td>
+            <input />
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Tag:
+        </td>
+        <td>
+            <select>
+                <option selected disabled> Tag selection</option>
+                <option>Tag 1</option>
+                <option>Tag 2</option>
+                <option>Tag 3</option>
+                <option>Tag 4</option>
+                <option>Tag 5</option>
+                <option>Tag 6</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Approval Type:
+        </td>
+        <td>
+            <select>
+                <option selected disabled> Approval Type</option>
+                <option>Approved</option>
+                <option>Rejected</option>
+                <option>Pending</option>
+                <option>All</option>
+
+            </select>
+        </td>
+    </tr>
+</table>
+<div>
+    <input type="submit" value="Search" />
+</div>

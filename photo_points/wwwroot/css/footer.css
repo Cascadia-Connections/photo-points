@@ -4,6 +4,11 @@
     background-color: white;
     position: absolute;
     bottom: -400px;
+    margin-bottom: -0.8em;
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+    position: absolute;
+    bottom: -200px;
     width: 100%;
 }
 

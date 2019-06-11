@@ -46,10 +46,22 @@
         margin-top: 3px;
         margin-left: 1px;
     }
-
+    
     .card-sm-content h3 {
         font-size: 15px
     }
+
+    /*.circle {*/
+        /*height: 15px;
+        width: 15px;
+        background-color: orange;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+        right: 5px;
+        visibility: hidden;*/
+    /*}*/
 }
 
 .card-img-sm {
@@ -66,6 +78,11 @@
 }
 
 .card-sm-content h3 {
+    font-size: 1.5em;
+    overflow: hidden;
+}
+
+.card-sm-content h3 {
         font-size: 1.5em;
 }
 
@@ -75,13 +92,16 @@
     background-color: orange;
     border-radius: 50%;
     position: absolute;
+    /*display: inline-block;*/
+    position: absolute;
+    /*top: 8px;
+    right: 0px;*/
 }
 
 .admin-buttons {
     position: relative;
     top: 140px;
     left: 600px;
-
 }
 
 .admin-buttons button {
@@ -89,3 +109,4 @@
         padding-right: 20px;
         margin: 10px;
 }
+
