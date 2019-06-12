@@ -1,4 +1,5 @@
 .card-back {
+    visibility: hidden;
     position: fixed;
     height: 500px;
     width: 1000px;

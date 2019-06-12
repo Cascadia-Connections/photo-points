@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - photo_points</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -20,8 +23,10 @@
     <link rel="stylesheet" href="~/css/photo-card.css" />
     <link rel="stylesheet" href="~/css/body.css" />
     <link rel="stylesheet" href="~/css/style.css" />
+
     @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="../../wwwroot/css/photo-card.css" />*@
+
 </head>
 <body>
     <header>
@@ -68,19 +73,19 @@
             <article class="menu-one">
                 <div>
                     @*actionLink will create a text link*@
-                    <button>@Html.ActionLink("Photo Stream", "PhotoStream")</button>
+                    <button class="btn btn-light">@Html.ActionLink("Photo Stream", "PhotoStream")</button>
                 </div>
             </article>
 
             <article class="menu-two">
                 <div>
-                    <button>@Html.ActionLink("Pending", "Pending")</button>
+                    <button class="btn btn-light">@Html.ActionLink("Pending", "Pending")</button>
                 </div>
             </article>
 
             <article class="menu-one">
                 <div>
-                    <button>@Html.ActionLink("Search", "SearchPhotoPoints")</button>
+                    <button class="btn btn-light">@Html.ActionLink("Search", "SearchPhotoPoints")</button>
                 </div>
             </article>
         </nav>
