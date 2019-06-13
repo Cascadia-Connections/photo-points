@@ -2,7 +2,7 @@
 
 # photo-points
 Web Application for Photo Points data and API. 
-The web application, created for _Friends of North Creek Forest_, will allow the administrator to view approved photos, search photos, view pending photos from the mobile application. 
+The web application, created for _Friends of North Creek Forest_, will allow the administrator to view approved photos, search photos, and view pending photos, submitted from the mobile application, for approval to post to FNCF Photo Points website gallery. 
 
 
 ## Technologies 
