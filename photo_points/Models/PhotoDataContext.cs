@@ -30,7 +30,7 @@ namespace photo_points.Models
            
            // it will be done after we start using our data//
 
-           if (Environment.GetEnvironmentVariable("") == "")
+           if (Environment.GetEnvironmentVariable("") == "") // // within the quotes, add the environment name
 
            optionsBuilder.UseSqlServer("Server=localhost,1433; Database=BitData;User=SA; Password=<YourStrong!Passw0rd>");
         }
