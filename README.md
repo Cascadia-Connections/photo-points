@@ -20,7 +20,7 @@ The web application, created for _Friends of North Creek Forest_, will allow the
 * Administrator wants to search the respository for past submissions
 
 
-## Project Satuts
+## Project Status
 
 The application has a user interface for the administrator: Welcome page, Photo Stream Page, Pending page.
 Backend functionalities: a fake repository to hold images for our project. Services that associate with the data; and a controller to load pending images from the repository onto the Pending page. 
@@ -36,7 +36,6 @@ Backend functionalities: a fake repository to hold images for our project. Servi
 
 ## Sources
 * [North Creek Forest](https://www.friendsnorthcreekforest.org/)
-* [GitHub](https://github.com/Cascadia-Connections/photo-points) repository
 
 
 
