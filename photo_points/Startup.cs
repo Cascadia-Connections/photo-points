@@ -39,6 +39,13 @@ namespace photo_points
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
 
+            //add services for the PhotoDataContext
+            services.AddDbContext<Models.PhotoDataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("PhotoPointSubmissions"));
+                //options.UseSqlite(Configuration.GetConnectionString("IndyBooks-Mac-Sqlite"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
