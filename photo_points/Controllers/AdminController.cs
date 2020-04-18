@@ -36,6 +36,21 @@ namespace photo_points.Controllers
 
 
         // GET: /<controller>/
+
+        [HttpGet]
+        public IActionResult AdminLogin(long id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AdminLogin()
+        {
+            if (ModelState.IsValid)
+                return RedirectToAction("WelcomeAdmin");
+            else
+                return View();
+        }
+
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
