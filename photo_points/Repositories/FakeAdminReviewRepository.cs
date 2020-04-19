@@ -37,7 +37,11 @@ namespace photo_points.Repositories
                     captureID= 1,
                     photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
                     captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Pending
+                    approval=Capture.ApprovalType.Pending,
+                    PhotoPoint=new PhotoPoint(){photoPointID=1, feature=PhotoPoint.FeatureType.Leaves, locationName="Oak Trees #1"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
                     },
                 new Capture {
                 captureID=2,
