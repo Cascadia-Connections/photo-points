@@ -14,7 +14,6 @@ namespace photo_points.Models
         public string tagName { get; set; }
 
         public User user { get; set; }
-        //public ICollection<Capture> captures { get; set; }
         public Capture capture { get; set; }
     }
 }

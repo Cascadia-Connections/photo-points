@@ -13,7 +13,7 @@ namespace photo_points.Models
         public PhotoDataContext(DbContextOptions<PhotoDataContext> options)
         : base(options)
         {
-           // Database.EnsureCreated();
+           Database.EnsureCreated();
         }
 
         //Access to Collections representing DB tables

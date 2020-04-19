@@ -43,7 +43,6 @@ namespace photo_points
             services.AddDbContext<Models.PhotoDataContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("PhotoPointSubmissions"));
-                //options.UseSqlite(Configuration.GetConnectionString("IndyBooks-Mac-Sqlite"));
             });
 
         }
