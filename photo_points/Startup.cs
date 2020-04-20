@@ -38,6 +38,7 @@ namespace photo_points
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
+            services.AddMvc();
 
             //add services for the PhotoDataContext
             services.AddDbContext<Models.PhotoDataContext>(options =>
@@ -48,9 +49,9 @@ namespace photo_points
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == "development")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -64,11 +65,13 @@ namespace photo_points
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Admin}/{action=WelcomeAdmin}");
+                endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller}/{action}/{id:long?}",
+                     defaults: new { controller = "Admin", action = "WelcomeAdmin" }
+                );
             });
         }
     }
