@@ -10,7 +10,7 @@ using photo_points.Models;
 namespace photo_points.Migrations
 {
     [DbContext(typeof(PhotoDataContext))]
-    [Migration("20200418221345_Initial Migration")]
+    [Migration("20200420194644_Initial Migration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -111,6 +111,8 @@ namespace photo_points.Migrations
                     b.Property<long>("userID")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Password");
 
                     b.Property<string>("email")
                         .IsRequired();

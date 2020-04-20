@@ -110,6 +110,8 @@ namespace photo_points.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Password");
+
                     b.Property<string>("email")
                         .IsRequired();
 

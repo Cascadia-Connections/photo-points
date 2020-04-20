@@ -30,7 +30,8 @@ namespace photo_points.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     firstName = table.Column<string>(nullable: false),
                     lastName = table.Column<string>(nullable: false),
-                    email = table.Column<string>(nullable: false)
+                    email = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

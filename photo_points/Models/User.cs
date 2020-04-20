@@ -20,8 +20,9 @@ namespace photo_points.Models
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")]
         [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string email { get; set; }
+        public string Password { get; set; }
 
-    public ICollection<Capture> captures { get; set; }
+        public ICollection<Capture> captures { get; set; }
     public ICollection<Tag> tags { get; set; }
 
 }
