@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
 using photo_points.Services;
 using photo_points.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace photo_points
 {
@@ -38,6 +39,12 @@ namespace photo_points
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
             services.AddMvc();
+
+            //add services for the PhotoDataContext
+            services.AddDbContext<Models.PhotoDataContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("PhotoPointSubmissions"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
