@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
-using Microsoft.EntityFrameworkCore;
 using photo_points.Services;
 using photo_points.Repositories;
 
@@ -34,17 +33,17 @@ namespace photo_points
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
-
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == "development")
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -57,12 +56,15 @@ namespace photo_points
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseRouting();
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Admin}/{action=WelcomeAdmin}");
+                endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller}/{action}/{id:long?}",
+                     defaults: new { controller = "Admin", action = "WelcomeAdmin" }
+                );
             });
         }
     }
