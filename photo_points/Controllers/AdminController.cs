@@ -38,27 +38,28 @@ namespace photo_points.Controllers
         // GET: /<controller>/
 
         [HttpGet]
-        public IActionResult AdminLogin(long id)
+        public IActionResult AdminLogin()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult AdminLogin()
+        public IActionResult AdminLogin(LoginViewModel lvm)
         {
             if (ModelState.IsValid)
                 return RedirectToAction("WelcomeAdmin");
             else
+            {
+                ViewBag.LoginIssue = "There is something wrong with you password or email";
                 return View();
+            }
         }
 
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-            if (ModelState.IsValid)
-            {
-                return View("WelcomeAdmin");
-            }
-            return View();
+
+                return View();
+
         }
 
 
