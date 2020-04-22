@@ -13,7 +13,7 @@ namespace photo_points.Models
         [Required(ErrorMessage = "Tag name is required.")]
         public string tagName { get; set; }
 
-        public ICollection<User> users { get; set; }
-        public ICollection<Capture> captures { get; set; }
+        public User user { get; set; }
+        public Capture capture { get; set; }
     }
 }
