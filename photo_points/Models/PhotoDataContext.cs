@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
 
@@ -13,7 +12,7 @@ namespace photo_points.Models
         public PhotoDataContext(DbContextOptions<PhotoDataContext> options)
         : base(options)
         {
-           Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         //Access to Collections representing DB tables
@@ -28,14 +27,14 @@ namespace photo_points.Models
         //TODO: Update with your Database, User, and Password
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           
-           // it will be done after we start using our data//
 
-           if (Environment.GetEnvironmentVariable("") == "") // // within the quotes, add the environment name
+            // it will be done after we start using our data//
 
-           optionsBuilder.UseSqlServer("Server=localhost,1433; Database=BitData;User=SA; Password=<YourStrong!Passw0rd>");
+            if (Environment.GetEnvironmentVariable("") == "") // // within the quotes, add the environment name
+
+                optionsBuilder.UseSqlServer("Server=localhost,1433; Database=BitData;User=SA; Password=<YourStrong!Passw0rd>");
         }
     }
-      
+
 
 }
