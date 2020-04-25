@@ -47,7 +47,7 @@ namespace photo_points.Controllers
         public IActionResult AdminLogin(LoginViewModel lvm)
         {
             if (ModelState.IsValid)
-                if (_dbc.Users.Any(u => u.email == lvm.UserName/* && u.password == lvm.Password*/))
+                if (_dbc.Users.Any(u => u.email == lvm.UserName && u.password == lvm.Password))
                     return RedirectToAction("WelcomeAdmin");
                 else
                     return View();
