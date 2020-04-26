@@ -70,28 +70,28 @@
 
     <section class="admin-nav">
         <nav class="menu-options">
-            <article class="menu-one">
+            <article class="menu">
                 <div>
                     @*actionLink will create a text link*@
-                    <button class="btn btn-light">@Html.ActionLink("Photo Stream", "PhotoStream")</button>
+                    @Html.ActionLink("Photo Stream", "PhotoStream", new object { }, new { @class = "btn btn-light" })
                 </div>
             </article>
 
-            <article class="menu-two">
+            <article class="menu">
                 <div>
-                    <button class="btn btn-light">@Html.ActionLink("Pending", "Pending")</button>
+                    @Html.ActionLink("Pending", "Pending", new object { }, new { @class = "btn btn-light" })
                 </div>
             </article>
 
-            <article class="menu-one">
+            <article class="menu">
                 <div>
-                    <button class="btn btn-light">@Html.ActionLink("Search", "SearchPhotoPoints")</button>
+                    @Html.ActionLink("Search", "SearchPhotoPoints", new object { }, new { @class = "btn btn-light" })
                 </div>
             </article>
 
-            <article class="menu-one">
+            <article class="menu">
                 <div>
-                    <button class="btn btn-light">@Html.ActionLink("Collaborators", "Collaborators")</button>
+                    @Html.ActionLink("Collaborators", "Collaborators", new object { }, new { @class = "btn btn-light" })
                 </div>
             </article>
         </nav>

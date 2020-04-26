@@ -20,8 +20,8 @@ body{
 /*    Administration Navigation    */
 
 
-.admin-nav button {
-    /*margin: 5px;*/
+.admin-nav a {
+    margin: 2.5px;
     padding-top: 10px;
     padding-left: 100px;
     padding-right: 100px;
@@ -32,23 +32,20 @@ body{
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
     color: antiquewhite;
-    /*width: 100%;*/
     width: 100%;
 }
 
-    .admin-nav input {
-        /*margin: 5px;*/
-        padding: 10px;
-        background-color: #4c8c3e;
-        list-style-type: none;
-        text-align: center;
-        font-family: Arial, Helvetica, sans-serif;
-        color: antiquewhite;
-        font-size: 15px;
-        width: 200px;
+.admin-nav input {
+    /*margin: 5px;*/
+    padding: 10px;
+    background-color: #4c8c3e;
+    list-style-type: none;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: antiquewhite;
+    font-size: 15px;
+    width: 200px;
 }
-
-
 
 /*tried the disply:flex; with @media screen // but it didnt work*/
 
