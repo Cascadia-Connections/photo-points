@@ -25,14 +25,18 @@ namespace photo_points.Services
             _AdminRepo.SaveChanges(capt);
         }
 
+        public IEnumerable<Capture> GetCaptures()
+        {
+            return _AdminRepo.GetCaptures();
+        }
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return _AdminRepo.GetCaptures().Where(a => a.approval == Capture.ApprovalType.Pending);
+            return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Pending);
         }
 
         public IEnumerable<Capture> GetApprovedCaptures()
         {
-            return _AdminRepo.GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
+            return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
         }
 
     }

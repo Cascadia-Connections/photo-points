@@ -16,13 +16,15 @@ namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
-   
-        private IAdminReviewServices _adminReviewServices;
 
-        public AdminController(IAdminReviewServices adminServiceReview)
+        private IAdminReviewServices _adminReviewServices;
+        private PhotoDataContext _dbc;
+
+        public AdminController(IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
 
         {
             _adminReviewServices = adminServiceReview;
+            _dbc = dbc;
         }
 
         ///
@@ -45,7 +47,10 @@ namespace photo_points.Controllers
         public IActionResult AdminLogin(LoginViewModel lvm)
         {
             if (ModelState.IsValid)
-                return RedirectToAction("WelcomeAdmin");
+                if (_dbc.Users.Any(u => u.email == lvm.UserName && u.password == lvm.Password))
+                    return RedirectToAction("WelcomeAdmin");
+                else
+                    return View();
             else
             {
                 ViewBag.LoginIssue = "There is something wrong with you password or email";
@@ -74,18 +79,18 @@ namespace photo_points.Controllers
         public IActionResult Pending()
         {
             //build a view model //
-             PendingViewModel pvm = new PendingViewModel();
-             pvm.ImageSource = new List<string>();
-            
+            PendingViewModel pvm = new PendingViewModel();
+            pvm.ImageSource = new List<string>();
+
             //start with entire collection
             IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
 
             //create a foreach loop that goes thru the list and converts bytes to string. 
-            foreach (Capture capture in pendingCaptures) 
+            foreach (Capture capture in pendingCaptures)
             {
                 string mimeType = "image/jpeg";
                 string base64 = Convert.ToBase64String(capture.photo); ////
-               // string.Format("fate:{0}; base64,{1}", mimeType, base64);
+                                                                       // string.Format("fate:{0}; base64,{1}", mimeType, base64);
                 pvm.ImageSource.Add(string.Format("data:{0}; base64,{1}", mimeType, base64));
             }
             return View("Pending", pvm);
@@ -95,7 +100,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult SearchPhotoPoints()
         {
-               return View("SearchPhotoPoints");
+            return View("SearchPhotoPoints");
         }
 
         [HttpGet]
@@ -104,6 +109,13 @@ namespace photo_points.Controllers
             return View("Collaborators");
         }
 
+        [HttpGet]
+        public IActionResult Details(long id)
+        {
+            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
+            Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
+            return View(pendingCapture);
+        }
 
     }
 }
