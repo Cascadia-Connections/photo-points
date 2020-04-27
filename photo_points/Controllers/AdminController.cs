@@ -70,8 +70,21 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult PhotoStream()
         {
+            IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
+                .OrderBy(p => p.photoPointID)
+                .Take(10);
+            return View("PhotoStream", photos);
+        }
 
-            return View("PhotoStream");
+        [HttpGet]
+        public IActionResult DeleteFromPhotoStream(long id)
+        {
+            //Remove the Photo associated with the given id number; Save Changes
+            PhotoPoint photo = new PhotoPoint { photoPointID = id };
+            _dbc.PhotoPoints.Remove(photo);
+            _dbc.SaveChanges();
+
+            return RedirectToAction("PhotoStream");
         }
 
 
