@@ -8,11 +8,7 @@
 
 <h2>PhotoStream</h2>
 
-
-@*@foreach (photo_points.Models.PhotoPoint photoPoint in @Model) {*@
-
-
-@for (var i = 0; i < 5; i++)
+@foreach (var photo in Model)
 {
 
     <div class="container card-body-sm" data-toggle="modal" data-target="#exampleModal">
@@ -20,9 +16,11 @@
             <img class="card-img-sm" src="~/images/fern.jpg" />
         </div>
         <div class="row card-sm-content">
-            <h3>Photopoint Name</h3>
+            <h3>@photo.locationName</h3>
             <div class="col-sm-10">
                 <div class="row">
+                    <a asp-action="DeleteFromPhotoStream" asp-controller="Admin"
+                       asp-route-id="@photo.photoPointID">Remove</a>
                     <h6>Jan 15, 2013</h6>
                 </div>
 
