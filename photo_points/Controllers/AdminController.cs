@@ -115,5 +115,10 @@ namespace photo_points.Controllers
             return View(pendingCapture);
         }
 
+        [HttpPost]
+        public JsonResult EditCapture(Capture capture)
+        {
+            return new JsonResult("{\"id\" : " + capture.captureID + "}");
+        }
     }
 }
