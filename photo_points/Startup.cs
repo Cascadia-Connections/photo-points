@@ -37,7 +37,7 @@ namespace photo_points
             
 
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
-            services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
+            services.AddTransient<IAdminReviewRepository, AdminReviewRepository>();
             services.AddMvc();
 
             //add services for the PhotoDataContext
