@@ -91,22 +91,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            //build a view model //
-            PendingViewModel pvm = new PendingViewModel();
-            pvm.ImageSource = new List<string>();
-
-            //start with entire collection
-            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetUnapprovedCaptures();
-
-            //create a foreach loop that goes thru the list and converts bytes to string. 
-            foreach (Capture capture in pendingCaptures)
-            {
-                string mimeType = "image/jpeg";
-                string base64 = Convert.ToBase64String(capture.photo); ////
-                                                                       // string.Format("fate:{0}; base64,{1}", mimeType, base64);
-                pvm.ImageSource.Add(string.Format("data:{0}; base64,{1}", mimeType, base64));
-            }
-            return View("Pending", pvm);
+            return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
         }
 
 
@@ -130,5 +115,10 @@ namespace photo_points.Controllers
             return View(pendingCapture);
         }
 
+        [HttpPost]
+        public JsonResult EditCapture(Capture capture)
+        {
+            return new JsonResult("{\"id\" : " + capture.captureID + "}");
+        }
     }
 }

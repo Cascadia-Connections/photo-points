@@ -9,6 +9,7 @@
 }
 
 <link rel="stylesheet" href="~/css/details.css">
+<script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
 
 <div class="left">
     <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.photo))" />
@@ -64,52 +65,14 @@
                 <div class="detailsRow">
                     <form id="captureChanges" action="EditCapture" method="post">
                         <div class="detailsTitle">Take Action</div>
-                        <div>
-                            <div class="btn btn-success">Approve Capture</div>
-                            <div class="btn btn-danger">Reject Capture</div>
-                            <div class="btn btn-warning">Discard Changes</div>
+                        <div capture-id="@Model.captureID">
+                            <div class="approve btn btn-success">Approve</div>
+                            <div class="reject btn btn-danger">Reject</div>
+                            <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
                         </div>
                     </form>
                 </div>
             }
-
-            <script type="text/javascript">
-                var form = $("#captureChanges");
-                $(".btn-success").click(function () {
-                    form.append($("<input style='display:none;' name='status' value='approve'>"));
-                    form.submit();
-                });
-                $(".btn-danger").click(function () {
-                    form.append($("<input style='display:none;' name='status' value='reject'>"));
-                    form.submit();
-                });
-                $(".btn-warning").click(function () {
-                    window.history.back();
-                })
-                var changes = $("#captureChanges");
-                var delPills = $(".delPill");
-                delPills.click(
-                    function () {
-                        var t = $(this).parent();
-                        var type = t.attr("data-type");
-                        var id = t.attr("data-id");
-                        var inp = $("<input style='display:none;' name='" + type + "' value='" + id + "'/>");
-                        changes[0].append(inp[0]);
-
-                        var parent = $(t[0]).parent();
-                        t[0].remove();
-                        if (parent.find(".delPill").length == 0)
-                            parent.empty();
-                       
-                    });
-                var editablePills = $(".editable");
-                editablePills.hover(
-                    function () {
-                        $(this).find(".delPill").toggleClass("shown");
-                    }
-                );
-
-            </script>
 
         </div>
 
