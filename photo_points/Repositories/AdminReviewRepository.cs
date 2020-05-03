@@ -1,4 +1,5 @@
-﻿using photo_points.Models;
+﻿
+using photo_points.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace photo_points.Repositories
     public class AdminReviewRepository : IAdminReviewRepository
     {
         private readonly PhotoDataContext _dbcontext;
+
         public AdminReviewRepository(PhotoDataContext Dbcontext)
         {
             _dbcontext = Dbcontext;

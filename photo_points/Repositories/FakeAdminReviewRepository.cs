@@ -1,3 +1,4 @@
+/*
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,8 @@ using photo_points.Services;
 namespace photo_points.Repositories
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-
-
-
     public class FakeAdminReviewRepository : IAdminReviewRepository
     {
-
-
         private DateTime dateTime(int v)
         {
             throw new NotImplementedException();
@@ -64,10 +60,6 @@ namespace photo_points.Repositories
                     data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} }} }
         };
 
-
-
-
-
         // Need to pull Willie's updated entity model with "Approved" property
         public IQueryable<Capture> captures => repo.AsQueryable<Capture>();
 
@@ -107,12 +99,9 @@ namespace photo_points.Repositories
                     c.tags = capt.tags;
                     c.user = capt.user;
                 }
-
             }
-
-
-
-
         }
     }
 }
+
+*/

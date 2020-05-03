@@ -13,5 +13,6 @@ namespace photo_points.Services
         IEnumerable<Capture> GetCaptures();
         IEnumerable<Capture> GetUnapprovedCaptures();
         IEnumerable<Capture> GetApprovedCaptures();
+        void SaveChanges(Capture capt);
     }
 }

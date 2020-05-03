@@ -13,6 +13,7 @@ using photo_points.Models;
 using photo_points.Services;
 using photo_points.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 namespace photo_points
 {
@@ -37,7 +38,7 @@ namespace photo_points
             
 
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
-            services.AddTransient<IAdminReviewRepository, AdminReviewRepository>();
+            //services.AddTransient<IAdminReviewRepository, AdminReviewRepository>();
             services.AddMvc();
 
             //add services for the PhotoDataContext
@@ -50,7 +51,8 @@ namespace photo_points
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.EnvironmentName == "development")
+            //if (env.EnvironmentName == "development")
+            if(env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }

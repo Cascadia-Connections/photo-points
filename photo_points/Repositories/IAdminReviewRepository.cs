@@ -8,15 +8,15 @@ namespace photo_points.Repositories
 {
     public interface IAdminReviewRepository
     {
-        IQueryable<Capture> GetCaptures();
+        IEnumerable<Capture> GetCaptures();
         Capture GetCapture(long captureId);
         IEnumerable<Capture> GetAllUnapproved();
 
+        //to connect to future method to save changes, as there is nothing to save currently
+        // IQueryable<Capture> SavedCaptures();
 
-       //to connect to future method to save changes, as there is nothing to save currently
-       // IQueryable<Capture> SavedCaptures();
 
-
-        void SaveChanges(Capture capt);
+        Capture UpdateCapture(Capture capture);
+        Capture DeleteCapture(long captureId);
     }
 }
