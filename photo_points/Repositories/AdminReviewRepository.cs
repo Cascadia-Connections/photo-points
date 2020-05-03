@@ -13,6 +13,7 @@ namespace photo_points.Repositories
         {
             _dbcontext = Dbcontext;
         }
+
         public Capture DeleteCapture(long captureId)
         {
             // find capture to delete
@@ -22,6 +23,8 @@ namespace photo_points.Repositories
             {
                 _dbcontext.Captures.Remove(captureToDelete);
             }
+
+            _dbcontext.SaveChanges();
             return captureToDelete;
         }
 
@@ -29,7 +32,6 @@ namespace photo_points.Repositories
         public IEnumerable<Capture> GetAllUnapproved()
         {
             // get all captures that are unapproved 
-
             var captures = _dbcontext.Captures.Where(p => p.approval.ToString() == "reject");
             return captures;
         }
@@ -46,16 +48,19 @@ namespace photo_points.Repositories
             return captures;
         }
 
-        public void SaveChanges(Capture capt)
-        {
-            throw new NotImplementedException();
-        }
-
-        // unfinished
         public Capture UpdateCapture(Capture capture)
         {
             var captureToUpdate = _dbcontext.Captures.FirstOrDefault(p => p.captureID == capture.captureID);
             // get proper props to update
+            
+            if(captureToUpdate != null)
+            {
+                // updating approval status only
+                captureToUpdate.approval = capture.approval;
+            }
+
+            _dbcontext.SaveChanges();
+
             return captureToUpdate;
         }
     }

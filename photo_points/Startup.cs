@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using photo_points.Models;
-using photo_points.Services;
 using photo_points.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,7 +35,6 @@ namespace photo_points
             });
             
 
-            services.AddTransient<IAdminReviewServices, AdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, AdminReviewRepository>();
             services.AddMvc();
 

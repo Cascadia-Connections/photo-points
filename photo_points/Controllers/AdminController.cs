@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
 using photo_points.Controllers;
-using photo_points.Services; 
 using System.IO;
+using photo_points.Repositories;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,32 +17,28 @@ namespace photo_points.Controllers
     public class AdminController : Controller
     {
 
-        private IAdminReviewServices _adminReviewServices;
-        private PhotoDataContext _dbc;
-
-        public AdminController(IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
-
+        private readonly IAdminReviewRepository _adminReviewRepo;
+        private readonly PhotoDataContext _dbc;
+        public AdminController(IAdminReviewRepository adminReviewRepo)
         {
-            _adminReviewServices = adminServiceReview;
-            _dbc = dbc;
+            _adminReviewRepo = adminReviewRepo;
+        }
+        
+        // GET: test for capture
+        [HttpPost]
+        public IActionResult TestCapture()
+        {
+            var captures = _adminReviewRepo.GetCaptures();
+            return Ok(captures);
         }
 
-        ///
-        // private Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
-
-
         // GET: /<controller>/
-
         [HttpGet]
         public IActionResult AdminLogin()
         {
             return View();
         }
+        /*
         [HttpPost]
         public IActionResult AdminLogin(LoginViewModel lvm)
         {
@@ -57,13 +53,12 @@ namespace photo_points.Controllers
                 return View();
             }
         }
+        */
 
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-
                 return View();
-
         }
 
 
@@ -74,6 +69,7 @@ namespace photo_points.Controllers
                 .OrderBy(p => p.photoPointID)
                 .Take(10);
             return View("PhotoStream", photos);
+
         }
 
         [HttpGet]
@@ -89,13 +85,6 @@ namespace photo_points.Controllers
 
 
         [HttpGet]
-        public IActionResult Pending()
-        {
-            return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
-        }
-
-
-        [HttpGet]
         public IActionResult SearchPhotoPoints()
         {
             return View("SearchPhotoPoints");
@@ -105,14 +94,6 @@ namespace photo_points.Controllers
         public IActionResult Collaborators()
         {
             return View("Collaborators");
-        }
-
-        [HttpGet]
-        public IActionResult Details(long id)
-        {
-            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
-            Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
-            return View(pendingCapture);
         }
 
         [HttpPost]

@@ -14,8 +14,6 @@ namespace photo_points.Models
     [DataType(DataType.ImageUrl)]
     public byte[] photo { get; set; }
     public DateTime captureDate { get; set; }
-
-    //Determines whether a photo should be displayed.
     public ApprovalType approval { get; set; }
 
     public enum ApprovalType
