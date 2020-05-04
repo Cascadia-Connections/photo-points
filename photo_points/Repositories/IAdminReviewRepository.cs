@@ -16,7 +16,10 @@ namespace photo_points.Repositories
         // IQueryable<Capture> SavedCaptures();
 
 
-        Capture UpdateCapture(Capture capture);
+        //Capture UpdateCapture(Capture capture);
         Capture DeleteCapture(long captureId);
+
+        void SaveChanges(Capture capt);
+
     }
 }

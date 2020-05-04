@@ -9,6 +9,7 @@ using photo_points.ViewModels;
 using photo_points.Controllers;
 using photo_points.Services; 
 using System.IO;
+using photo_points.Repositories;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,13 +18,13 @@ namespace photo_points.Controllers
     public class AdminController : Controller
     {
 
-        private IAdminReviewServices _adminReviewServices;
+        private IAdminReviewRepository _adminReviewRepository;
         private PhotoDataContext _dbc;
 
-        public AdminController(IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
+        public AdminController(IAdminReviewRepository adminReviewRepo, PhotoDataContext dbc)
 
         {
-            _adminReviewServices = adminServiceReview;
+            _adminReviewRepository = adminReviewRepo;
             _dbc = dbc;
         }
 
@@ -91,7 +92,14 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
+            /*
+            return View("Pending", new PendingViewModel 
+                { 
+                    PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() 
+                 });
+            */
+            var pendingCaptures = _adminReviewRepository.GetAllUnapproved().ToList();
+            return View("Pending", pendingCaptures);
         }
 
 
@@ -110,7 +118,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
+            IEnumerable<Capture> pendingCaptures = _adminReviewRepository.GetCaptures();
             Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
             return View(pendingCapture);
         }

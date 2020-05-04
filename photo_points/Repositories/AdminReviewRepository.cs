@@ -11,6 +11,38 @@ namespace photo_points.Repositories
     {
         private readonly PhotoDataContext _dbcontext;
 
+        public List<Capture> repo = new List<Capture> {
+                new Capture {
+                    captureID= 1,
+                    photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Pending,
+                    PhotoPoint=new PhotoPoint(){photoPointID=1, feature=PhotoPoint.FeatureType.Leaves, locationName="Oak Trees #1"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
+                    },
+                new Capture {
+                captureID=2,
+                photo =System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg"),
+                 captureDate = DateTime.Now ,
+                 approval=Capture.ApprovalType.Pending,
+                 PhotoPoint=new PhotoPoint(){photoPointID=2, feature=PhotoPoint.FeatureType.Bush, locationName="Branches"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
+                 },
+                new Capture {
+                captureID=3, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
+                captureDate = DateTime.Now ,
+                approval=Capture.ApprovalType.Pending,
+                PhotoPoint=new PhotoPoint(){photoPointID=3, feature=PhotoPoint.FeatureType.Fern, locationName="Something else"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} }} }
+        };
+
+
         public AdminReviewRepository(PhotoDataContext Dbcontext)
         {
             _dbcontext = Dbcontext;
@@ -30,10 +62,9 @@ namespace photo_points.Repositories
         // getting all rejected
         public IEnumerable<Capture> GetAllUnapproved()
         {
-            // get all captures that are unapproved 
-
-            var captures = _dbcontext.Captures.Where(p => p.approval.ToString() == "reject");
-            return captures;
+            // return captures.Where(a => a.approve == true);
+            return _dbcontext.Captures
+                .Where(a => a.approval == Capture.ApprovalType.Pending); // Approve//Pening//or Reject to test
         }
 
         public Capture GetCapture(long captureId)
@@ -50,15 +81,23 @@ namespace photo_points.Repositories
 
         public void SaveChanges(Capture capt)
         {
-            throw new NotImplementedException();
+            foreach (photo_points.Models.Capture c in repo)
+            {
+                //it will compare properties in fake repository with service changes
+                //it will save and replace new info to repo
+                if (c.captureID == capt.captureID)
+
+                {
+                    c.approval = capt.approval;
+                    c.captureDate = capt.captureDate;
+                    c.data = capt.data;
+                    c.photo = capt.photo;
+                    c.PhotoPoint = capt.PhotoPoint;
+                    c.tags = capt.tags;
+                    c.user = capt.user;
+                }
+            }
         }
 
-        // unfinished
-        public Capture UpdateCapture(Capture capture)
-        {
-            var captureToUpdate = _dbcontext.Captures.FirstOrDefault(p => p.captureID == capture.captureID);
-            // get proper props to update
-            return captureToUpdate;
-        }
     }
 }
