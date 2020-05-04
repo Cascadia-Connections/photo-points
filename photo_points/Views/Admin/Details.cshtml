@@ -9,7 +9,10 @@
 }
 
 <link rel="stylesheet" href="~/css/details.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
+<script type="text/javascript" src="~/js/addNotes.js"></script>
+</script>
 
 <div class="left">
     <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.photo))" />
@@ -35,44 +38,72 @@
         </div>
         <br />
         <div class="detailsRow">
-            <div class="detailsTitle">Data</div>
-            <div class="tags">
-                @foreach (Data data in Model.data)
-                {
-                    <div class="pill @editClass" data-type="data" data-id="@data.dataID">
-                        @if (editable)
-                        {
-                            <div class="delPill">x</div>
-                        }
-                        <div class="dataType">
-                            <div class="pillText">@data.type</div>
-                        </div>
-                        <div class="dataValue">
-                            <div class="pillText">@data.value</div>
-                        </div>
+           <div class="detailsTitle">Data</div>
+           <div class="tags">
+              @foreach (Data data in Model.data)
+              {
+                 <div class="pill @editClass" data-type="data" data-id="@data.dataID">
+                    @if (editable)
+                    {
+                       <div class="delPill">x</div>
+                    }
+                    <div class="dataType">
+                       <div class="pillText">@data.type</div>
                     </div>
-                }
-            </div>
-            <br />
-            <div class="detailsRow">
-                <div class="detailsTitle">Status</div>
-                <div>@Model.approval</div>
-            </div>
+                    <div class="dataValue">
+                       <div class="pillText">@data.value</div>
+                    </div>
+                 </div>
+              }
+           </div>
+           <br />
+           <div class="detailsRow">
+              <div class="detailsTitle">Status</div>
+              <div>@Model.approval</div>
+           </div>
 
-            @if (editable)
-            {
-                <br />
-                <div class="detailsRow">
+           <br />
+           <div class="detailsRow">
+              <div class="detailsTitle">Notes:</div>
+              <div class="notes">
+                 @foreach (Data data in Model.data)
+                 {
+                    <div class="dataNote">
+                       <div id="outputmsg"></div>
+                    </div>
+
+                    <input type="button" class="btn btn-success" id="addNote" value="Add Note" onclick="AddNote()" />
+                    <input type="button" class="btn btn-danger" id="deleteNote" value="Delete Note" onclick="DeleteNote()" />
+                 }
+              </div>
+           </div>
+              <!--
+
+             </br>
+             <div class="detailsRow">
+         <div class="detailsTitle">Notes:</div>
+         <div id="output"></div>
+         <form id="notes">
+            <input type="button" class="approve btn btn-success" id="addNote" value="Add Note" onclick="note()" onkeypress="note()" />
+         </form>
+      </div>
+
+        -->
+
+              @if (editable)
+              {
+                 <br />
+                 <div class="detailsRow">
                     <form id="captureChanges" action="EditCapture" method="post">
-                        <div class="detailsTitle">Take Action</div>
-                        <div capture-id="@Model.captureID">
-                            <div class="approve btn btn-success">Approve</div>
-                            <div class="reject btn btn-danger">Reject</div>
-                            <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
-                        </div>
+                       <div class="detailsTitle">Take Action</div>
+                       <div capture-id="@Model.captureID">
+                          <div class="approve btn btn-success">Approve</div>
+                          <div class="reject btn btn-danger">Reject</div>
+                          <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
+                       </div>
                     </form>
-                </div>
-            }
+                 </div>
+              }
 
-        </div>
+           </div>
 
