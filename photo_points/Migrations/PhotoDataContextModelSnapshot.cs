@@ -15,7 +15,7 @@ namespace photo_points.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -75,6 +75,26 @@ namespace photo_points.Migrations
                     b.HasIndex("captureID");
 
                     b.ToTable("Datas");
+                });
+
+            modelBuilder.Entity("photo_points.Models.Note", b =>
+                {
+                    b.Property<long>("noteID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("captureID")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("noteComment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("noteID");
+
+                    b.HasIndex("captureID");
+
+                    b.ToTable("Notes");
                 });
 
             modelBuilder.Entity("photo_points.Models.PhotoPoint", b =>
@@ -164,6 +184,13 @@ namespace photo_points.Migrations
                 {
                     b.HasOne("photo_points.Models.Capture", "Capture")
                         .WithMany("data")
+                        .HasForeignKey("captureID");
+                });
+
+            modelBuilder.Entity("photo_points.Models.Note", b =>
+                {
+                    b.HasOne("photo_points.Models.Capture", "Capture")
+                        .WithMany("notes")
                         .HasForeignKey("captureID");
                 });
 

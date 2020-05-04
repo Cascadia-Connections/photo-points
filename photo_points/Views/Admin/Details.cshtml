@@ -63,32 +63,6 @@
            </div>
 
            <br />
-           <div class="detailsRow">
-              <div class="detailsTitle">Notes:</div>
-              <div class="notes">
-                 @foreach (Data data in Model.data)
-                 {
-                    <div class="dataNote">
-                       <div id="outputmsg"></div>
-                    </div>
-
-                    <input type="button" class="btn btn-success" id="addNote" value="Add Note" onclick="AddNote()" />
-                    <input type="button" class="btn btn-danger" id="deleteNote" value="Delete Note" onclick="DeleteNote()" />
-                 }
-              </div>
-           </div>
-              <!--
-
-             </br>
-             <div class="detailsRow">
-         <div class="detailsTitle">Notes:</div>
-         <div id="output"></div>
-         <form id="notes">
-            <input type="button" class="approve btn btn-success" id="addNote" value="Add Note" onclick="note()" onkeypress="note()" />
-         </form>
-      </div>
-
-        -->
 
               @if (editable)
               {
