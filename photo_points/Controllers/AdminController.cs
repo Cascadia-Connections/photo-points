@@ -18,13 +18,13 @@ namespace photo_points.Controllers
     public class AdminController : Controller
     {
 
-        private IAdminReviewRepository _adminReviewRepository;
+        private IAdminReviewServices _adminReviewService;
         private PhotoDataContext _dbc;
 
-        public AdminController(IAdminReviewRepository adminReviewRepo, PhotoDataContext dbc)
+        public AdminController(IAdminReviewServices adminReviewService, PhotoDataContext dbc)
 
         {
-            _adminReviewRepository = adminReviewRepo;
+            _adminReviewService = adminReviewService;
             _dbc = dbc;
         }
 
@@ -92,14 +92,9 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            /*
-            return View("Pending", new PendingViewModel 
-                { 
-                    PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() 
-                 });
-            */
-            var pendingCaptures = _adminReviewRepository.GetAllUnapproved().ToList();
-            return View("Pending", pendingCaptures);
+            return View("Pending", new PendingViewModel { 
+                PendingCaptures = _adminReviewService.GetUnapprovedCaptures().ToList() 
+            });
         }
 
 
@@ -118,7 +113,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            IEnumerable<Capture> pendingCaptures = _adminReviewRepository.GetCaptures();
+            IEnumerable<Capture> pendingCaptures = _adminReviewService.GetCaptures();
             Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
             return View(pendingCapture);
         }

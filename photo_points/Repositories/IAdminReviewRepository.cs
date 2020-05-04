@@ -20,6 +20,5 @@ namespace photo_points.Repositories
         Capture DeleteCapture(long captureId);
 
         void SaveChanges(Capture capt);
-
     }
 }
