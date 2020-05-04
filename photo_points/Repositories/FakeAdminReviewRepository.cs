@@ -53,11 +53,38 @@ namespace photo_points.Repositories
                     tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
                     data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
                  },
-
                 new Capture {
                 captureID=3, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
                 captureDate = DateTime.Now ,
                 approval=Capture.ApprovalType.Pending,
+                PhotoPoint=new PhotoPoint(){photoPointID=3, feature=PhotoPoint.FeatureType.Fern, locationName="Something else"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} }} },
+                new Capture {
+                    captureID= 4,
+                    photo = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg"),
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Approve,
+                    PhotoPoint=new PhotoPoint(){photoPointID=1, feature=PhotoPoint.FeatureType.Leaves, locationName="Oak Trees #1"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
+                    },
+                new Capture {
+                captureID=5,
+                photo =System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg"),
+                 captureDate = DateTime.Now ,
+                 approval=Capture.ApprovalType.Approve,
+                 PhotoPoint=new PhotoPoint(){photoPointID=2, feature=PhotoPoint.FeatureType.Bush, locationName="Branches"},
+                    user=new User(){firstName="Tom", lastName="Jones"},
+                    tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
+                 },
+                new Capture {
+                captureID=6, photo =  System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg") ,
+                captureDate = DateTime.Now ,
+                approval=Capture.ApprovalType.Approve,
                 PhotoPoint=new PhotoPoint(){photoPointID=3, feature=PhotoPoint.FeatureType.Fern, locationName="Something else"},
                     user=new User(){firstName="Tom", lastName="Jones"},
                     tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },

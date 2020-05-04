@@ -22,9 +22,9 @@ namespace photo_points.Models
         {
             //Pending is the default. So when a new capture is created it will be waiting for admin approval.
 
-            Pending,
-            Approve,
-            Reject
+            Pending, // 0
+            Approve, // 1
+            Reject  // 2
         }
 
         public ICollection<Data> data { get; set; }
