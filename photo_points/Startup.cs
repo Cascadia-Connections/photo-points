@@ -35,9 +35,8 @@ namespace photo_points
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
 
-            //services.AddTransient<IAdminReviewServices, AdminReviewServices>();
+            services.AddTransient<IAdminReviewServices, AdminReviewServices>();
             services.AddTransient<IAdminReviewRepository, AdminReviewRepository>();
             services.AddMvc();
 
