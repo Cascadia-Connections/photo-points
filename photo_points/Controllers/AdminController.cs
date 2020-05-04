@@ -126,6 +126,13 @@ namespace photo_points.Controllers
                 return View("PhotoStream", tags);
             }
 
+            //search by approval type
+            //if(search.approval != null)
+            //{
+            //    captures = captures.Where(c => c.approval == search.approval);
+            //    return View("PhotoStream", captures);
+            //}
+
             //return all photos/captures if no filter was selected
             else
             {
