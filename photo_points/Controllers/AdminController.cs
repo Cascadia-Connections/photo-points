@@ -9,6 +9,7 @@ using photo_points.ViewModels;
 using photo_points.Controllers;
 using photo_points.Services; 
 using System.IO;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -99,6 +100,37 @@ namespace photo_points.Controllers
         public IActionResult SearchPhotoPoints()
         {
             return View("SearchPhotoPoints");
+        }
+
+        [HttpPost]
+        public IActionResult SearchPhotoPoints(SearchViewModel search)
+        {
+            //Full Collection Search
+            IQueryable<Capture> captures = _dbc.Captures;
+            IQueryable<PhotoPoint> photoPoints = _dbc.PhotoPoints;
+            IQueryable<Tag> tags = _dbc.Tags;
+
+            //photoPointId searched
+            if (search.photoPointId > 0)
+            {
+                //captures = captures.Where(c => c.PhotoPoint.photoPointID == search.photoPointId);
+                photoPoints = photoPoints.Where(p => p.photoPointID == search.photoPointId);
+                return View("PhotoStream", photoPoints);
+            }
+
+            // search by tag
+            if (search.tagName != null)
+            {
+                tags = tags.Include(t => t.capture)
+                    .Where(t => t.tagName.Contains(search.tagName));
+                return View("PhotoStream", tags);
+            }
+
+            //return all photos/captures if no filter was selected
+            else
+            {
+                return View("PhotoStream", photoPoints);
+            }
         }
 
         [HttpGet]
