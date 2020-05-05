@@ -62,9 +62,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-
                 return View();
-
         }
 
 

@@ -42,14 +42,12 @@ namespace photo_points.Repositories
                     data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} }} }
         };
 
-
         public AdminReviewRepository(PhotoDataContext Dbcontext)
         {
             _dbcontext = Dbcontext;
         }
         public Capture DeleteCapture(long captureId)
         {
-            // find capture to delete
             var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.captureID == captureId);
 
             if(captureToDelete != null)
@@ -59,12 +57,10 @@ namespace photo_points.Repositories
             return captureToDelete;
         }
 
-        // getting all rejected
         public IEnumerable<Capture> GetAllUnapproved()
         {
-            // return captures.Where(a => a.approve == true);
             return _dbcontext.Captures
-                .Where(a => a.approval == Capture.ApprovalType.Pending); // Approve//Pening//or Reject to test
+                .Where(a => a.approval == Capture.ApprovalType.Pending); 
         }
 
         public Capture GetCapture(long captureId)
@@ -81,23 +77,25 @@ namespace photo_points.Repositories
 
         public void SaveChanges(Capture capt)
         {
-            foreach (photo_points.Models.Capture c in repo)
+            var capture = _dbcontext.Captures.FirstOrDefault(c => c.captureID == capt.captureID);
+
+            if(capture != null)
             {
-                //it will compare properties in fake repository with service changes
-                //it will save and replace new info to repo
-                if (c.captureID == capt.captureID)
+                capture.approval = capt.approval;
+                capture.captureDate = capt.captureDate;
+                capture.data = capt.data;
+                capture.photo = capt.photo;
+                capture.PhotoPoint = capt.PhotoPoint;
+                capture.tags = capt.tags;
+                capture.user = capt.user;
 
-                {
-                    c.approval = capt.approval;
-                    c.captureDate = capt.captureDate;
-                    c.data = capt.data;
-                    c.photo = capt.photo;
-                    c.PhotoPoint = capt.PhotoPoint;
-                    c.tags = capt.tags;
-                    c.user = capt.user;
-                }
+                _dbcontext.Captures.Update(capture);
             }
+            else
+            {
+                _dbcontext.Captures.Add(capt);
+            }
+            _dbcontext.SaveChanges();
         }
-
     }
 }
