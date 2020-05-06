@@ -2,11 +2,13 @@ Body
 .top-banner{
     background-color: white; 
     padding: initial;
+    margin: -0.5em;
 }
 
 .banner {
     background-color: #003947;
-    padding: initial;
+    padding: 0.5em;
+    margin-top:0.5em;
     color: white;
     text-align-last: center;
 }
