@@ -33,7 +33,10 @@
             </div>
 
             <div class="logout">
-                <input type="button" onclick="location.href = '/Logout.html';" value="Log Out">
+                <form asp-action="AdminLogout" method="post">
+                <input type="submit" value="Logout">
+                </form>
+                
             </div>
         </section>
 

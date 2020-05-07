@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
-using photo_points.Services; 
+using photo_points.Services;
 
 
 namespace photo_points.Controllers
@@ -20,6 +20,12 @@ namespace photo_points.Controllers
         {
             _adminReviewService = adminReviewService;
             _dbc = dbc;
+        }
+
+        [HttpPost]
+        public IActionResult AdminLogout()
+        {
+            return RedirectToAction("AdminLogin");
         }
 
         [HttpGet]
@@ -45,7 +51,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-                return View();
+            return View();
         }
 
 
@@ -73,8 +79,9 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            return View("Pending", new PendingViewModel { 
-                PendingCaptures = _adminReviewService.GetUnapprovedCaptures().ToList() 
+            return View("Pending", new PendingViewModel
+            {
+                PendingCaptures = _adminReviewService.GetUnapprovedCaptures().ToList()
             });
         }
 

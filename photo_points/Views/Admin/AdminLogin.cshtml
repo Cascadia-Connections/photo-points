@@ -1,15 +1,31 @@
 ﻿@addTagHelper  *, Microsoft.AspNetCore.Mvc.TagHelpers;
 @model photo_points.ViewModels.LoginViewModel
-
 @{
     ViewData["Title"] = "AdminLogin";
+    Layout = "~/Views/Shared/Login_Layout.cshtml";
 }
 
-    <form asp-action="AdminLogin" method="post">
-        <h2>Username</h2>
-        <input asp-for="UserName" />
-        <h2>Password</h2>
-        <input asp-for="Password" />
-        <input type ="submit" value="Login">
-        @ViewBag.LoginIssue
-    </form>
+
+
+    <body>
+        @*<form asp-action="AdminLogin" method="post">
+            <h2>Username</h2>
+            <input asp-for="UserName" />
+            <h2>Password</h2>
+            <input asp-for="Password" />
+            <input type="submit" value="Login">
+            @ViewBag.LoginIssue
+        </form>*@
+        @*<div id="fullscreen_bg" class="fullscreen_bg" />*@
+        <div class="container">
+
+            <form class="form-signin" asp-action="AdminLogin" method="post">
+                <h1 class="form-signin-heading text-muted">Admin Login</h1>
+                <input type="text" class="form-control" placeholder="Email address" required="" autofocus="" asp-for="UserName">
+                <input type="password" class="form-control" placeholder="Password" required="" asp-for="Password">
+                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+
+            </form>
+            @ViewBag.LoginIssue
+        </div>
+    </body>

@@ -70,7 +70,7 @@ namespace photo_points
                 endpoints.MapControllerRoute(
                      name: "default",
                      pattern: "{controller}/{action}/{id:long?}",
-                     defaults: new { controller = "Admin", action = "WelcomeAdmin" }
+                     defaults: new { controller = "Admin", action = "AdminLogin" }
                 );
             });
         }
