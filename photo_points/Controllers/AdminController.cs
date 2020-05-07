@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
-using photo_points.Controllers;
 using photo_points.Services; 
-using System.IO;
-using photo_points.Repositories;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace photo_points.Controllers
 {
@@ -27,17 +21,6 @@ namespace photo_points.Controllers
             _adminReviewService = adminReviewService;
             _dbc = dbc;
         }
-
-        ///
-        // private Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
-
-
-        // GET: /<controller>/
 
         [HttpGet]
         public IActionResult AdminLogin()
