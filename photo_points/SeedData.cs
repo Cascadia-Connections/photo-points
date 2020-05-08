@@ -5,6 +5,7 @@ using Bogus;
 using photo_points.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace photo_points
 {
@@ -24,7 +25,7 @@ namespace photo_points
 
             //  NuGet Package "Bogus" fake data generator
             Randomizer.Seed = new Random(8672042);
-            
+
             //Users
             var testUsers = new Faker<User>()
                 .RuleFor(u => u.firstName, f => f.Name.FirstName())
@@ -34,24 +35,20 @@ namespace photo_points
             var users = testUsers.Generate(100);
 
             //Captures - Will need to change database to fix this.
-            //var approved = new[] { 0, 1 };
-            //var testCaptures = new Faker<Capture>()
-            //    .RuleFor(c => c.captureDate, faker => faker.Date.Recent())
-            //    .RuleFor(c => c.user, faker => faker.PickRandom(testUsers));
-            //    .RuleFor(c => c.photo, faker => faker.Image.PicsumUrl();
-            //var captures = testCaptures.Generate(100);
+
+
 
             //PhotoPoints
-            var features = new[] { 1, 2, 3, 4, 5, 6, 7 };
-            var testPhotos = new Faker<PhotoPoint>()
-                .RuleFor(p => p.locationName, f => f.Address.City());
-            //.RuleFor(p => p.feature, f => f.PickRandom(features));
-            var photopoints = testPhotos.Generate(100);
+            //var features = new[] { 1, 2, 3, 4, 5, 6, 7 };
+            //var testPhotos = new Faker<PhotoPoint>()
+            //    .RuleFor(p => p.locationName, f => f.Address.City());
+            ////.RuleFor(p => p.feature, f => f.PickRandom(features));
+            //var photopoints = testPhotos.Generate(100);
 
-            //Add
-            await context.Users.AddRangeAsync(users);
+            ////Add
+            //await context.Users.AddRangeAsync(users);
             //await context.Captures.AddRangeAsync(captures);
-            await context.PhotoPoints.AddRangeAsync(photopoints);
+            //await context.PhotoPoints.AddRangeAsync(photopoints);
 
             //Save
             await context.SaveChangesAsync();

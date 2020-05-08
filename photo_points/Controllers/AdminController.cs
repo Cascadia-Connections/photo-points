@@ -111,5 +111,13 @@ namespace photo_points.Controllers
         {
             return new JsonResult("{\"id\" : " + capture.captureID + "}");
         }
+
+        // testing capture when saving
+        //[HttpPost]
+        //public IActionResult SubmitCapture(Capture capture)
+        //{
+        //    _adminReviewService.ad
+        //}
+
     }
 }

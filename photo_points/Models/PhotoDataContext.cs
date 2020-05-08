@@ -25,10 +25,18 @@ namespace photo_points.Models
 
         //TODO: on VS-MAC use the reference https://www.ciclosoftware.com/2018/03/14/sql-server-with-net-core-and-entityframework-on-mac/
         //TODO: Update with your Database, User, and Password
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+            
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
             // it will be done after we start using our data//
+            optionsBuilder.EnableSensitiveDataLogging(true);
 
             if (Environment.GetEnvironmentVariable("") == "") // // within the quotes, add the environment name
 
