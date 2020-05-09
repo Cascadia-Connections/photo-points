@@ -95,13 +95,6 @@ namespace photo_points.Controllers
             return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
         }
 
-
-        [HttpGet]
-        public IActionResult SearchPhotoPoints()
-        {
-            return View("SearchPhotoPoints");
-        }
-
         [HttpGet]
         public IActionResult SearchCaptures()
         {
@@ -111,71 +104,31 @@ namespace photo_points.Controllers
         [HttpPost]
         public IActionResult SearchCaptures(SearchViewModel search)
         {
-            var ret = _adminReviewServices.GetCaptures().ToList();
-            //if (search.photoPointId > 0)   //if searched by photo point id
-            //{
-            //    //captures = captures.Where(c => c.PhotoPoint.photoPointID == search.photoPointId);
-            //    ret = ret.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
-            //    return View("SearchCapturesResults", ret);
-            //}
+            var results = _adminReviewServices.GetCaptures().ToList();
+            if (search.photoPointId > 0)   //if searched by photo point id
+            {
+                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+            }
 
-            //if (search.fromDate != new DateTime())     //if searched by fromDate
-            //{
-            //    ret = ret.Where(r => r.captureDate >= search.fromDate).ToList();
-            //    return View("SearchCapturesResults");
-            //}
-            //if (search.toDate != new DateTime())      //if searched by toDate
-            //{
-            //    ret = ret.Where(r => r.captureDate <= search.toDate).ToList();
-            //    return View("SearchCapturesResults");
-            //}
+            if (search.fromDate != new DateTime())     //if searched by fromDate
+            {
+                results = results.Where(r => r.captureDate >= search.fromDate).ToList();
+            }
+            if (search.toDate != new DateTime())      //if searched by toDate
+            {
+                results = results.Where(r => r.captureDate <= search.toDate).ToList();
+            }
 
-            //if (search.tagName != null)    //search by tag
-            //{
-            //    ret = ret.Where(r => r.tags.Select(t => t.tagName)      
-            //    .Contains(search.tagName)).ToList();
-            //    return View("SearchCapturesResults");
-            //}
-            //else
-            //{
-            //    return View("SearchCapturesResults");
-            //}
-
-            //return View("SearchCaptures", ret);
-            return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = ret });
+            if (search.tagName != null)    //search by tag
+            {
+                results = results.Where(r => r.tags.Select(t => t.tagName)
+                .Contains(search.tagName)).ToList();
+            }
+            
+            //return results based on the search filters.
+            return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
 
         }
-
-        //[HttpPost]
-        //public IActionResult SearchPhotoPoints(SearchViewModel search)
-        //{
-        //    //Full Collection Search
-        //    IQueryable<Capture> captures = _dbc.Captures;
-        //    IQueryable<PhotoPoint> photoPoints = _dbc.PhotoPoints;
-        //    IQueryable<Tag> tags = _dbc.Tags;
-
-        //    //photoPointId searched
-        //    if (search.photoPointId > 0)
-        //    {
-        //        //captures = captures.Where(c => c.PhotoPoint.photoPointID == search.photoPointId);
-        //        photoPoints = photoPoints.Where(p => p.photoPointID == search.photoPointId);
-        //        return View("PhotoStream", photoPoints);
-        //    }
-
-        //    // search by tag
-        //    if (search.tagName != null)
-        //    {
-        //        tags = tags.Include(t => t.capture)
-        //            .Where(t => t.tagName.Contains(search.tagName));
-        //        return View("PhotoStream", tags);
-        //    }
-
-        //    //return all photos/captures if no filter was selected
-        //    else
-        //    {
-        //        return View("PhotoStream", photoPoints);
-        //    }
-        //}
 
         [HttpGet]
         public IActionResult Collaborators()
