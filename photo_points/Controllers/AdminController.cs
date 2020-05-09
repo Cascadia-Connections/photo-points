@@ -105,7 +105,7 @@ namespace photo_points.Controllers
         public IActionResult SearchCaptures(SearchViewModel search)
         {
             var results = _adminReviewServices.GetCaptures().ToList();
-            if (search.photoPointId > 0)   //if searched by photo point id
+            if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
                 results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
@@ -127,11 +127,15 @@ namespace photo_points.Controllers
                 .Contains(search.tagName)).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
+            //if (search.photoPointId > 3)
+            //{
+            //    return View("SearchCapturesResultsNotFound");
+            //}
             else
             {
-                return View("SearchPhotoPoints");
+                return View("SearchCapturesResultsNotFound");
             }
-            
+
             //return results based on the search filters.
             //return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
 
