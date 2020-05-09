@@ -108,25 +108,32 @@ namespace photo_points.Controllers
             if (search.photoPointId > 0)   //if searched by photo point id
             {
                 results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+                return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-
             if (search.fromDate != new DateTime())     //if searched by fromDate
             {
                 results = results.Where(r => r.captureDate >= search.fromDate).ToList();
+                return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.toDate != new DateTime())      //if searched by toDate
             {
                 results = results.Where(r => r.captureDate <= search.toDate).ToList();
+                return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
             if (search.tagName != null)    //search by tag
             {
                 results = results.Where(r => r.tags.Select(t => t.tagName)
                 .Contains(search.tagName)).ToList();
+                return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
+            }
+            else
+            {
+                return View("SearchPhotoPoints");
             }
             
             //return results based on the search filters.
-            return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
+            //return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
 
         }
 
