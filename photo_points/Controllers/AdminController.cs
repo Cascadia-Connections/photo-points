@@ -28,6 +28,14 @@ namespace photo_points.Controllers
             return RedirectToAction("AdminLogin");
         }
 
+        // testing for captures data
+        [HttpGet]
+        public JsonResult GetCaptures()
+        {
+            IEnumerable<Capture> captures = _adminReviewService.GetCaptures().ToList();
+            return new JsonResult(captures);
+        }
+
         [HttpGet]
         public IActionResult AdminLogin()
         {

@@ -16,13 +16,6 @@ namespace photo_points.Repositories
             _dbcontext = Dbcontext;
         }
 
-
-        byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
-
-        byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
-
-        byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
-
         public Capture DeleteCapture(long captureId)
         {
             var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.captureID == captureId);
@@ -62,7 +55,7 @@ namespace photo_points.Repositories
                 capture.captureDate = capt.captureDate;
                 capture.data = capt.data;
                 capture.photo = capt.photo;
-                capture.PhotoPoint = capt.PhotoPoint;
+                capture.photoPoint = capt.photoPoint;
                 capture.tags = capt.tags;
                 capture.user = capt.user;
 

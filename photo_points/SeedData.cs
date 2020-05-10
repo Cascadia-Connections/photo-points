@@ -18,7 +18,7 @@ namespace photo_points
 
         public static async Task Seed(PhotoDataContext context)
         {
-            if (context.Users.Any())
+            if (!context.Users.Any())
             {
                 return; //already has data, don't add any more test data
             }
@@ -26,32 +26,79 @@ namespace photo_points
             //  NuGet Package "Bogus" fake data generator
             Randomizer.Seed = new Random(8672042);
 
-            //Users
-            var testUsers = new Faker<User>()
-                .RuleFor(u => u.firstName, f => f.Name.FirstName())
-                .RuleFor(u => u.lastName, f => f.Name.LastName())
-                .RuleFor(u => u.email, (f, u) => f.Internet.Email(u.firstName, u.lastName))
-                .RuleFor(u => u.password, f => f.Internet.Password(8, true));
-            var users = testUsers.Generate(100);
+            byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
 
-            //Captures - Will need to change database to fix this.
+            byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
 
+            byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
 
+            var captures = new List<Capture> {
+                new Capture
+                {
+                    photo = imgdata,
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Pending,
+                    photoPoint=
+                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Oak Trees #1"),
+                    user=
+                    CreateUser("Tom", "Jones", "TomJones@gmail.com"),
+                    tags=new List<Tag>
+                    {
+                        CreateTag("Leaves Falling"),
+                        CreateTag("On Track")
+                    },
+                    data=new List<Data>
+                    {
+                       CreateData("Color", "Green"),
+                       CreateData("Color", "Red"),
+                    }
+                } 
+            };
 
-            //PhotoPoints
-            //var features = new[] { 1, 2, 3, 4, 5, 6, 7 };
-            //var testPhotos = new Faker<PhotoPoint>()
-            //    .RuleFor(p => p.locationName, f => f.Address.City());
-            ////.RuleFor(p => p.feature, f => f.PickRandom(features));
-            //var photopoints = testPhotos.Generate(100);
-
-            ////Add
-            //await context.Users.AddRangeAsync(users);
-            //await context.Captures.AddRangeAsync(captures);
-            //await context.PhotoPoints.AddRangeAsync(photopoints);
-
-            //Save
+        // await context.Datas.AddRangeAsync(fakeData);
+        await context.Captures.AddRangeAsync(captures);
+            
             await context.SaveChangesAsync();
         }
+        public static Data CreateData(string type, string value)
+        {
+            Data newData = new Data();
+            newData.type = type;
+            newData.value = value;
+            return newData;
+        }
+
+        public static User CreateUser(string firstName, string lastName, string email)
+        {
+            User user = new User
+            {
+                firstName = firstName,
+                lastName = lastName,
+                email = email
+            };
+
+            return user;
+        }
+        
+        public static Tag CreateTag(string tagName)
+        {
+            Tag tag = new Tag
+            {
+                tagName = tagName
+            };
+
+            return tag;
+        }
+        public static PhotoPoint CreatePhotoPoint(PhotoPoint.FeatureType feature, string locationName)
+        {
+            PhotoPoint photoPoint = new PhotoPoint
+            {
+                feature = feature,
+                locationName = locationName
+            };
+
+            return photoPoint;
+        }
+
     }
 }
