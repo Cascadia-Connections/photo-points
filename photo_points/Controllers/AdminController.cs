@@ -127,9 +127,10 @@ namespace photo_points.Controllers
                 .Contains(search.tagName)).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-            //if (search.photoPointId > 3)
+            //if (search.approval != null)
             //{
-            //    return View("SearchCapturesResultsNotFound");
+                
+            //    return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             //}
             else
             {
