@@ -127,11 +127,13 @@ namespace photo_points.Controllers
                 .Contains(search.tagName)).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-            //if (search.approval != null)
+
+            //if (search.approval.ToString().Contains("Pending"))   //search using approval type
             //{
-                
+            //    results = results.Where(r => r.approval.ToString().Contains(search.approval.ToString())).ToList();
             //    return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             //}
+
             else
             {
                 return View("SearchCapturesResultsNotFound");
