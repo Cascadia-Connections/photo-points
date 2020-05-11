@@ -104,6 +104,8 @@ namespace photo_points.Controllers
         [HttpPost]
         public IActionResult SearchCaptures(SearchViewModel search)
         {
+            var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
+            var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
             var results = _adminReviewServices.GetCaptures().ToList();
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
@@ -128,19 +130,40 @@ namespace photo_points.Controllers
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
-            //if (search.approval.ToString().Contains("Pending"))   //search using approval type
+            //Search for pending captures
+            if(search.approval == SearchViewModel.ApprovalType.Pending)
+            {
+                if (capturesPending.Count() == 0)
+                {
+                    return View("SearchCapturesResultsNotFound");
+                }
+                else
+                {
+                    return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = capturesPending });
+                }
+            }
+            //search for approved captures. Return results not found if there are no approved captures
+            if (search.approval == SearchViewModel.ApprovalType.Approved)
+            {
+                if (capturesApproved.Count() == 0)
+                {
+                    return View("SearchCapturesResultsNotFound");
+                }
+                else
+                {
+                    return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = capturesApproved });
+                }
+            }
+
+            //if (search.approval != SearchViewModel.ApprovalType.Pending || search.approval != SearchViewModel.ApprovalType.Approved)
             //{
-            //    results = results.Where(r => r.approval.ToString().Contains(search.approval.ToString())).ToList();
-            //    return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
+            //    return View("SearchCapturesResultsNotFound");
             //}
 
             else
             {
                 return View("SearchCapturesResultsNotFound");
             }
-
-            //return results based on the search filters.
-            //return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
 
         }
 

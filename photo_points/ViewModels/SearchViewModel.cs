@@ -21,8 +21,8 @@ namespace photo_points.ViewModels
             //Pending is the default. So when a new capture is created it will be waiting for admin approval.
 
             Pending,
-            Approve,
-            Reject
+            Approved,
+            Rejected
         }
         public List<Capture> SearchCaptures { get; set; }
 
