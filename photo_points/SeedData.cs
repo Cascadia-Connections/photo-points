@@ -18,7 +18,7 @@ namespace photo_points
 
         public static async Task Seed(PhotoDataContext context)
         {
-            if (!context.Users.Any())
+            if (context.Users.Any())
             {
                 return; //already has data, don't add any more test data
             }
@@ -41,7 +41,7 @@ namespace photo_points
                     photoPoint=
                     CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Oak Trees #1"),
                     user=
-                    CreateUser("Tom", "Jones", "TomJones@gmail.com"),
+                    CreateUser("Tom", "Jones", "TomJones@gmail.com", "password"),
                     tags=new List<Tag>
                     {
                         CreateTag("Leaves Falling"),
@@ -55,7 +55,9 @@ namespace photo_points
                 } 
             };
 
-        // await context.Datas.AddRangeAsync(fakeData);
+        var users = CreateUser("John", "Jones", "jonjones@gmail.com", "password");
+
+        await context.Users.AddAsync(users);
         await context.Captures.AddRangeAsync(captures);
             
             await context.SaveChangesAsync();
@@ -68,13 +70,14 @@ namespace photo_points
             return newData;
         }
 
-        public static User CreateUser(string firstName, string lastName, string email)
+        public static User CreateUser(string firstName, string lastName, string email, string password)
         {
             User user = new User
             {
                 firstName = firstName,
                 lastName = lastName,
-                email = email
+                email = email,
+                password= password
             };
 
             return user;
