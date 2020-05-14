@@ -23,7 +23,6 @@ namespace photo_points
                 return; //already has data, don't add any more test data
             }
 
-            //  NuGet Package "Bogus" fake data generator
             Randomizer.Seed = new Random(8672042);
 
             byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
@@ -41,7 +40,7 @@ namespace photo_points
                     photoPoint=
                     CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Oak Trees #1"),
                     user=
-                    CreateUser("Tom", "Jones", "TomJones@gmail.com", "password"),
+                    CreateUser(),
                     tags=new List<Tag>
                     {
                         CreateTag("Leaves Falling"),
@@ -52,12 +51,49 @@ namespace photo_points
                        CreateData("Color", "Green"),
                        CreateData("Color", "Red"),
                     }
-                } 
+                },
+                  new Capture
+                {
+                    photo = imgdata1,
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Approve,
+                    photoPoint=
+                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Fern"),
+                    user=
+                    CreateUser(),
+                    tags=new List<Tag>
+                    {
+                        CreateTag("New Fern"),
+                        CreateTag("Fern Falling")
+                    },
+                    data=new List<Data>
+                    {
+                       CreateData("Color", "Green"),
+                       CreateData("Style", "Solid"),
+                    }
+                },
+                    new Capture
+                {
+                    photo = imgdata2,
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Pending,
+                    photoPoint=
+                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "BlackBerry"),
+                    user=CreateUser(),
+                    tags=new List<Tag>
+                    {
+                        CreateTag("Leaves Falling"),
+                        CreateTag("On Track")
+                    },
+                    data=new List<Data>
+                    {
+                       CreateData("Color", "Green"),
+                       CreateData("Color", "Purple"),
+                    }
+                },
+
             };
 
-        var users = CreateUser("John", "Jones", "jonjones@gmail.com", "password");
-
-        await context.Users.AddAsync(users);
         await context.Captures.AddRangeAsync(captures);
             
             await context.SaveChangesAsync();
@@ -70,17 +106,18 @@ namespace photo_points
             return newData;
         }
 
-        public static User CreateUser(string firstName, string lastName, string email, string password)
+        public static User CreateUser()
         {
-            User user = new User
+            var faker = new Faker();
+            var fakeUser = new User
             {
-                firstName = firstName,
-                lastName = lastName,
-                email = email,
-                password= password
+                firstName = faker.Name.FirstName(),
+                lastName = faker.Name.LastName(),
+                email = faker.Internet.Email(),
+                password = faker.Internet.Password()
             };
 
-            return user;
+            return fakeUser;
         }
         
         public static Tag CreateTag(string tagName)

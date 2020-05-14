@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
 using photo_points.Services;
-
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace photo_points.Controllers
 {
@@ -75,11 +75,12 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult DeleteFromPhotoStream(long id)
         {
-            //Remove the Photo associated with the given id number; Save Changes
-            PhotoPoint photo = new PhotoPoint { photoPointID = id };
-            _dbc.PhotoPoints.Remove(photo);
-            _dbc.SaveChanges();
+            var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.photoPointID == id);
 
+            if(photoPoint != null)
+                _dbc.PhotoPoints.Remove(photoPoint);
+            
+            _dbc.SaveChanges();
             return RedirectToAction("PhotoStream");
         }
 
