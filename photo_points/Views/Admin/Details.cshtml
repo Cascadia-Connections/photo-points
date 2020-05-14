@@ -1,4 +1,3 @@
-﻿
 @model photo_points.Models.Capture
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -6,10 +5,13 @@
     ViewBag.Title = "Details";
     var editable = Model.approval.Equals(Capture.ApprovalType.Pending);
     var editClass = editable ? "editable" : "";
+    var statusClass = Model.approval == Capture.ApprovalType.Pending ? "btn-warning" : Model.approval == Capture.ApprovalType.Approve ? "btn-success" : "btn-danger";
 }
 
 <link rel="stylesheet" href="~/css/details.css">
+<script type="text/javascript" src="~/js/jsAutocomplete.js"></script>
 <script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <div class="left">
     <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.photo))" />
@@ -21,60 +23,60 @@
     <br />
     <div class="detailsRow">
         <div class="detailsTitle">Tags</div>
-        <div class="tags">
-            @foreach (Tag tag in Model.tags)
-            {
-                <div class="pill @editClass" data-type="tag" data-id="@tag.tagID">
-                    @if (editable)
-                    {
-                        <div class="delPill">x</div>
-                    }
-                    <div class="pillText">@tag.tagName</div>
-                </div>
-            }
-        </div>
-     </div>
-        <br />
-        <div class="detailsRow">
-            <div class="detailsTitle">Data</div>
+        <div class="tagsWrapper">
+            <div>
+                <div class="addTag btn">Add Tag</div>
+                <div class="tagger hide"><label>Tag name<input type="text" class="tagName"></label></div>
+            </div>
             <div class="tags">
-                @foreach (Data data in Model.data)
+                @foreach (Tag tag in Model.tags)
                 {
-                    <div class="pill @editClass" data-type="data" data-id="@data.dataID">
+                    <div class="pill @editClass" data-type="tag" data-id="@tag.tagID">
                         @if (editable)
                         {
                             <div class="delPill">x</div>
                         }
-                        <div class="dataType">
-                            <div class="pillText">@data.type</div>
-                        </div>
-                        <div class="dataValue">
-                            <div class="pillText">@data.value</div>
-                        </div>
+                        <div class="pillText">@tag.tagName</div>
                     </div>
                 }
             </div>
-            <br />
-            <div class="detailsRow">
-                <div class="detailsTitle">Status</div>
-                <div>@Model.approval</div>
-            </div>
-
-            @if (editable)
+        </div>
+    </div>
+    <br />
+    <div class="detailsRow">
+        <div class="detailsTitle">Data</div>
+        <div class="data">
+            @foreach (Data data in Model.data)
             {
-                <br />
-                <div class="detailsRow">
-                    <form id="captureChanges" action="EditCapture" method="post">
-                        <div class="detailsTitle">Take Action</div>
-                        <div capture-id="@Model.captureID">
-                            <div class="approve btn btn-success">Approve</div>
-                            <div class="reject btn btn-danger">Reject</div>
-                            <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
-                        </div>
-                    </form>
+                <div class="pill">
+                    <div class="dataType">
+                        <div class="pillText">@data.type</div>
+                    </div>
+                    <div class="dataValue">
+                        <div class="pillText">@data.value</div>
+                    </div>
                 </div>
             }
-
         </div>
-   </div>
- 
+    </div>
+    <br />
+    <div class="detailsRow">
+        <div class="detailsTitle">Status</div>
+        <div class="btn @statusClass">@Model.approval</div>
+    </div>
+
+@if (editable)
+{
+    <br />
+    <div class="detailsRow">
+        <form id="captureChanges" action="EditCapture" method="post">
+            <div class="detailsTitle">Take Action</div>
+            <div capture-id="@Model.captureID">
+                <div class="approve btn btn-success">Approve</div>
+                <div class="reject btn btn-danger">Reject</div>
+                <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
+            </div>
+        </form>
+    </div>
+}
+</div>

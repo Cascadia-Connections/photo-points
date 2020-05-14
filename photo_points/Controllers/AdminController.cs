@@ -37,7 +37,11 @@ namespace photo_points.Controllers
         //}
 
 
-        // GET: /<controller>/
+        [HttpPost]
+        public IActionResult AdminLogout()
+        {
+            return RedirectToAction("AdminLogin");
+        }
 
         [HttpGet]
         public IActionResult AdminLogin()
