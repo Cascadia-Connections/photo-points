@@ -88,10 +88,16 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            return View("Pending", new PendingViewModel
+            // get list of pending models
+            var pendingModels = _adminReviewService
+                .GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType.Pending);
+
+            var pendingViewModel = new PendingViewModel
             {
-                PendingCaptures = _adminReviewService.GetUnapprovedCaptures().ToList()
-            });
+                PendingCaptures = pendingModels.ToList()
+            };
+
+            return View("Pending", pendingViewModel);
         }
 
 

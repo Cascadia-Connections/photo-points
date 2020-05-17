@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
 using System;
 using System.Collections.Generic;
@@ -43,6 +44,15 @@ namespace photo_points.Repositories
         {
             var captures = _dbcontext.Captures;
             return captures;
+        }
+
+        public IEnumerable<Capture> GetCapturesWithPhotoPoints()
+        {
+            return _dbcontext
+                .Captures
+                .Include(c => c.photoPoint)
+                .ToList();
+                
         }
 
         public void SaveChanges(Capture capt)

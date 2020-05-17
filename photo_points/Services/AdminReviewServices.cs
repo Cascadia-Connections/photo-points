@@ -37,5 +37,14 @@ namespace photo_points.Services
         {
             return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
         }
+
+        public IEnumerable<Capture> GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType approvalStatus)
+        {
+            return 
+                _AdminRepo
+                .GetCapturesWithPhotoPoints()
+                .Where(c => c.approval == approvalStatus)
+                .ToList();
+        }
     }
 }

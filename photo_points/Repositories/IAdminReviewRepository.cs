@@ -13,5 +13,7 @@ namespace photo_points.Repositories
         IEnumerable<Capture> GetAllUnapproved();
         Capture DeleteCapture(long captureId);
         void SaveChanges(Capture capt);
+        IEnumerable<Capture> GetCapturesWithPhotoPoints();
+
     }
 }
