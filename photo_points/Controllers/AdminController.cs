@@ -111,11 +111,17 @@ namespace photo_points.Controllers
             var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
             var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
             var results = _adminReviewServices.GetCaptures().ToList();
+
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
                 results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
+            if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
+            {
+                return View("SearchCapturesResultsNotFound");
+            }
+
             if (search.fromDate != new DateTime())     //if searched by fromDate
             {
                 results = results.Where(r => r.captureDate >= search.fromDate).ToList();

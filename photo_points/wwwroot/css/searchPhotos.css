@@ -1,0 +1,5 @@
+﻿/*Spacing out the search filter rows */
+.searchFilters td {
+    margin: 5px;
+    padding: 0.3rem 0;
+}

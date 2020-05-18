@@ -7,9 +7,11 @@
    ViewBag.Title = "Search";
 }
 
+   <link rel="stylesheet" href="~/css/searchPhotos.css">
+
 <h2>Search PhotoPoints</h2>
 <form asp-action="SearchCaptures" asp-controller="Admin">
-   <table>
+   <table class="searchFilters">
       <tr>
          <th>
             Search:
@@ -50,15 +52,7 @@
             Tag:
          </td>
          <td>
-            <select asp-for="tagName">
-               <option selected disabled> Tag selection</option>
-               <option value="One">Tag 1</option>
-               <option value="Two">Tag 2</option>
-               <option value="Three">Tag 3</option>
-               <option value="Four">Tag 4</option>
-               <option value="Five">Tag 5</option>
-               <option value="Six">Tag 6</option>
-            </select>
+            <input asp-for="tagName" />
          </td>
       </tr>
       <tr>
