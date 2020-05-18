@@ -3,3 +3,19 @@
     margin: 5px;
     padding: 0.3rem 0;
 }
+
+/*Style for search button*/
+.search-btn input {
+    border: 0;
+    padding: 0.5rem;
+    margin-top: 8px;
+    border-radius: 0.25rem;
+    background: #003947;
+    color: white;
+    font-size: 13px;
+    height: 100%;
+}
+
+    .search-btn input:hover {
+        background: #455A64;
+    }
