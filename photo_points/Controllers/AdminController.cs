@@ -53,9 +53,11 @@ namespace photo_points.Controllers
         {
             if (ModelState.IsValid)
                 if (_dbc.Users.Any(u => u.email == lvm.UserName && u.password == lvm.Password))
-                    return RedirectToAction("WelcomeAdmin");
+                    return RedirectToAction("SearchPhotoPoints");
                 else
+                {
                     return View();
+                }
             else
             {
                 ViewBag.LoginIssue = "There is something wrong with you password or email";
@@ -63,50 +65,41 @@ namespace photo_points.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult WelcomeAdmin()
-        {
+        //[HttpGet]
+        //public IActionResult PhotoStream()
+        //{
+        //    IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
+        //        .OrderBy(p => p.photoPointID)
+        //        .Take(10);
+        //    return View("PhotoStream", photos);
+        //}
 
+        //[HttpGet]
+        //public IActionResult DeleteFromPhotoStream(long id)
+        //{
+        //    //Remove the Photo associated with the given id number; Save Changes
+        //    PhotoPoint photo = new PhotoPoint { photoPointID = id };
+        //    _dbc.PhotoPoints.Remove(photo);
+        //    _dbc.SaveChanges();
+
+        //    return RedirectToAction("PhotoStream");
+        //}
+
+
+        //[HttpGet]
+        //public IActionResult Pending()
+        //{
+        //    return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
+        //}
+
+        [HttpGet]
+        public IActionResult SearchPhotoPoints()
+        {
             return View();
-
-        }
-
-
-        [HttpGet]
-        public IActionResult PhotoStream()
-        {
-            IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-                .OrderBy(p => p.photoPointID)
-                .Take(10);
-            return View("PhotoStream", photos);
-        }
-
-        [HttpGet]
-        public IActionResult DeleteFromPhotoStream(long id)
-        {
-            //Remove the Photo associated with the given id number; Save Changes
-            PhotoPoint photo = new PhotoPoint { photoPointID = id };
-            _dbc.PhotoPoints.Remove(photo);
-            _dbc.SaveChanges();
-
-            return RedirectToAction("PhotoStream");
-        }
-
-
-        [HttpGet]
-        public IActionResult Pending()
-        {
-            return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
-        }
-
-        [HttpGet]
-        public IActionResult SearchCaptures()
-        {
-            return View("SearchPhotoPoints");
         }
 
         [HttpPost]
-        public IActionResult SearchCaptures(SearchViewModel search)
+        public IActionResult SearchPhotoPoints(SearchViewModel search)
         {
             var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
             var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
@@ -119,7 +112,8 @@ namespace photo_points.Controllers
             }
             if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
             {
-                return View("SearchCapturesResultsNotFound");
+                ViewBag.SearchError = "Results not found.";
+                return View();
             }
 
             if (search.fromDate != new DateTime())     //if searched by fromDate
@@ -145,7 +139,8 @@ namespace photo_points.Controllers
             {
                 if (capturesPending.Count() == 0)
                 {
-                    return View("SearchCapturesResultsNotFound");
+                    ViewBag.SearchError = "Results not found.";
+                    return View();
                 }
                 else
                 {
@@ -157,7 +152,8 @@ namespace photo_points.Controllers
             {
                 if (capturesApproved.Count() == 0)
                 {
-                    return View("SearchCapturesResultsNotFound");
+                    ViewBag.SearchError = "Results not found.";
+                    return View();
                 }
                 else
                 {
@@ -172,7 +168,8 @@ namespace photo_points.Controllers
 
             else
             {
-                return View("SearchCapturesResultsNotFound");
+                ViewBag.SearchError = "Results not found.";
+                return View();
             }
 
         }

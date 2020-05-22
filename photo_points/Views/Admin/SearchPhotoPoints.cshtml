@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="~/css/searchPhotos.css">
 
 <h2>Search PhotoPoints</h2>
-<form asp-action="SearchCaptures" asp-controller="Admin">
+<form asp-action="SearchPhotoPoints" asp-controller="Admin">
    <table class="searchFilters">
       <tr>
          <th>
@@ -33,8 +33,7 @@
             From Date:
          </td>
          <td>
-            <input asp-for="fromDate" type="date" asp-format="{0:yyyy-MM-dd}"
-/>
+            <input asp-for="fromDate" type="date" asp-format="{0:yyyy-MM-dd}"/>
          </td>
       </tr>
       <tr>
@@ -42,8 +41,7 @@
             To Date:
          </td>
          <td>
-            <input asp-for="toDate" type="date" asp-format="{0:yyyy-MM-dd}"
-/>
+            <input asp-for="toDate" type="date" asp-format="{0:yyyy-MM-dd}"/>
          </td>
       </tr>
 
@@ -60,11 +58,8 @@
             Approval Type:
          </td>
          <td>
-            <select asp-for="approval" asp-items="Html.GetEnumSelectList<photo_points.Models.Capture.ApprovalType
->()">
->
+            <select asp-for="approval" asp-items="Html.GetEnumSelectList<photo_points.Models.Capture.ApprovalType>()">
                <option selected="selected" disabled>Please select</option>
-
             </select>
          </td>
       </tr>
@@ -73,3 +68,4 @@
       <input type="submit" value="Search Results" />
    </div>
 </form>
+@ViewBag.SearchError
