@@ -4,23 +4,15 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
-<<<<<<< HEAD
 using photo_points.Services;
 using Microsoft.EntityFrameworkCore.Internal;
-=======
-using photo_points.Controllers;
-using photo_points.Services;
-using System.IO;
-using Microsoft.EntityFrameworkCore;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
->>>>>>> develop
 
 namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
-
+        
         private IAdminReviewServices _adminReviewService;
         private PhotoDataContext _dbc;
 
@@ -68,13 +60,8 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-<<<<<<< HEAD
-            return View();
-=======
-
             return View();
 
->>>>>>> develop
         }
 
 
@@ -121,16 +108,17 @@ namespace photo_points.Controllers
             return View("SearchPhotoPoints");
         }
 
+      
         [HttpPost]
         public IActionResult SearchCaptures(SearchViewModel search)
         {
-            var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
-            var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
-            var results = _adminReviewServices.GetCaptures().ToList();
+            var capturesPending = _adminReviewService.GetUnapprovedCaptures().ToList();
+            var capturesApproved = _adminReviewService.GetApprovedCaptures().ToList();
+            var results = _adminReviewService.GetCaptures().ToList();
 
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.photoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
@@ -192,7 +180,7 @@ namespace photo_points.Controllers
             }
 
         }
-
+     
         [HttpGet]
         public IActionResult Collaborators()
         {
