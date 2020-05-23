@@ -89,6 +89,26 @@ namespace photo_points.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Notes",
+                columns: table => new
+                {
+                    noteID = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    noteComment = table.Column<string>(nullable: true),
+                    captureID = table.Column<long>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notes", x => x.noteID);
+                    table.ForeignKey(
+                        name: "FK_Notes_Captures_captureID",
+                        column: x => x.captureID,
+                        principalTable: "Captures",
+                        principalColumn: "captureID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
@@ -131,6 +151,11 @@ namespace photo_points.Migrations
                 column: "captureID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notes_captureID",
+                table: "Notes",
+                column: "captureID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tags_captureID",
                 table: "Tags",
                 column: "captureID");
@@ -145,6 +170,9 @@ namespace photo_points.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Datas");
+
+            migrationBuilder.DropTable(
+                name: "Notes");
 
             migrationBuilder.DropTable(
                 name: "Tags");
