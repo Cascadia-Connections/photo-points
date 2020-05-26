@@ -141,7 +141,7 @@ namespace photo_points.Controllers
             }
 
             //Search for pending captures
-            if(search.approval == SearchViewModel.ApprovalType.Pending)
+            if (search.approval == SearchViewModel.ApprovalType.Pending)
             {
                 if (capturesPending.Count() == 0)
                 {
@@ -175,6 +175,31 @@ namespace photo_points.Controllers
                 return View("SearchCapturesResultsNotFound");
             }
 
+        }
+
+        [HttpGet]
+        public IActionResult AddNotes()
+        {
+            return View("Details");
+        }
+        //[HttpPost]
+        //public IActionResult AddNotes(Capture capture)
+        //{
+        //    Note note = new Note
+        //    {
+        //        noteComment = this.not
+        //    };
+        //    return RedirectToAction("Details");
+        //}
+
+        [HttpGet]
+        public IActionResult DeleteComment(long id)
+        {
+            var note = _dbc.Notes.Single(n => n.noteID == id);
+            _dbc.Notes.Remove(note);
+            _dbc.SaveChanges();
+
+            return RedirectToAction("Details");
         }
 
         [HttpGet]

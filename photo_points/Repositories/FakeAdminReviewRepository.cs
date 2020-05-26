@@ -41,7 +41,8 @@ namespace photo_points.Repositories
                     PhotoPoint=new PhotoPoint(){photoPointID=1, feature=PhotoPoint.FeatureType.Leaves, locationName="Oak Trees #1"},
                     user=new User(){firstName="Tom", lastName="Jones"},
                     tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
-                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } },
+                    notes=new List<Note>(){{new Note() { noteID=0, noteComment="comment"} }}
                     },
                 new Capture {
                 captureID=2,
@@ -51,7 +52,8 @@ namespace photo_points.Repositories
                  PhotoPoint=new PhotoPoint(){photoPointID=2, feature=PhotoPoint.FeatureType.Bush, locationName="Branches"},
                     user=new User(){firstName="Tom", lastName="Jones"},
                     tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
-                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } }
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} } },
+                    notes=new List<Note>(){{new Note() { noteID=0, noteComment="comment"} }}
                  },
 
                 new Capture {
@@ -61,7 +63,8 @@ namespace photo_points.Repositories
                 PhotoPoint=new PhotoPoint(){photoPointID=3, feature=PhotoPoint.FeatureType.Fern, locationName="Something else"},
                     user=new User(){firstName="Tom", lastName="Jones"},
                     tags=new List<Tag>(){{new Tag() {tagID=0, tagName="Leaves Falling"} }, new Tag() {tagID=1,tagName = "On Track" } },
-                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} }} }
+                    data=new List<Data>(){{new Data() {dataID=0,type="Color", value="Green"} }},
+                notes=new List<Note>(){{new Note() { noteID=0, noteComment="comment"} }}}
         };
 
 
