@@ -18,57 +18,63 @@ namespace photo_points.Repositories
 
     public class CollaboratorTagRepository : ICollaboratorTagRepository
     {
-        public List<Tag> repo = new List<Tag> {
-                new Tag {
-
+        
+        
+        public List<UserTag> userTags = new List<UserTag> {
+                new UserTag {
+                    userID = 2,
+                    tagID = 1
                     },
-                new Tag {
+                new UserTag {
+                    userID = 2,
+                    tagID = 1
+                    },
+                new UserTag {
+                    userID = 3,
+                    tagID = 1
+                    },
+                new UserTag {
+                    userID = 3,
+                    tagID = 2
+                    },
+                new UserTag {
+                    userID = 1,
+                    tagID = 2
+                    } } ;
 
-                 },
+    
 
-                new Tag {
-                 }
-        };
+        public IQueryable<UserTag> tags => userTags.AsQueryable<UserTag>();
 
-        public IQueryable<Tag> tags => repo.AsQueryable<Tag>();
-
-        public IQueryable<Tag> GetTags()
+        public IQueryable<UserTag> GetTags()
         {
             return tags;
         }
 
-        public Tag GetTag(long id)
+        public UserTag GetTag(long id)
         {
             return tags.SingleOrDefault(r => r.tagID == id);
         }
 
-        public IEnumerable<Tag> GetAllUserTags(long id)
+        public IEnumerable<UserTag> GetAllUserTags(long id)
         {
-            // return tags.Where(a => a.user == true);
-            return tags.Where(a => a.user.userID == id); // Approve//Pening//or Reject to test 
-
+            return tags.Where(a => a.userID == id); 
         }
 
-        public void SaveChanges(Tag tg)
+        public void SaveChanges(UserTag ut)
         {
-            foreach (photo_points.Models.Tag t in repo)
+            foreach (photo_points.Models.UserTag t in userTags)
             {
-                //it will compare properties in fake repository with service changes
-                //it will save and replace new info to repo
-                if (t.tagID == tg.tagID)
+                if (t.tagID == ut.tagID)
 
                 {
-                    t.capture = tg.capture;
-                    t.tagName = tg.tagName;
-                    t.user = tg.user;
-                    t.Users = tg.Users;
+                    t.User = ut.User;
+                    t.userID = ut.userID;
+                    t.Tag = ut.Tag;
+                    t.tagID = ut.tagID;
                 }
-
             }
-
-
-
-
+            return;
         }
     }
 }

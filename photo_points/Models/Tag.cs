@@ -18,6 +18,6 @@ namespace photo_points.Models
 
         public ICollection<User> Users { get; set; }
 
-        public IList<UserTag> UserTag { get; set; }
+        public ICollection<UserTag> UserTag { get; set; }
     }
 }

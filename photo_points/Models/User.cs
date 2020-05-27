@@ -22,7 +22,7 @@ namespace photo_points.Models
         public string email { get; set; }
         public string password { get; set; }
 
-        public IList<UserTag> UserTag { get; set; }
+        public ICollection<UserTag> UserTag { get; set; }
 
     }
 }

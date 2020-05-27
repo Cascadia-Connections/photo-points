@@ -8,15 +8,9 @@ namespace photo_points.Repositories
 {
     public interface ICollaboratorTagRepository
     {
-        IQueryable<Tag> GetTags();
-        Tag GetTag(long tagId);
-        IEnumerable<Tag> GetAllUserTags(long id);
-
-
-        //to connect to future method to save changes, as there is nothing to save currently
-        // IQueryable<Capture> SavedCaptures();
-
-
-        void SaveChanges(Tag tag);
+        IQueryable<UserTag> GetTags();
+        UserTag GetTag(long tagId);
+        IEnumerable<UserTag> GetAllUserTags(long id);
+        void SaveChanges(UserTag userTag);
     }
 }

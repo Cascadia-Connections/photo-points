@@ -198,13 +198,32 @@ namespace photo_points.Controllers
         {
             return new JsonResult("{\"id\" : " + capture.captureID + "}");
         }
-
+        [HttpGet]
+        public IActionResult Users()
+        {
+            var users = _dbc.Users;
+            return View(users);
+        }
+        
         [HttpGet]
         public IActionResult UserTags(long id)
         {
-            IEnumerable<Tag> userTags = _collaboratorTagRepository.GetTags();
-            Tag userTag = userTags.First(t => t.tagID == id);
-            return View(userTag);
+
+            _dbc.Tags.Add(new Tag
+            {
+                tagName = "First flower",
+            });
+            _dbc.SaveChanges();
+            var tag = _dbc.Tags.First();
+            var user = _dbc.Users.First(u => u.userID == id);
+            _dbc.UserTags.Add(new UserTag
+            {
+              userID = user.userID, tagID = tag.tagID
+            });
+            _dbc.SaveChanges();
+            IEnumerable<UserTag> userTags = _dbc.UserTags;
+            IEnumerable<UserTag> thisUsersTags = userTags.Where(ut => ut.userID == id);
+            return View("UserTags", thisUsersTags);
         }
     }
 }
