@@ -1,12 +1,15 @@
-/*Body*/
-
+Body
 .top-banner{
     background-color: white; 
-    padding: .8em;
-    margin: -0.5em;
-    
+    padding: initial;
 }
 
+.banner {
+    background-color: #003947;
+    padding: 0.5em;
+    color: white;
+    text-align-last: center;
+}
 
 .logo img{
     margin: .5em; 
@@ -24,20 +27,13 @@
     border-radius: 12.75%;
 }
 
-.banner {
-    background-color: #003947;
-    margin-top:0.5em;
-    padding: 2em;
-    margin-right: -0.5em;
-    margin-left: -0.5em;
-
-}
 
 
-.banner {
+
+/*.banner {
     color: white;
     text-align-last: center;
-}
+}*/
 
 /*REsponsive */
 
