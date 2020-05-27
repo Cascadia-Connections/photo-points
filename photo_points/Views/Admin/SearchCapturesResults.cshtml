@@ -2,8 +2,8 @@
 
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-   Layout = "_Layout";
-   ViewBag.Title = "Pending";
+    Layout = "_Layout";
+    ViewBag.Title = "Pending";
 }
 
 <script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
@@ -13,32 +13,29 @@
 
 <form asp-action="SearchCaptures" asp-controller="Admin">
 
-   @foreach (Capture capture in @Model.SearchCaptures)
-   {
+    @foreach (Capture capture in @Model.SearchCaptures)
+    {
 
-      <div class="container card-body-sm" capture-card-id="@capture.CaptureId">
-         <div style="overflow:hidden;" class="h-50 row">
-            <img class="card-img-sm" src="@string.Format("data:{0}; base64,{1}", "image/jpeg", Convert.ToBase64String(capture.Photo))" />
-         </div>
-         <div class="h-50 row card-body">
-            <h3>@capture.PhotoPoint.locationName</h3>
-            <div class="h-50 col-sm-10">
-               <div class="row">
-                  <h6>@capture.CaptureDate</h6>
-               </div>
-               <div class="row">
-                  <h6>@capture.User.firstName @capture.User.lastName</h6>
-               </div>
+        <div class="container card-body-sm" capture-card-id="@capture.CaptureId">
+            <div style="overflow:hidden;" class="h-50 row">
+                <img class="card-img-sm" src="@string.Format("data:{0}; base64,{1}", "image/jpeg", Convert.ToBase64String(capture.Photo))" />
             </div>
-            <div class="h-25 col-sm-15" capture-id="@capture.CaptureId">
-               <a style="float:left; margin-right:3px" class="approve btn btn-success">Approve</a>
-               <a style="float:left; margin-right:3px" class="reject btn btn-danger">Reject</a>
-               <a href="Details?id=@capture.CaptureId" class="btn btn-warning">Details</a>
+            <div class="h-50 row card-body">
+                <h3>@capture.PhotoPoint.locationName</h3>
+                <div class="h-50 col-sm-10">
+                    <div class="row">
+                        <h6>@capture.CaptureDate</h6>
+                    </div>
+                    <div class="row">
+                        <h6>@capture.User.firstName @capture.User.lastName</h6>
+                    </div>
+                </div>
+                <div class="h-25 col-sm-15" capture-id="@capture.CaptureId">
+                    <a style="float:left; margin-right:3px" class="approve btn btn-success">Approve</a>
+                    <a style="float:left; margin-right:3px" class="reject btn btn-danger">Reject</a>
+                    <a href="Details?id=@capture.CaptureId" class="btn btn-warning">Details</a>
+                </div>
             </div>
-         </div>
-      </div>
-   }
-
-
+        </div>
+    }
 </form>
-

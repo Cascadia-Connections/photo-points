@@ -1,18 +1,16 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
+using photo_points.Models;
+using photo_points.Services;
+using photo_points.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using photo_points.Models;
-using photo_points.ViewModels;
-using photo_points.Services;
-using Microsoft.EntityFrameworkCore.Internal;
-
 
 namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
-        
         private IAdminReviewServices _adminReviewService;
         private PhotoDataContext _dbc;
 
@@ -42,6 +40,7 @@ namespace photo_points.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AdminLogin(LoginViewModel lvm)
         {
@@ -61,9 +60,7 @@ namespace photo_points.Controllers
         public IActionResult WelcomeAdmin()
         {
             return View();
-
         }
-
 
         [HttpGet]
         public IActionResult PhotoStream()
@@ -79,20 +76,19 @@ namespace photo_points.Controllers
         {
             var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.photoPointID == id);
 
-            if(photoPoint != null)
+            if (photoPoint != null)
                 _dbc.PhotoPoints.Remove(photoPoint);
-            
+
             _dbc.SaveChanges();
             return RedirectToAction("PhotoStream");
         }
-
 
         [HttpGet]
         public IActionResult Pending()
         {
             // get list of pending models
             var pendingModels = _adminReviewService
-                .GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType.Pending);
+                .GetCapturesWithPhotoPointByApprovalStatus(ApprovalStatus.Pending);
 
             var pendingViewModel = new PendingViewModel
             {
@@ -108,7 +104,6 @@ namespace photo_points.Controllers
             return View("SearchPhotoPoints");
         }
 
-      
         [HttpPost]
         public IActionResult SearchCaptures(SearchViewModel search)
         {
@@ -145,7 +140,7 @@ namespace photo_points.Controllers
             }
 
             //Search for pending captures
-            if(search.approval == SearchViewModel.ApprovalType.Pending)
+            if (search.approval == SearchViewModel.ApprovalType.Pending)
             {
                 if (capturesPending.Count() == 0)
                 {
@@ -173,14 +168,12 @@ namespace photo_points.Controllers
             //{
             //    return View("SearchCapturesResultsNotFound");
             //}
-
             else
             {
                 return View("SearchCapturesResultsNotFound");
             }
-
         }
-     
+
         [HttpGet]
         public IActionResult Collaborators()
         {
@@ -207,6 +200,5 @@ namespace photo_points.Controllers
         //{
         //    _adminReviewService.ad
         //}
-
     }
 }

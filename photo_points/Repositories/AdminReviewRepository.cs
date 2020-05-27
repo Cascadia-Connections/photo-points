@@ -1,10 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace photo_points.Repositories
 {
@@ -21,7 +18,7 @@ namespace photo_points.Repositories
         {
             var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.CaptureId == captureId);
 
-            if(captureToDelete != null)
+            if (captureToDelete != null)
             {
                 _dbcontext.Captures.Remove(captureToDelete);
             }
@@ -31,7 +28,7 @@ namespace photo_points.Repositories
         public IEnumerable<Capture> GetAllUnapproved()
         {
             return _dbcontext.Captures
-                .Where(a => a.Approval == Capture.ApprovalType.Pending); 
+                .Where(a => a.Approval == ApprovalStatus.Pending);
         }
 
         public Capture GetCapture(long captureId)
@@ -52,14 +49,13 @@ namespace photo_points.Repositories
                 .Captures
                 .Include(c => c.PhotoPoint)
                 .ToList();
-                
         }
 
         public void SaveChanges(Capture capt)
         {
             var capture = _dbcontext.Captures.FirstOrDefault(c => c.CaptureId == capt.CaptureId);
 
-            if(capture != null)
+            if (capture != null)
             {
                 capture.Approval = capt.Approval;
                 capture.CaptureDate = capt.CaptureDate;

@@ -10,9 +10,9 @@
     height: 33px;
 }
 
-.tags:empty::after {
-    content: "No Tags";
-}
+    .tags:empty::after {
+        content: "No Tags";
+    }
 
 .img {
     border: 5px solid blue;
@@ -49,9 +49,9 @@
     cursor: pointer;
 }
 
-.delPill.shown {
-    display: block;
-}
+    .delPill.shown {
+        display: block;
+    }
 
 .pillText {
     padding: 2px 5px 2px 5px;
