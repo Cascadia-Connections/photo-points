@@ -7,18 +7,29 @@
 <h2>UserTags</h2>
 
 <h3>Edit Tags</h3>
-<div>
-    @foreach (UserTag item in Model)
-    {
-        <h4>UserTag</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(item => item.Tag.tagName)
-            </dt>
-            <dt>
-                @Html.DisplayNameFor(item => item.User.firstName)
-            </dt>
-        </dl>
-    }
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tag ID
+            </th>
+            <th>
+                User ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tagID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.userID)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

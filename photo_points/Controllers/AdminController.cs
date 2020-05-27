@@ -216,14 +216,16 @@ namespace photo_points.Controllers
             _dbc.SaveChanges();
             var tag = _dbc.Tags.First();
             var user = _dbc.Users.First(u => u.userID == id);
-            _dbc.UserTags.Add(new UserTag
+            _dbc.UserTags.Update(new UserTag
             {
-              userID = user.userID, tagID = tag.tagID
+                userID = id,
+                tagID = tag.tagID
             });
+
             _dbc.SaveChanges();
             IEnumerable<UserTag> userTags = _dbc.UserTags;
             IEnumerable<UserTag> thisUsersTags = userTags.Where(ut => ut.userID == id);
-            return View("UserTags", thisUsersTags);
+            return View("UserTags", userTags);
         }
     }
 }
