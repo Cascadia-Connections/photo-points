@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
@@ -13,34 +11,34 @@ using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
+
 namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
 
-        private IAdminReviewServices _adminReviewServices;
+        private IAdminReviewServices _adminReviewService;
         private PhotoDataContext _dbc;
 
-        public AdminController(IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
+        public AdminController(IAdminReviewServices adminReviewService, PhotoDataContext dbc)
 
         {
-            _adminReviewServices = adminServiceReview;
+            _adminReviewService = adminReviewService;
             _dbc = dbc;
         }
-
-        ///
-        // private Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
-
 
         [HttpPost]
         public IActionResult AdminLogout()
         {
             return RedirectToAction("AdminLogin");
+        }
+
+        // testing for captures data
+        [HttpGet]
+        public JsonResult GetCaptures()
+        {
+            IEnumerable<Capture> captures = _adminReviewService.GetCaptures().ToList();
+            return new JsonResult(captures);
         }
 
         [HttpGet]
@@ -66,7 +64,6 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-
             return View();
 
         }
@@ -84,11 +81,12 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult DeleteFromPhotoStream(long id)
         {
-            //Remove the Photo associated with the given id number; Save Changes
-            PhotoPoint photo = new PhotoPoint { photoPointID = id };
-            _dbc.PhotoPoints.Remove(photo);
-            _dbc.SaveChanges();
+            var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.photoPointID == id);
 
+            if(photoPoint != null)
+                _dbc.PhotoPoints.Remove(photoPoint);
+            
+            _dbc.SaveChanges();
             return RedirectToAction("PhotoStream");
         }
 
@@ -96,7 +94,16 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
+            // get list of pending models
+            var pendingModels = _adminReviewService
+                .GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType.Pending);
+
+            var pendingViewModel = new PendingViewModel
+            {
+                PendingCaptures = pendingModels.ToList()
+            };
+
+            return View("Pending", pendingViewModel);
         }
 
         [HttpGet]
@@ -186,7 +193,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
+            IEnumerable<Capture> pendingCaptures = _adminReviewService.GetCaptures();
             Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
             return View(pendingCapture);
         }
@@ -196,5 +203,13 @@ namespace photo_points.Controllers
         {
             return new JsonResult("{\"id\" : " + capture.captureID + "}");
         }
+
+        // testing capture when saving
+        //[HttpPost]
+        //public IActionResult SubmitCapture(Capture capture)
+        //{
+        //    _adminReviewService.ad
+        //}
+
     }
 }
