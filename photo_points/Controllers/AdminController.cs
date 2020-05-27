@@ -10,6 +10,7 @@ using photo_points.Controllers;
 using photo_points.Services;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using photo_points.Repositories;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,13 +18,14 @@ namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
-
+        private ICollaboratorTagRepository _collaboratorTagRepository;
         private IAdminReviewServices _adminReviewServices;
         private PhotoDataContext _dbc;
 
-        public AdminController(IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
+        public AdminController(ICollaboratorTagRepository collaboratorTagRepository, IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
 
         {
+            _collaboratorTagRepository = collaboratorTagRepository;
             _adminReviewServices = adminServiceReview;
             _dbc = dbc;
         }
@@ -195,6 +197,14 @@ namespace photo_points.Controllers
         public JsonResult EditCapture(Capture capture)
         {
             return new JsonResult("{\"id\" : " + capture.captureID + "}");
+        }
+
+        [HttpGet]
+        public IActionResult UserTags(long id)
+        {
+            IEnumerable<Tag> userTags = _collaboratorTagRepository.GetTags();
+            Tag userTag = userTags.First(t => t.tagID == id);
+            return View(userTag);
         }
     }
 }
