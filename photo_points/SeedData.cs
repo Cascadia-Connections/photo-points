@@ -100,8 +100,8 @@ namespace photo_points
         public static Data CreateData(string type, string value)
         {
             Data newData = new Data();
-            newData.type = type;
-            newData.value = value;
+            newData.Type = type;
+            newData.Value = value;
             return newData;
         }
 
@@ -110,10 +110,10 @@ namespace photo_points
             var faker = new Faker();
             var fakeUser = new User
             {
-                firstName = faker.Name.FirstName(),
-                lastName = faker.Name.LastName(),
-                email = faker.Internet.Email(),
-                password = faker.Internet.Password()
+                FirstName = faker.Name.FirstName(),
+                LastName = faker.Name.LastName(),
+                Email = faker.Internet.Email(),
+                Password = faker.Internet.Password()
             };
 
             return fakeUser;
@@ -123,7 +123,7 @@ namespace photo_points
         {
             Tag tag = new Tag
             {
-                tagName = tagName
+                TagName = tagName
             };
 
             return tag;
@@ -133,8 +133,8 @@ namespace photo_points
         {
             PhotoPoint photoPoint = new PhotoPoint
             {
-                feature = feature,
-                locationName = locationName
+                Feature = feature,
+                LocationName = locationName
             };
 
             return photoPoint;

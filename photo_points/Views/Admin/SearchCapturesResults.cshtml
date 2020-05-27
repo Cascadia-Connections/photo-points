@@ -21,13 +21,13 @@
                 <img class="card-img-sm" src="@string.Format("data:{0}; base64,{1}", "image/jpeg", Convert.ToBase64String(capture.Photo))" />
             </div>
             <div class="h-50 row card-body">
-                <h3>@capture.PhotoPoint.locationName</h3>
+                <h3>@capture.PhotoPoint.LocationName</h3>
                 <div class="h-50 col-sm-10">
                     <div class="row">
                         <h6>@capture.CaptureDate</h6>
                     </div>
                     <div class="row">
-                        <h6>@capture.User.firstName @capture.User.lastName</h6>
+                        <h6>@capture.User.FirstName @capture.User.LastName</h6>
                     </div>
                 </div>
                 <div class="h-25 col-sm-15" capture-id="@capture.CaptureId">

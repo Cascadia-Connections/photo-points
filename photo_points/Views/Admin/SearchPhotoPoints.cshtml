@@ -25,7 +25,7 @@
                 Photo Point ID:
             </td>
             <td>
-                <input asp-for="photoPointId" />
+                <input asp-for="PhotoPointId" />
             </td>
         </tr>
         <tr>
@@ -33,7 +33,7 @@
                 From Date:
             </td>
             <td>
-                <input asp-for="fromDate" type="date" asp-format="{0:yyyy-MM-dd}" />
+                <input asp-for="FromDate" type="date" asp-format="{0:yyyy-MM-dd}" />
             </td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
                 To Date:
             </td>
             <td>
-                <input asp-for="toDate" type="date" asp-format="{0:yyyy-MM-dd}" />
+                <input asp-for="ToDate" type="date" asp-format="{0:yyyy-MM-dd}" />
             </td>
         </tr>
 
@@ -50,7 +50,7 @@
                 Tag:
             </td>
             <td>
-                <input asp-for="tagName" />
+                <input asp-for="TagName" />
             </td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
                 Approval Type:
             </td>
             <td>
-                <select asp-for="approval" asp-items="Html.GetEnumSelectList<photo_points.Models.ApprovalStatus
+                <select asp-for="Approval" asp-items="Html.GetEnumSelectList<photo_points.Models.ApprovalStatus
 >()">>
                     <option selected="selected" disabled>Please select</option>
                 </select>

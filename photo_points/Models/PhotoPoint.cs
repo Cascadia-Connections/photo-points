@@ -5,15 +5,15 @@ namespace photo_points.Models
 {
     public class PhotoPoint
     {
-        public long photoPointID { get; set; }
+        public long PhotoPointID { get; set; }
 
         [Display(Name = "Location Name")]
         [Required(ErrorMessage = "Location name is required.")]
-        public string locationName { get; set; }
+        public string LocationName { get; set; }
 
-        public FeatureType feature { get; set; }
+        public FeatureType Feature { get; set; }
 
-        public ICollection<Capture> captures { get; set; }
+        public ICollection<Capture> Captures { get; set; }
 
         //Designate the feature type.
     }

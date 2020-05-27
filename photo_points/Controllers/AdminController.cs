@@ -45,7 +45,7 @@ namespace photo_points.Controllers
         public IActionResult AdminLogin(LoginViewModel lvm)
         {
             if (ModelState.IsValid)
-                if (_dbc.Users.Any(u => u.email == lvm.UserName && u.password == lvm.Password))
+                if (_dbc.Users.Any(u => u.Email == lvm.UserName && u.Password == lvm.Password))
                     return RedirectToAction("WelcomeAdmin");
                 else
                     return View();
@@ -66,7 +66,7 @@ namespace photo_points.Controllers
         public IActionResult PhotoStream()
         {
             IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-                .OrderBy(p => p.photoPointID)
+                .OrderBy(p => p.PhotoPointID)
                 .Take(10);
             return View("PhotoStream", photos);
         }
@@ -74,7 +74,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult DeleteFromPhotoStream(long id)
         {
-            var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.photoPointID == id);
+            var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.PhotoPointID == id);
 
             if (photoPoint != null)
                 _dbc.PhotoPoints.Remove(photoPoint);
@@ -111,36 +111,36 @@ namespace photo_points.Controllers
             var capturesApproved = _adminReviewService.GetApprovedCaptures().ToList();
             var results = _adminReviewService.GetCaptures().ToList();
 
-            if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
+            if (search.PhotoPointId > 0 && search.PhotoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.PhotoPoint.PhotoPointID == search.PhotoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-            if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
+            if (search.PhotoPointId < 0 || search.PhotoPointId > results.Count())  //if searched by invalid photo point id
             {
                 return View("SearchCapturesResultsNotFound");
             }
 
-            if (search.fromDate != new DateTime())     //if searched by fromDate
+            if (search.FromDate != new DateTime())     //if searched by fromDate
             {
-                results = results.Where(r => r.CaptureDate >= search.fromDate).ToList();
+                results = results.Where(r => r.CaptureDate >= search.FromDate).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-            if (search.toDate != new DateTime())      //if searched by toDate
+            if (search.ToDate != new DateTime())      //if searched by toDate
             {
-                results = results.Where(r => r.CaptureDate <= search.toDate).ToList();
+                results = results.Where(r => r.CaptureDate <= search.ToDate).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
-            if (search.tagName != null)    //search by tag
+            if (search.TagName != null)    //search by tag
             {
-                results = results.Where(r => r.Tags.Select(t => t.tagName)
-                .Contains(search.tagName)).ToList();
+                results = results.Where(r => r.Tags.Select(t => t.TagName)
+                .Contains(search.TagName)).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
             //Search for pending captures
-            if (search.approval == SearchViewModel.ApprovalType.Pending)
+            if (search.Approval == SearchViewModel.ApprovalType.Pending)
             {
                 if (capturesPending.Count() == 0)
                 {
@@ -152,7 +152,7 @@ namespace photo_points.Controllers
                 }
             }
             //search for approved captures. Return results not found if there are no approved captures
-            if (search.approval == SearchViewModel.ApprovalType.Approved)
+            if (search.Approval == SearchViewModel.ApprovalType.Approved)
             {
                 if (capturesApproved.Count() == 0)
                 {

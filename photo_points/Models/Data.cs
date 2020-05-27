@@ -4,16 +4,16 @@ namespace photo_points.Models
 {
     public class Data
     {
-        public long dataID { get; set; }
+        public long DataID { get; set; }
 
         [Display(Name = "Data Type")]
-        public string type { get; set; }
+        public string Type { get; set; }
 
         [Display(Name = "Value of Data")]
-        public string value { get; set; }
+        public string Value { get; set; }
 
         [Display(Name = "Comments")]
-        public string comment { get; set; }
+        public string Comment { get; set; }
 
         public Capture Capture { get; set; }
 

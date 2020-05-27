@@ -18,8 +18,8 @@
 </div>
 <div class="right">
     <h2>Capture @Model.CaptureId Details</h2>
-    <div class="detailsRow">Created on @Model.CaptureDate by User @Model.User.firstName @Model.User.lastName</div>
-    <div class="detailsRow">Linked Photo Point {#@Model.PhotoPoint.photoPointID} @Model.PhotoPoint.feature @Model.PhotoPoint.locationName</div>
+    <div class="detailsRow">Created on @Model.CaptureDate by User @Model.User.FirstName @Model.User.LastName</div>
+    <div class="detailsRow">Linked Photo Point {#@Model.PhotoPoint.PhotoPointID} @Model.PhotoPoint.Feature @Model.PhotoPoint.LocationName</div>
     <br />
     <div class="detailsRow">
         <div class="detailsTitle">Tags</div>
@@ -31,12 +31,12 @@
             <div class="tags">
                 @foreach (Tag tag in Model.Tags)
                 {
-                    <div class="pill @editClass" data-type="tag" data-id="@tag.tagID">
+                    <div class="pill @editClass" data-type="tag" data-id="@tag.TagID">
                         @if (editable)
                         {
                             <div class="delPill">x</div>
                         }
-                        <div class="pillText">@tag.tagName</div>
+                        <div class="pillText">@tag.TagName</div>
                     </div>
                 }
             </div>
@@ -50,10 +50,10 @@
             {
                 <div class="pill">
                     <div class="dataType">
-                        <div class="pillText">@data.type</div>
+                        <div class="pillText">@data.Type</div>
                     </div>
                     <div class="dataValue">
-                        <div class="pillText">@data.value</div>
+                        <div class="pillText">@data.Value</div>
                     </div>
                 </div>
             }
