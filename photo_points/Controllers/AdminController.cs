@@ -182,15 +182,21 @@ namespace photo_points.Controllers
         {
             return View("Details");
         }
-        //[HttpPost]
-        //public IActionResult AddNotes(Capture capture)
-        //{
-        //    Note note = new Note
-        //    {
-        //        noteComment = this.not
-        //    };
-        //    return RedirectToAction("Details");
-        //}
+        [HttpPost]
+        public IActionResult AddNotes(Capture capture, Note note)
+        {
+            //if(note.noteComment != null)
+            //{
+            //    //Note note1;
+            //    Note newNote = new Note
+            //    {
+            //        noteComment = note.noteComment
+            //    };
+            //}
+            //_dbc.Notes.Update(note);
+            //_dbc.SaveChanges();
+            return RedirectToAction("Details");
+        }
 
         [HttpGet]
         public IActionResult DeleteComment(long id)

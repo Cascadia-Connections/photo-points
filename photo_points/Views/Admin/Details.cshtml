@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="~/css/details.css">
 <script type="text/javascript" src="~/js/jsAutocomplete.js"></script>
 <script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
+<script type="text/javascript" src="~/js/addNotes.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <div class="left">
@@ -83,20 +84,18 @@
       <div class="detailsRow">
          <div class="detailsTitle">Notes</div>
          <div>
-            @foreach (Note note in Model.notes)
-            {
-               <div>@note.noteComment</div>
+               <div id="displayComment"></div>
                <div>
-                  <a asp-action="DeleteComment" asp-controller="Admin" asp-route-id="@note.noteID" class="btn btn-danger">Delete</a>
+                  <input type="button" class="btn btn-danger" value="Delete" id="deleteComment" onclick="deleteComment()" />
+                  <input type="button" class="btn btn-success" value="Update" id="updateComment" onclick="updateComment()" />
                </div>
                <br />
                <div class="notesWrapper">
-                  <form asp-action="AddNotes" asp-controller="Admin">
-                     <textarea rows="5" cols="50" name="notes" placeholder="Write your comment here"></textarea> <br />
-                     <input type="submit" value="Add" class="btn btn-success" />
+                  <form >
+                     <textarea rows="5" cols="50" name="notes" placeholder="Write your comment here" id="comment"></textarea> <br />
+                     <input type="button" value="Add Note" class="btn btn-success" id="submitComment" onclick="addComment()"/>
                   </form>
                </div>
-            }
             <!--  <div class="btn btn-danger">Delete</div>  -->
          </div>
       </div>
