@@ -21,7 +21,7 @@ namespace photo_points.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string email { get; set; }
         public string password { get; set; }
-
+        public Role Role { get; set; }
         public ICollection<Capture> captures { get; set; }
     public ICollection<Tag> tags { get; set; }
 

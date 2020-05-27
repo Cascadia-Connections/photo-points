@@ -18,14 +18,6 @@ namespace photo_points.Models
 
     //Designate the feature type.
 
-    public enum FeatureType
-    {
-        Tree,
-        Bush,
-        Fern,
-        Stream,
-        Flower,
-        Leaves
-    }
+  
 }
 }

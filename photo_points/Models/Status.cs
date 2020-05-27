@@ -9,6 +9,6 @@ namespace photo_points.Models
     {
         public string Pending { get; set; }
         public string Approved { get; set; }
-        public string Rejfected { get; set; }
+        public string Rejected { get; set; }
     }
 }
