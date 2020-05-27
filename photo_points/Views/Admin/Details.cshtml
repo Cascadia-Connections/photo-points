@@ -3,9 +3,9 @@
 @{
     Layout = "_Layout";
     ViewBag.Title = "Details";
-    var editable = Model.approval.Equals(Capture.ApprovalType.Pending);
+    var editable = Model.Approval.Equals(Capture.ApprovalType.Pending);
     var editClass = editable ? "editable" : "";
-    var statusClass = Model.approval == Capture.ApprovalType.Pending ? "btn-warning" : Model.approval == Capture.ApprovalType.Approve ? "btn-success" : "btn-danger";
+    var statusClass = Model.Approval == Capture.ApprovalType.Pending ? "btn-warning" : Model.Approval == Capture.ApprovalType.Approve ? "btn-success" : "btn-danger";
 }
 
 <link rel="stylesheet" href="~/css/details.css">
@@ -14,12 +14,12 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <div class="left">
-    <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.photo))" />
+    <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.Photo))" />
 </div>
 <div class="right">
-    <h2>Capture @Model.captureID Details</h2>
-    <div class="detailsRow">Created on @Model.captureDate by User @Model.user.firstName @Model.user.lastName</div>
-    <div class="detailsRow">Linked Photo Point {#@Model.photoPoint.photoPointID} @Model.photoPoint.feature @Model.photoPoint.locationName</div>
+    <h2>Capture @Model.CaptureId Details</h2>
+    <div class="detailsRow">Created on @Model.CaptureDate by User @Model.User.firstName @Model.User.lastName</div>
+    <div class="detailsRow">Linked Photo Point {#@Model.PhotoPoint.photoPointID} @Model.PhotoPoint.feature @Model.PhotoPoint.locationName</div>
     <br />
     <div class="detailsRow">
         <div class="detailsTitle">Tags</div>
@@ -29,7 +29,7 @@
                 <div class="tagger hide"><label>Tag name<input type="text" class="tagName"></label></div>
             </div>
             <div class="tags">
-                @foreach (Tag tag in Model.tags)
+                @foreach (Tag tag in Model.Tags)
                 {
                     <div class="pill @editClass" data-type="tag" data-id="@tag.tagID">
                         @if (editable)
@@ -46,7 +46,7 @@
     <div class="detailsRow">
         <div class="detailsTitle">Data</div>
         <div class="data">
-            @foreach (Data data in Model.data)
+            @foreach (Data data in Model.Data)
             {
                 <div class="pill">
                     <div class="dataType">
@@ -62,7 +62,7 @@
     <br />
     <div class="detailsRow">
         <div class="detailsTitle">Status</div>
-        <div class="btn @statusClass">@Model.approval</div>
+        <div class="btn @statusClass">@Model.Approval</div>
     </div>
 
 @if (editable)
@@ -71,7 +71,7 @@
     <div class="detailsRow">
         <form id="captureChanges" action="EditCapture" method="post">
             <div class="detailsTitle">Take Action</div>
-            <div capture-id="@Model.captureID">
+            <div capture-id="@Model.CaptureId">
                 <div class="approve btn btn-success">Approve</div>
                 <div class="reject btn btn-danger">Reject</div>
                 <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>

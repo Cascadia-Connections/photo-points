@@ -118,7 +118,7 @@ namespace photo_points.Controllers
 
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.photoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
@@ -128,18 +128,18 @@ namespace photo_points.Controllers
 
             if (search.fromDate != new DateTime())     //if searched by fromDate
             {
-                results = results.Where(r => r.captureDate >= search.fromDate).ToList();
+                results = results.Where(r => r.CaptureDate >= search.fromDate).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.toDate != new DateTime())      //if searched by toDate
             {
-                results = results.Where(r => r.captureDate <= search.toDate).ToList();
+                results = results.Where(r => r.CaptureDate <= search.toDate).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
             if (search.tagName != null)    //search by tag
             {
-                results = results.Where(r => r.tags.Select(t => t.tagName)
+                results = results.Where(r => r.Tags.Select(t => t.tagName)
                 .Contains(search.tagName)).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
@@ -191,14 +191,14 @@ namespace photo_points.Controllers
         public IActionResult Details(long id)
         {
             IEnumerable<Capture> pendingCaptures = _adminReviewService.GetCaptures();
-            Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
+            Capture pendingCapture = pendingCaptures.First(p => p.CaptureId == id);
             return View(pendingCapture);
         }
 
         [HttpPost]
         public JsonResult EditCapture(Capture capture)
         {
-            return new JsonResult("{\"id\" : " + capture.captureID + "}");
+            return new JsonResult("{\"id\" : " + capture.CaptureId + "}");
         }
 
         // testing capture when saving

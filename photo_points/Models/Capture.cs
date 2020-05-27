@@ -8,15 +8,15 @@ namespace photo_points.Models
 {
     public class Capture { 
 
-    public long captureID { get; set; }
+    public long CaptureId { get; set; }
     [Display(Name = "Upload Photo")]
     [Required(ErrorMessage = "Must add a photo.")]
     [DataType(DataType.ImageUrl)]
-    public byte[] photo { get; set; }
-    public DateTime captureDate { get; set; }
+    public byte[] Photo { get; set; }
+    public DateTime CaptureDate { get; set; }
 
     //Determines whether a photo should be displayed.
-    public ApprovalType approval { get; set; }
+    public ApprovalType Approval { get; set; }
 
     public enum ApprovalType
         {
@@ -27,9 +27,9 @@ namespace photo_points.Models
             Reject
         }
 
-        public ICollection<Data> data { get; set; }
-        public ICollection<Tag> tags { get; set; }
-        public User user { get; set; }
-        public PhotoPoint photoPoint { get; set; }
+        public ICollection<Data> Data { get; set; }
+        public ICollection<Tag> Tags { get; set; }
+        public User User { get; set; }
+        public PhotoPoint PhotoPoint { get; set; }
     }
 }

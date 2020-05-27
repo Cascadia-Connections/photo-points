@@ -20,7 +20,7 @@ namespace photo_points.Services
         public void ApproveOrReject(long captureID, Capture.ApprovalType choice)
         {
             Capture capt = _AdminRepo.GetCapture(captureID);
-            capt.approval = choice;
+            capt.Approval = choice;
             _AdminRepo.SaveChanges(capt);
         }
 
@@ -30,12 +30,12 @@ namespace photo_points.Services
         }
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Pending);
+            return GetCaptures().Where(a => a.Approval == Capture.ApprovalType.Pending);
         }
 
         public IEnumerable<Capture> GetApprovedCaptures()
         {
-            return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
+            return GetCaptures().Where(a => a.Approval == Capture.ApprovalType.Approve);
         }
 
         public IEnumerable<Capture> GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType approvalStatus)
@@ -43,7 +43,7 @@ namespace photo_points.Services
             return 
                 _AdminRepo
                 .GetCapturesWithPhotoPoints()
-                .Where(c => c.approval == approvalStatus)
+                .Where(c => c.Approval == approvalStatus)
                 .ToList();
         }
     }

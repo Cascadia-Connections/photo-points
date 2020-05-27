@@ -19,7 +19,7 @@ namespace photo_points.Repositories
 
         public Capture DeleteCapture(long captureId)
         {
-            var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.captureID == captureId);
+            var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.CaptureId == captureId);
 
             if(captureToDelete != null)
             {
@@ -31,12 +31,12 @@ namespace photo_points.Repositories
         public IEnumerable<Capture> GetAllUnapproved()
         {
             return _dbcontext.Captures
-                .Where(a => a.approval == Capture.ApprovalType.Pending); 
+                .Where(a => a.Approval == Capture.ApprovalType.Pending); 
         }
 
         public Capture GetCapture(long captureId)
         {
-            var capture = _dbcontext.Captures.FirstOrDefault(p => p.captureID == captureId);
+            var capture = _dbcontext.Captures.FirstOrDefault(p => p.CaptureId == captureId);
             return capture;
         }
 
@@ -50,24 +50,24 @@ namespace photo_points.Repositories
         {
             return _dbcontext
                 .Captures
-                .Include(c => c.photoPoint)
+                .Include(c => c.PhotoPoint)
                 .ToList();
                 
         }
 
         public void SaveChanges(Capture capt)
         {
-            var capture = _dbcontext.Captures.FirstOrDefault(c => c.captureID == capt.captureID);
+            var capture = _dbcontext.Captures.FirstOrDefault(c => c.CaptureId == capt.CaptureId);
 
             if(capture != null)
             {
-                capture.approval = capt.approval;
-                capture.captureDate = capt.captureDate;
-                capture.data = capt.data;
-                capture.photo = capt.photo;
-                capture.photoPoint = capt.photoPoint;
-                capture.tags = capt.tags;
-                capture.user = capt.user;
+                capture.Approval = capt.Approval;
+                capture.CaptureDate = capt.CaptureDate;
+                capture.Data = capt.Data;
+                capture.Photo = capt.Photo;
+                capture.PhotoPoint = capt.PhotoPoint;
+                capture.Tags = capt.Tags;
+                capture.User = capt.User;
 
                 _dbcontext.Captures.Update(capture);
             }

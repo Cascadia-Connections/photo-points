@@ -34,19 +34,19 @@ namespace photo_points
             var captures = new List<Capture> {
                 new Capture
                 {
-                    photo = imgdata,
-                    captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Pending,
-                    photoPoint=
+                    Photo = imgdata,
+                    CaptureDate = DateTime.Now,
+                    Approval=Capture.ApprovalType.Pending,
+                    PhotoPoint=
                     CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Oak Trees #1"),
-                    user=
+                    User=
                     CreateUser(),
-                    tags=new List<Tag>
+                    Tags=new List<Tag>
                     {
                         CreateTag("Leaves Falling"),
                         CreateTag("On Track")
                     },
-                    data=new List<Data>
+                    Data=new List<Data>
                     {
                        CreateData("Color", "Green"),
                        CreateData("Color", "Red"),
@@ -54,19 +54,19 @@ namespace photo_points
                 },
                   new Capture
                 {
-                    photo = imgdata1,
-                    captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Approve,
-                    photoPoint=
+                    Photo = imgdata1,
+                    CaptureDate = DateTime.Now,
+                    Approval=Capture.ApprovalType.Approve,
+                    PhotoPoint=
                     CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Fern"),
-                    user=
+                    User=
                     CreateUser(),
-                    tags=new List<Tag>
+                    Tags=new List<Tag>
                     {
                         CreateTag("New Fern"),
                         CreateTag("Fern Falling")
                     },
-                    data=new List<Data>
+                    Data=new List<Data>
                     {
                        CreateData("Color", "Green"),
                        CreateData("Style", "Solid"),
@@ -74,18 +74,18 @@ namespace photo_points
                 },
                     new Capture
                 {
-                    photo = imgdata2,
-                    captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Pending,
-                    photoPoint=
+                    Photo = imgdata2,
+                    CaptureDate = DateTime.Now,
+                    Approval=Capture.ApprovalType.Pending,
+                    PhotoPoint=
                     CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "BlackBerry"),
-                    user=CreateUser(),
-                    tags=new List<Tag>
+                    User=CreateUser(),
+                    Tags=new List<Tag>
                     {
                         CreateTag("Leaves Falling"),
                         CreateTag("On Track")
                     },
-                    data=new List<Data>
+                    Data=new List<Data>
                     {
                        CreateData("Color", "Green"),
                        CreateData("Color", "Purple"),
