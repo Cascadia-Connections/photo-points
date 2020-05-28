@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
-using photo_points.Models;
-using photo_points.Services;
-using photo_points.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using photo_points.Models;
+using photo_points.ViewModels;
+using photo_points.Controllers;
+using photo_points.Services;
+using System.IO;
+using Microsoft.EntityFrameworkCore;
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 
 namespace photo_points.Controllers
 {
