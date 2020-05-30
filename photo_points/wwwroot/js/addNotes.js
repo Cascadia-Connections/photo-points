@@ -13,7 +13,10 @@ function addComment() {
 }
 
 function deleteComment() {
-   window.location.reload();
+   var result = confirm("Are you sure you want to delete this note?");
+   if (result == true) {
+      window.location.reload();
+   }
 }
 
 function updateComment() {
