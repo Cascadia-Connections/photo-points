@@ -10,7 +10,6 @@ namespace photo_points.Services
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
     public class AdminReviewServices  : IAdminReviewServices
     {
-
         private IAdminReviewRepository _AdminRepo;
 
         public AdminReviewServices(IAdminReviewRepository AdminRepo)
@@ -39,7 +38,13 @@ namespace photo_points.Services
             return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
         }
 
+        public IEnumerable<Capture> GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType approvalStatus)
+        {
+            return 
+                _AdminRepo
+                .GetCapturesWithPhotoPoints()
+                .Where(c => c.approval == approvalStatus)
+                .ToList();
+        }
     }
-
-   
 }
