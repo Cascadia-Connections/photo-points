@@ -8,16 +8,15 @@ using Xunit;
 namespace photo_points.Tests
 {
     public class AdminApprovalServiceTests
-    {
-
-
+    {       
+        /*
         private IAdminReviewServices Subject()
         {
-            var fakeAdminRepo = new FakeAdminReviewRepository();
+            var adminReviewRepository = new AdminReviewRepository();
 
-            return new AdminReviewServices(fakeAdminRepo);
+            return new AdminReviewServices(adminReviewRepository);
         }
-
+        */
         //[Fact]
         //public void IsAdminApproval_Valid()
         //{

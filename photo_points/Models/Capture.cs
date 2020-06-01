@@ -29,6 +29,6 @@ namespace photo_points.Models
         public ICollection<Data> data { get; set; }
         public ICollection<Tag> tags { get; set; }
         public User user { get; set; }
-        public PhotoPoint PhotoPoint { get; set; }
+        public PhotoPoint photoPoint { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace photo_points
             SeedDatabase(host);              // Seed the Database
             host.Run();                      // Start the Application
         }
+
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
