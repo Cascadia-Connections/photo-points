@@ -5,6 +5,7 @@ using Bogus;
 using photo_points.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 
 namespace photo_points
 {
@@ -22,39 +23,118 @@ namespace photo_points
                 return; //already has data, don't add any more test data
             }
 
-            //  NuGet Package "Bogus" fake data generator
             Randomizer.Seed = new Random(8672042);
-            
-            //Users
-            var testUsers = new Faker<User>()
-                .RuleFor(u => u.firstName, f => f.Name.FirstName())
-                .RuleFor(u => u.lastName, f => f.Name.LastName())
-                .RuleFor(u => u.email, (f, u) => f.Internet.Email(u.firstName, u.lastName))
-                .RuleFor(u => u.password, f => f.Internet.Password(8, true));
-            var users = testUsers.Generate(100);
 
-            //Captures - Will need to change database to fix this.
-            //var approved = new[] { 0, 1 };
-            //var testCaptures = new Faker<Capture>()
-            //    .RuleFor(c => c.captureDate, faker => faker.Date.Recent())
-            //    .RuleFor(c => c.user, faker => faker.PickRandom(testUsers));
-            //    .RuleFor(c => c.photo, faker => faker.Image.PicsumUrl();
-            //var captures = testCaptures.Generate(100);
+            byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
+            byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
+            byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
 
-            //PhotoPoints
-            var features = new[] { 1, 2, 3, 4, 5, 6, 7 };
-            var testPhotos = new Faker<PhotoPoint>()
-                .RuleFor(p => p.locationName, f => f.Address.City());
-            //.RuleFor(p => p.feature, f => f.PickRandom(features));
-            var photopoints = testPhotos.Generate(100);
+            var captures = new List<Capture> {
+                new Capture
+                {
+                    photo = imgdata,
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Pending,
+                    photoPoint=
+                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Oak Trees #1"),
+                    user=
+                    CreateUser(),
+                    tags=new List<Tag>
+                    {
+                        CreateTag("Leaves Falling"),
+                        CreateTag("On Track")
+                    },
+                    data=new List<Data>
+                    {
+                       CreateData("Color", "Green"),
+                       CreateData("Color", "Red"),
+                    }
+                },
+                  new Capture
+                {
+                    photo = imgdata1,
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Approve,
+                    photoPoint=
+                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Fern"),
+                    user=
+                    CreateUser(),
+                    tags=new List<Tag>
+                    {
+                        CreateTag("New Fern"),
+                        CreateTag("Fern Falling")
+                    },
+                    data=new List<Data>
+                    {
+                       CreateData("Color", "Green"),
+                       CreateData("Style", "Solid"),
+                    }
+                },
+                    new Capture
+                {
+                    photo = imgdata2,
+                    captureDate = DateTime.Now,
+                    approval=Capture.ApprovalType.Pending,
+                    photoPoint=
+                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "BlackBerry"),
+                    user=CreateUser(),
+                    tags=new List<Tag>
+                    {
+                        CreateTag("Leaves Falling"),
+                        CreateTag("On Track")
+                    },
+                    data=new List<Data>
+                    {
+                       CreateData("Color", "Green"),
+                       CreateData("Color", "Purple"),
+                    }
+                },
 
-            //Add
-            await context.Users.AddRangeAsync(users);
-            //await context.Captures.AddRangeAsync(captures);
-            await context.PhotoPoints.AddRangeAsync(photopoints);
+            };
 
-            //Save
+            await context.Captures.AddRangeAsync(captures);
             await context.SaveChangesAsync();
+        }
+        public static Data CreateData(string type, string value)
+        {
+            Data newData = new Data();
+            newData.type = type;
+            newData.value = value;
+            return newData;
+        }
+
+        public static User CreateUser()
+        {
+            var faker = new Faker();
+            var fakeUser = new User
+            {
+                firstName = faker.Name.FirstName(),
+                lastName = faker.Name.LastName(),
+                email = faker.Internet.Email(),
+                password = faker.Internet.Password()
+            };
+
+            return fakeUser;
+        }
+        
+        public static Tag CreateTag(string tagName)
+        {
+            Tag tag = new Tag
+            {
+                tagName = tagName
+            };
+
+            return tag;
+        }
+        public static PhotoPoint CreatePhotoPoint(PhotoPoint.FeatureType feature, string locationName)
+        {
+            PhotoPoint photoPoint = new PhotoPoint
+            {
+                feature = feature,
+                locationName = locationName
+            };
+
+            return photoPoint;
         }
     }
 }

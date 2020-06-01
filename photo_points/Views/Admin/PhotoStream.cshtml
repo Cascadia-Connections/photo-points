@@ -1,44 +1,15 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model IEnumerable<photo_points.Models.PhotoPoint>
+@model photo_points.ViewModels.PhotoStreamViewModel;
 @{
     ViewData["Title"] = "Welcome";
     Layout = "../Shared/_Layout.cshtml";
 }
-
+<script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
 
 <h2>PhotoStream</h2>
 
-@foreach (var photo in Model)
-{
-
-    <div class="container card-body-sm" data-toggle="modal" data-target="#exampleModal">
-        <div class="row">
-            <img class="card-img-sm" src="~/images/fern.jpg" />
-        </div>
-        <div class="row card-sm-content">
-            <h3>@photo.locationName</h3>
-            <div class="col-sm-10">
-                <div class="row">
-                    <a asp-action="DeleteFromPhotoStream" asp-controller="Admin"
-                       asp-route-id="@photo.photoPointID">Remove</a>
-                    <h6>Jan 15, 2013</h6>
-                </div>
-
-                <div class="row">
-                    <h6>User1</h6>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <span class="circle"></span>
-            </div>
-        </div>
-    </div>
-}
-
-
-
-
-
-<a asp-action="PhotoCard"
-   asp-controller="Admin"></a>
+<form asp-action="PhotoCard"
+      asp-controller="Admin">
+        @await Html.PartialAsync("_CaptureCard", Model.ApprovedCaptures)
+</form>
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
@@ -30,19 +28,18 @@ namespace photo_points.Controllers
             _dbc = dbc;
         }
 
-        ///
-        // private Image byteArrayToImage(byte[] byteArrayIn)
-        //{
-        //    MemoryStream ms = new MemoryStream(byteArrayIn);
-        //    Image returnImage = Image.FromStream(ms);
-        //    return returnImage;
-        //}
-
-
         [HttpPost]
         public IActionResult AdminLogout()
         {
             return RedirectToAction("AdminLogin");
+        }
+
+        // testing for captures data
+        [HttpGet]
+        public JsonResult GetCaptures()
+        {
+            IEnumerable<Capture> captures = _adminReviewService.GetCaptures().ToList();
+            return new JsonResult(captures);
         }
 
         [HttpGet]
@@ -68,7 +65,6 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult WelcomeAdmin()
         {
-
             return View();
 
         }
@@ -77,20 +73,16 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult PhotoStream()
         {
-            IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-                .OrderBy(p => p.photoPointID)
-                .Take(10);
-            return View("PhotoStream", photos);
+            return View("PhotoStream", new PhotoStreamViewModel { ApprovedCaptures = _adminReviewService.GetApprovedCaptures().ToList() });
         }
 
         [HttpGet]
         public IActionResult DeleteFromPhotoStream(long id)
         {
             //Remove the Photo associated with the given id number; Save Changes
-            PhotoPoint photo = new PhotoPoint { photoPointID = id };
-            _dbc.PhotoPoints.Remove(photo);
+            Capture capture = new Capture { captureID = id };
+            _dbc.Captures.Remove(capture);
             _dbc.SaveChanges();
-
             return RedirectToAction("PhotoStream");
         }
 
@@ -98,7 +90,16 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Pending()
         {
-            return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
+            // get list of pending models
+            var pendingModels = _adminReviewService
+                .GetUnapprovedCaptures();
+
+            var pendingViewModel = new PendingViewModel
+            {
+                PendingCaptures = pendingModels.ToList()
+            };
+
+            return View("Pending", pendingViewModel);
         }
 
         [HttpGet]
@@ -110,13 +111,13 @@ namespace photo_points.Controllers
         [HttpPost]
         public IActionResult SearchCaptures(SearchViewModel search)
         {
-            var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
-            var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
-            var results = _adminReviewServices.GetCaptures().ToList();
+            var capturesPending = _adminReviewService.GetUnapprovedCaptures().ToList();
+            var capturesApproved = _adminReviewService.GetApprovedCaptures().ToList();
+            var results = _adminReviewService.GetCaptures().ToList();
 
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.photoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
@@ -188,7 +189,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
+            IEnumerable<Capture> pendingCaptures = _adminReviewService.GetCaptures();
             Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
             return View(pendingCapture);
         }

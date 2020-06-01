@@ -20,16 +20,15 @@ namespace photo_points.Models
 
     public enum ApprovalType
         {
-            //Pending is the default. So when a new capture is created it will be waiting for admin approval.
-
+            //Pending is the default. So when a new capture is created it will be waiting for admin approval
             Pending,
-            Approve,
-            Reject
+            Approve, 
+            Reject  
         }
 
         public ICollection<Data> data { get; set; }
         public ICollection<Tag> tags { get; set; }
         public User user { get; set; }
-        public PhotoPoint PhotoPoint { get; set; }
+        public PhotoPoint photoPoint { get; set; }
     }
 }
