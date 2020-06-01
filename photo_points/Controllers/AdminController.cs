@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-
 namespace photo_points.Controllers
 {
     public class AdminController : Controller
@@ -72,20 +71,15 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult PhotoStream()
         {
-            IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-                .OrderBy(p => p.photoPointID)
-                .Take(10);
-            return View("PhotoStream", photos);
+            return View("PhotoStream", new PhotoStreamViewModel { ApprovedCaptures = _adminReviewServices.GetApprovedCaptures().ToList() });
         }
 
         [HttpGet]
         public IActionResult DeleteFromPhotoStream(long id)
         {
-            var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.photoPointID == id);
-
-            if(photoPoint != null)
-                _dbc.PhotoPoints.Remove(photoPoint);
-            
+            //Remove the Photo associated with the given id number; Save Changes
+            Capture capture = new Capture { captureID = id };
+            _dbc.Captures.Remove(capture);
             _dbc.SaveChanges();
             return RedirectToAction("PhotoStream");
         }
@@ -203,13 +197,5 @@ namespace photo_points.Controllers
         {
             return new JsonResult("{\"id\" : " + capture.captureID + "}");
         }
-
-        // testing capture when saving
-        //[HttpPost]
-        //public IActionResult SubmitCapture(Capture capture)
-        //{
-        //    _adminReviewService.ad
-        //}
-
     }
 }
