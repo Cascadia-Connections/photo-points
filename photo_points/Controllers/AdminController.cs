@@ -17,14 +17,14 @@ namespace photo_points.Controllers
     public class AdminController : Controller
     {
         private ICollaboratorTagRepository _collaboratorTagRepository;
-        private IAdminReviewServices _adminReviewServices;
+        private IAdminReviewServices _adminReviewService;
         private PhotoDataContext _dbc;
 
         public AdminController(ICollaboratorTagRepository collaboratorTagRepository, IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
 
         {
             _collaboratorTagRepository = collaboratorTagRepository;
-            _adminReviewServices = adminServiceReview;
+            _adminReviewService = adminServiceReview;
             _dbc = dbc;
         }
 
@@ -209,7 +209,6 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult UserTags(long id)
         {
-
             _dbc.Tags.Add(new Tag
             {
                 tagName = "First flower",
