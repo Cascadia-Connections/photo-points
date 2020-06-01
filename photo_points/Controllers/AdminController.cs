@@ -107,7 +107,7 @@ namespace photo_points.Controllers
 
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.photoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
