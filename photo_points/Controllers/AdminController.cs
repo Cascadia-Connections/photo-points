@@ -75,18 +75,15 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult PhotoStream()
         {
-            IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-                .OrderBy(p => p.photoPointID)
-                .Take(10);
-            return View("PhotoStream", photos);
+            return View("PhotoStream", new PhotoStreamViewModel { ApprovedCaptures = _adminReviewServices.GetApprovedCaptures().ToList() });
         }
 
         [HttpGet]
         public IActionResult DeleteFromPhotoStream(long id)
         {
             //Remove the Photo associated with the given id number; Save Changes
-            PhotoPoint photo = new PhotoPoint { photoPointID = id };
-            _dbc.PhotoPoints.Remove(photo);
+            Capture capture = new Capture { captureID = id };
+            _dbc.Captures.Remove(capture);
             _dbc.SaveChanges();
 
             return RedirectToAction("PhotoStream");
