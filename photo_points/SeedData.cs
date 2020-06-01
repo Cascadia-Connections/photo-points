@@ -26,9 +26,7 @@ namespace photo_points
             Randomizer.Seed = new Random(8672042);
 
             byte[] imgdata = System.IO.File.ReadAllBytes("wwwroot/images/maple-leaf-888807_640.jpg");
-
             byte[] imgdata1 = System.IO.File.ReadAllBytes("wwwroot/images/blackberry-flower-4070045_640.jpg");
-
             byte[] imgdata2 = System.IO.File.ReadAllBytes("wwwroot/images/fern-1105988_640.jpg");
 
             var captures = new List<Capture> {
@@ -94,8 +92,7 @@ namespace photo_points
 
             };
 
-        await context.Captures.AddRangeAsync(captures);
-            
+            await context.Captures.AddRangeAsync(captures);
             await context.SaveChangesAsync();
         }
         public static Data CreateData(string type, string value)
@@ -139,6 +136,5 @@ namespace photo_points
 
             return photoPoint;
         }
-
     }
 }

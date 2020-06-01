@@ -15,12 +15,10 @@ namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
-
         private IAdminReviewServices _adminReviewService;
         private PhotoDataContext _dbc;
 
         public AdminController(IAdminReviewServices adminReviewService, PhotoDataContext dbc)
-
         {
             _adminReviewService = adminReviewService;
             _dbc = dbc;
@@ -71,7 +69,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult PhotoStream()
         {
-            return View("PhotoStream", new PhotoStreamViewModel { ApprovedCaptures = _adminReviewServices.GetApprovedCaptures().ToList() });
+            return View("PhotoStream", new PhotoStreamViewModel { ApprovedCaptures = _adminReviewService.GetApprovedCaptures().ToList() });
         }
 
         [HttpGet]
@@ -90,7 +88,7 @@ namespace photo_points.Controllers
         {
             // get list of pending models
             var pendingModels = _adminReviewService
-                .GetCapturesWithPhotoPointByApprovalStatus(Capture.ApprovalType.Pending);
+                .GetUnapprovedCaptures();
 
             var pendingViewModel = new PendingViewModel
             {
@@ -109,13 +107,13 @@ namespace photo_points.Controllers
         [HttpPost]
         public IActionResult SearchCaptures(SearchViewModel search)
         {
-            var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
-            var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
-            var results = _adminReviewServices.GetCaptures().ToList();
+            var capturesPending = _adminReviewService.GetUnapprovedCaptures().ToList();
+            var capturesApproved = _adminReviewService.GetApprovedCaptures().ToList();
+            var results = _adminReviewService.GetCaptures().ToList();
 
             if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.PhotoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.photoPoint.photoPointID == search.photoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
             if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
