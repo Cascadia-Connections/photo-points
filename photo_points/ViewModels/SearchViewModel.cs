@@ -1,7 +1,9 @@
-﻿using System;
+﻿using photo_points.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static photo_points.Models.Capture;
 
 namespace photo_points.ViewModels
 {
@@ -13,6 +15,16 @@ namespace photo_points.ViewModels
         public DateTime fromDate { get; set; } 
         public DateTime toDate { get; set; }
         public string tagName { get; set; }
+        public ApprovalType approval { get; set; }
+        public enum ApprovalType
+        {
+            //Pending is the default. So when a new capture is created it will be waiting for admin approval.
+
+            Pending,
+            Approved,
+            Rejected
+        }
+        public List<Capture> SearchCaptures { get; set; }
 
 
 
