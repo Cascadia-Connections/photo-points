@@ -36,13 +36,13 @@ namespace photo_points.Repositories
 
         public Capture GetCapture(long captureId)
         {
-            var capture = _dbcontext.Captures.FirstOrDefault(p => p.captureID == captureId);
+            var capture = _dbcontext.Captures.Include(c => c.user).Include(c => c.data).Include(c => c.photoPoint).Include(c => c.tags).FirstOrDefault(p => p.captureID == captureId);
             return capture;
         }
 
         public IEnumerable<Capture> GetCaptures()
         {
-            var captures = _dbcontext.Captures;
+            var captures = _dbcontext.Captures.Include(c => c.user).Include(c => c.data).Include(c => c.tags).Include(c => c.photoPoint);
             return captures;
         }
 
