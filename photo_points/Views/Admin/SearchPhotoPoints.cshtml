@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="~/css/searchPhotos.css">
 
 <h2>Search PhotoPoints</h2>
-<form asp-action="SearchCaptures" asp-controller="Admin">
+<form asp-action="SearchPhotoPoints" asp-controller="Admin">
     <table class="searchFilters">
         <tr>
             <th>
@@ -58,8 +58,7 @@
                 Approval Type:
             </td>
             <td>
-                <select asp-for="Approval" asp-items="Html.GetEnumSelectList<photo_points.Models.ApprovalStatus
->()">>
+                <select asp-for="Approval" asp-items="Html.GetEnumSelectList<photo_points.Models.ApprovalStatus>()">
                     <option selected="selected" disabled>Please select</option>
                 </select>
             </td>
@@ -69,3 +68,4 @@
         <input type="submit" value="Search Results" />
     </div>
 </form>
+@ViewBag.SearchError

@@ -10,9 +10,9 @@ namespace photo_points
     {
         public static void Main(string[] args)
         {
-            var host = BuildWebHost(args);  // Create the Application
-            SeedDatabase(host);             // Seed the Database
-            host.Run();                     // Start the Application
+            var host = BuildWebHost(args);   // Create the Application
+            SeedDatabase(host);              // Seed the Database
+            host.Run();                      // Start the Application
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

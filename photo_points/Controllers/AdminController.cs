@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using photo_points.Models;
 using photo_points.ViewModels;
@@ -11,33 +13,34 @@ using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-
 namespace photo_points.Controllers
 {
     public class AdminController : Controller
     {
-        private IAdminReviewServices _adminReviewService;
+
+        private IAdminReviewServices _adminReviewServices;
         private PhotoDataContext _dbc;
 
-        public AdminController(IAdminReviewServices adminReviewService, PhotoDataContext dbc)
+        public AdminController(IAdminReviewServices adminServiceReview, PhotoDataContext dbc)
 
         {
-            _adminReviewService = adminReviewService;
+            _adminReviewServices = adminServiceReview;
             _dbc = dbc;
         }
+
+        ///
+        // private Image byteArrayToImage(byte[] byteArrayIn)
+        //{
+        //    MemoryStream ms = new MemoryStream(byteArrayIn);
+        //    Image returnImage = Image.FromStream(ms);
+        //    return returnImage;
+        //}
+
 
         [HttpPost]
         public IActionResult AdminLogout()
         {
             return RedirectToAction("AdminLogin");
-        }
-
-        // testing for captures data
-        [HttpGet]
-        public JsonResult GetCaptures()
-        {
-            IEnumerable<Capture> captures = _adminReviewService.GetCaptures().ToList();
-            return new JsonResult(captures);
         }
 
         [HttpGet]
@@ -51,9 +54,11 @@ namespace photo_points.Controllers
         {
             if (ModelState.IsValid)
                 if (_dbc.Users.Any(u => u.Email == lvm.UserName && u.Password == lvm.Password))
-                    return RedirectToAction("WelcomeAdmin");
+                    return RedirectToAction("SearchPhotoPoints");
                 else
+                {
                     return View();
+                }
             else
             {
                 ViewBag.LoginIssue = "There is something wrong with you password or email";
@@ -61,60 +66,45 @@ namespace photo_points.Controllers
             }
         }
 
+        //[HttpGet]
+        //public IActionResult PhotoStream()
+        //{
+        //    IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
+        //        .OrderBy(p => p.photoPointID)
+        //        .Take(10);
+        //    return View("PhotoStream", photos);
+        //}
+
+        //[HttpGet]
+        //public IActionResult DeleteFromPhotoStream(long id)
+        //{
+        //    //Remove the Photo associated with the given id number; Save Changes
+        //    PhotoPoint photo = new PhotoPoint { photoPointID = id };
+        //    _dbc.PhotoPoints.Remove(photo);
+        //    _dbc.SaveChanges();
+
+        //    return RedirectToAction("PhotoStream");
+        //}
+
+
+        //[HttpGet]
+        //public IActionResult Pending()
+        //{
+        //    return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
+        //}
+
         [HttpGet]
-        public IActionResult WelcomeAdmin()
+        public IActionResult SearchPhotoPoints()
         {
             return View();
         }
 
-        [HttpGet]
-        public IActionResult PhotoStream()
-        {
-            IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-                .OrderBy(p => p.PhotoPointID)
-                .Take(10);
-            return View("PhotoStream", photos);
-        }
-
-        [HttpGet]
-        public IActionResult DeleteFromPhotoStream(long id)
-        {
-            var photoPoint = _dbc.PhotoPoints.FirstOrDefault(u => u.PhotoPointID == id);
-
-            if (photoPoint != null)
-                _dbc.PhotoPoints.Remove(photoPoint);
-
-            _dbc.SaveChanges();
-            return RedirectToAction("PhotoStream");
-        }
-
-        [HttpGet]
-        public IActionResult Pending()
-        {
-            // get list of pending models
-            var pendingModels = _adminReviewService
-                .GetCapturesWithPhotoPointByApprovalStatus(ApprovalStatus.Pending);
-
-            var pendingViewModel = new PendingViewModel
-            {
-                PendingCaptures = pendingModels.ToList()
-            };
-
-            return View("Pending", pendingViewModel);
-        }
-
-        [HttpGet]
-        public IActionResult SearchCaptures()
-        {
-            return View("SearchPhotoPoints");
-        }
-
         [HttpPost]
-        public IActionResult SearchCaptures(SearchViewModel search)
+        public IActionResult SearchPhotoPoints(SearchViewModel search)
         {
-            var capturesPending = _adminReviewService.GetUnapprovedCaptures().ToList();
-            var capturesApproved = _adminReviewService.GetApprovedCaptures().ToList();
-            var results = _adminReviewService.GetCaptures().ToList();
+            var capturesPending = _adminReviewServices.GetUnapprovedCaptures().ToList();
+            var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
+            var results = _adminReviewServices.GetCaptures().ToList();
 
             if (search.PhotoPointId > 0 && search.PhotoPointId <= results.Count())//if searched by photo point id
             {
@@ -123,7 +113,8 @@ namespace photo_points.Controllers
             }
             if (search.PhotoPointId < 0 || search.PhotoPointId > results.Count())  //if searched by invalid photo point id
             {
-                return View("SearchCapturesResultsNotFound");
+                ViewBag.SearchError = "Results not found.";
+                return View();
             }
 
             if (search.FromDate != new DateTime())     //if searched by fromDate
@@ -149,7 +140,8 @@ namespace photo_points.Controllers
             {
                 if (capturesPending.Count() == 0)
                 {
-                    return View("SearchCapturesResultsNotFound");
+                    ViewBag.SearchError = "Results not found.";
+                    return View();
                 }
                 else
                 {
@@ -161,7 +153,8 @@ namespace photo_points.Controllers
             {
                 if (capturesApproved.Count() == 0)
                 {
-                    return View("SearchCapturesResultsNotFound");
+                    ViewBag.SearchError = "Results not found.";
+                    return View();
                 }
                 else
                 {
@@ -175,7 +168,8 @@ namespace photo_points.Controllers
             //}
             else
             {
-                return View("SearchCapturesResultsNotFound");
+                ViewBag.SearchError = "Results not found.";
+                return View();
             }
         }
 
@@ -188,7 +182,7 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Details(long id)
         {
-            IEnumerable<Capture> pendingCaptures = _adminReviewService.GetCaptures();
+            IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
             Capture pendingCapture = pendingCaptures.First(p => p.CaptureId == id);
             return View(pendingCapture);
         }
@@ -198,12 +192,5 @@ namespace photo_points.Controllers
         {
             return new JsonResult("{\"id\" : " + capture.CaptureId + "}");
         }
-
-        // testing capture when saving
-        //[HttpPost]
-        //public IActionResult SubmitCapture(Capture capture)
-        //{
-        //    _adminReviewService.ad
-        //}
     }
 }
