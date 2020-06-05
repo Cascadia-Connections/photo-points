@@ -48,11 +48,12 @@ namespace photo_points.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AdminLogin(LoginViewModel lvm)
         {
             if (ModelState.IsValid)
-                if (_dbc.Users.Any(u => u.email == lvm.UserName && u.password == lvm.Password))
+                if (_dbc.Users.Any(u => u.Email == lvm.UserName && u.Password == lvm.Password))
                     return RedirectToAction("SearchPhotoPoints");
                 else
                 {
@@ -105,37 +106,37 @@ namespace photo_points.Controllers
             var capturesApproved = _adminReviewServices.GetApprovedCaptures().ToList();
             var results = _adminReviewServices.GetCaptures().ToList();
 
-            if (search.photoPointId > 0 && search.photoPointId <= results.Count())//if searched by photo point id
+            if (search.PhotoPointId > 0 && search.PhotoPointId <= results.Count())//if searched by photo point id
             {
-                results = results.Where(r => r.photoPoint.photoPointID == search.photoPointId).ToList();
+                results = results.Where(r => r.PhotoPoint.PhotoPointID == search.PhotoPointId).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-            if (search.photoPointId < 0 || search.photoPointId > results.Count())  //if searched by invalid photo point id
+            if (search.PhotoPointId < 0 || search.PhotoPointId > results.Count())  //if searched by invalid photo point id
             {
                 ViewBag.SearchError = "Results not found.";
                 return View();
             }
 
-            if (search.fromDate != new DateTime())     //if searched by fromDate
+            if (search.FromDate != new DateTime())     //if searched by fromDate
             {
-                results = results.Where(r => r.captureDate >= search.fromDate).ToList();
+                results = results.Where(r => r.CaptureDate >= search.FromDate).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
-            if (search.toDate != new DateTime())      //if searched by toDate
+            if (search.ToDate != new DateTime())      //if searched by toDate
             {
-                results = results.Where(r => r.captureDate <= search.toDate).ToList();
+                results = results.Where(r => r.CaptureDate <= search.ToDate).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
-            if (search.tagName != null)    //search by tag
+            if (search.TagName != null)    //search by tag
             {
-                results = results.Where(r => r.tags.Select(t => t.tagName)
-                .Contains(search.tagName)).ToList();
+                results = results.Where(r => r.Tags.Select(t => t.TagName)
+                .Contains(search.TagName)).ToList();
                 return View("SearchCapturesResults", new SearchViewModel { SearchCaptures = results });
             }
 
             //Search for pending captures
-            if(search.approval == SearchViewModel.ApprovalType.Pending)
+            if (search.Approval == SearchViewModel.ApprovalType.Pending)
             {
                 if (capturesPending.Count() == 0)
                 {
@@ -148,7 +149,7 @@ namespace photo_points.Controllers
                 }
             }
             //search for approved captures. Return results not found if there are no approved captures
-            if (search.approval == SearchViewModel.ApprovalType.Approved)
+            if (search.Approval == SearchViewModel.ApprovalType.Approved)
             {
                 if (capturesApproved.Count() == 0)
                 {
@@ -165,13 +166,11 @@ namespace photo_points.Controllers
             //{
             //    return View("SearchCapturesResultsNotFound");
             //}
-
             else
             {
                 ViewBag.SearchError = "Results not found.";
                 return View();
             }
-
         }
 
         [HttpGet]
@@ -184,14 +183,14 @@ namespace photo_points.Controllers
         public IActionResult Details(long id)
         {
             IEnumerable<Capture> pendingCaptures = _adminReviewServices.GetCaptures();
-            Capture pendingCapture = pendingCaptures.First(p => p.captureID == id);
+            Capture pendingCapture = pendingCaptures.First(p => p.CaptureId == id);
             return View(pendingCapture);
         }
 
         [HttpPost]
         public JsonResult EditCapture(Capture capture)
         {
-            return new JsonResult("{\"id\" : " + capture.captureID + "}");
+            return new JsonResult("{\"id\" : " + capture.CaptureId + "}");
         }
     }
 }

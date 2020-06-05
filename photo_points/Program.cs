@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace photo_points
 {
@@ -19,6 +19,7 @@ namespace photo_points
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
+
         private static void SeedDatabase(IWebHost host)
         {
             using (var scope = host.Services.CreateScope())

@@ -1,10 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using photo_points.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace photo_points.Repositories
 {
@@ -19,9 +16,9 @@ namespace photo_points.Repositories
 
         public Capture DeleteCapture(long captureId)
         {
-            var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.captureID == captureId);
+            var captureToDelete = _dbcontext.Captures.FirstOrDefault(p => p.CaptureId == captureId);
 
-            if(captureToDelete != null)
+            if (captureToDelete != null)
             {
                 _dbcontext.Captures.Remove(captureToDelete);
             }
@@ -31,18 +28,18 @@ namespace photo_points.Repositories
         public IEnumerable<Capture> GetAllUnapproved()
         {
             return _dbcontext.Captures
-                .Where(a => a.approval == Capture.ApprovalType.Pending); 
+                .Where(a => a.Approval == ApprovalStatus.Pending);
         }
 
         public Capture GetCapture(long captureId)
         {
-            var capture = _dbcontext.Captures.Include(c => c.user).Include(c => c.data).Include(c => c.photoPoint).Include(c => c.tags).FirstOrDefault(p => p.captureID == captureId);
+            var capture = _dbcontext.Captures.Include(c => c.User).Include(c => c.Data).Include(c => c.PhotoPoint).Include(c => c.Tags).FirstOrDefault(p => p.CaptureId == captureId);
             return capture;
         }
 
         public IEnumerable<Capture> GetCaptures()
         {
-            var captures = _dbcontext.Captures.Include(c => c.user).Include(c => c.data).Include(c => c.tags).Include(c => c.photoPoint);
+            var captures = _dbcontext.Captures.Include(c => c.User).Include(c => c.Data).Include(c => c.Tags).Include(c => c.PhotoPoint);
             return captures;
         }
 
@@ -50,24 +47,23 @@ namespace photo_points.Repositories
         {
             return _dbcontext
                 .Captures
-                .Include(c => c.photoPoint)
+                .Include(c => c.PhotoPoint)
                 .ToList();
-                
         }
 
         public void SaveChanges(Capture capt)
         {
-            var capture = _dbcontext.Captures.FirstOrDefault(c => c.captureID == capt.captureID);
+            var capture = _dbcontext.Captures.FirstOrDefault(c => c.CaptureId == capt.CaptureId);
 
-            if(capture != null)
+            if (capture != null)
             {
-                capture.approval = capt.approval;
-                capture.captureDate = capt.captureDate;
-                capture.data = capt.data;
-                capture.photo = capt.photo;
-                capture.photoPoint = capt.photoPoint;
-                capture.tags = capt.tags;
-                capture.user = capt.user;
+                capture.Approval = capt.Approval;
+                capture.CaptureDate = capt.CaptureDate;
+                capture.Data = capt.Data;
+                capture.Photo = capt.Photo;
+                capture.PhotoPoint = capt.PhotoPoint;
+                capture.Tags = capt.Tags;
+                capture.User = capt.User;
 
                 _dbcontext.Captures.Update(capture);
             }

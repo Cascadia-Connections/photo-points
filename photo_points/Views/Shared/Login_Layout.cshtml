@@ -10,27 +10,29 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <style>
         h1 {
-    text-align: center;
-    color: white;
-}
-.form-signin {
-    width: 450px;
-    border: 2px solid green;
-    padding: 0 20px 20px 20px;
-    background-color: darkgreen;
-    top: 30%;
-    left: 50%;
-    margin-left: -225px;
-    position: absolute;
+            text-align: center;
+            color: white;
+        }
 
-}
-.btn{
-    background-color: #00303c;
-    border: 1px #00303c;
-}
-input{
-	margin-bottom: 8px;
-}
+        .form-signin {
+            width: 450px;
+            border: 2px solid green;
+            padding: 0 20px 20px 20px;
+            background-color: darkgreen;
+            top: 30%;
+            left: 50%;
+            margin-left: -225px;
+            position: absolute;
+        }
+
+        .btn {
+            background-color: #00303c;
+            border: 1px #00303c;
+        }
+
+        input {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 <body>
@@ -42,20 +44,14 @@ input{
         </section>
     </header>
 
- 
-
     <section class="content">
         <section class="main-body">
-
 
             <div class="admin-content-first">
 
                 @RenderBody()
-
             </div>
         </section>
     </section>
-
-
 </body>
 </html>

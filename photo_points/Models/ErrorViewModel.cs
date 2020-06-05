@@ -1,5 +1,3 @@
-using System;
-
 namespace photo_points.Models
 {
     public class ErrorViewModel

@@ -5,7 +5,7 @@ namespace photo_points.ViewModels
 {
     public class PendingViewModel
     {
-        public List <Capture> PendingCaptures { get; set; }
-        public List <string> ImageSource { get; set; }//generic
+        public List<Capture> PendingCaptures { get; set; }
+        public List<string> ImageSource { get; set; }//generic
     }
 }
