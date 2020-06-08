@@ -35,7 +35,6 @@
                 <form asp-action="AdminLogout" method="post">
                 <input type="submit" value="Logout">
                 </form>
-                
             </div>
         </section>
 
@@ -49,28 +48,16 @@
 
     <section class="admin-nav">
         <nav class="menu-options">
-            <article class="menu">
-                <div>
-                    @*actionLink will create a text link*@
-                    @Html.ActionLink("Photo Stream", "PhotoStream", new object { }, new { @class = "btn btn-light" })
-                </div>
-            </article>
-
-            <article class="menu">
-                <div>
-                    @Html.ActionLink("Pending", "Pending", new object { }, new { @class = "btn btn-light" })
-                </div>
-            </article>
-
-            <article class="menu">
-                <div>
-                    @Html.ActionLink("Search", "SearchCaptures", new object { }, new { @class = "btn btn-light" })
-                </div>
-            </article>
 
             <article class="menu">
                 <div>
                     @Html.ActionLink("Collaborators", "Collaborators", new object { }, new { @class = "btn btn-light" })
+                </div>
+                <div></div>
+            </article>
+            <article class="menu">
+                <div>
+                    @Html.ActionLink("Return to Search", "SearchPhotoPoints", new object { }, new { @class = "btn btn-light" })
                 </div>
             </article>
         </nav>
@@ -78,14 +65,9 @@
 
     <section class="content">
         <section class="main-body">
-            <div class="pending-update">
-                <p><b>&#91;8&#93; pending submissions</b></p>
-            </div>
-
             <div class="admin-content-first">
 
                 @RenderBody()
-
             </div>
         </section>
     </section>

@@ -1,16 +1,13 @@
-﻿using System;
+﻿using photo_points.Models;
+using photo_points.Repositories;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using photo_points.Models;
-using photo_points.Repositories;
 
 namespace photo_points.Services
 {
     // You may need to install the Microsoft.AspNetCore.Http.Abstractions package into your project
-    public class AdminReviewServices  : IAdminReviewServices
+    public class AdminReviewServices : IAdminReviewServices
     {
-
         private IAdminReviewRepository _AdminRepo;
 
         public AdminReviewServices(IAdminReviewRepository AdminRepo)
@@ -18,10 +15,10 @@ namespace photo_points.Services
             _AdminRepo = AdminRepo;
         }
 
-        public void ApproveOrReject(long captureID, Capture.ApprovalType choice)
+        public void ApproveOrReject(long captureID, ApprovalStatus choice)
         {
             Capture capt = _AdminRepo.GetCapture(captureID);
-            capt.approval = choice;
+            capt.Approval = choice;
             _AdminRepo.SaveChanges(capt);
         }
 
@@ -29,17 +26,24 @@ namespace photo_points.Services
         {
             return _AdminRepo.GetCaptures();
         }
+
         public IEnumerable<Capture> GetUnapprovedCaptures()
         {
-            return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Pending);
+            return GetCaptures().Where(a => a.Approval == ApprovalStatus.Pending);
         }
 
         public IEnumerable<Capture> GetApprovedCaptures()
         {
-            return GetCaptures().Where(a => a.approval == Capture.ApprovalType.Approve);
+            return GetCaptures().Where(a => a.Approval == ApprovalStatus.Approve);
         }
 
+        public IEnumerable<Capture> GetCapturesWithPhotoPointByApprovalStatus(ApprovalStatus approvalStatus)
+        {
+            return
+                _AdminRepo
+                .GetCapturesWithPhotoPoints()
+                .Where(c => c.Approval == approvalStatus)
+                .ToList();
+        }
     }
-
-   
 }

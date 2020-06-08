@@ -21,58 +21,58 @@ namespace photo_points.Migrations
 
             modelBuilder.Entity("photo_points.Models.Capture", b =>
                 {
-                    b.Property<long>("captureID")
+                    b.Property<long>("CaptureId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("approval")
+                    b.Property<int>("Approval")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("captureDate")
+                    b.Property<DateTime>("CaptureDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("photo")
+                    b.Property<byte[]>("Photo")
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<long?>("photoPointID")
+                    b.Property<long?>("PhotoPointID")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("userID")
+                    b.Property<long?>("UserID")
                         .HasColumnType("bigint");
 
-                    b.HasKey("captureID");
+                    b.HasKey("CaptureId");
 
-                    b.HasIndex("photoPointID");
+                    b.HasIndex("PhotoPointID");
 
-                    b.HasIndex("userID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Captures");
                 });
 
             modelBuilder.Entity("photo_points.Models.Data", b =>
                 {
-                    b.Property<long>("dataID")
+                    b.Property<long>("DataID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("captureID")
+                    b.Property<long?>("CaptureId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("comment")
+                    b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("type")
+                    b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("value")
+                    b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("dataID");
+                    b.HasKey("DataID");
 
-                    b.HasIndex("captureID");
+                    b.HasIndex("CaptureId");
 
                     b.ToTable("Datas");
                 });
@@ -99,72 +99,75 @@ namespace photo_points.Migrations
 
             modelBuilder.Entity("photo_points.Models.PhotoPoint", b =>
                 {
-                    b.Property<long>("photoPointID")
+                    b.Property<long>("PhotoPointID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("feature")
+                    b.Property<int>("Feature")
                         .HasColumnType("int");
 
-                    b.Property<string>("locationName")
+                    b.Property<string>("LocationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("photoPointID");
+                    b.HasKey("PhotoPointID");
 
                     b.ToTable("PhotoPoints");
                 });
 
             modelBuilder.Entity("photo_points.Models.Tag", b =>
                 {
-                    b.Property<long>("tagID")
+                    b.Property<long>("TagID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long?>("captureID")
+                    b.Property<long?>("CaptureId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("tagName")
+                    b.Property<string>("TagName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("userID")
+                    b.Property<long?>("UserID")
                         .HasColumnType("bigint");
 
-                    b.HasKey("tagID");
+                    b.HasKey("TagID");
 
-                    b.HasIndex("captureID");
+                    b.HasIndex("CaptureId");
 
-                    b.HasIndex("userID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("photo_points.Models.User", b =>
                 {
-                    b.Property<long>("userID")
+                    b.Property<long>("UserID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("firstName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("lastName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("password")
+                    b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("userID");
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserID");
 
                     b.ToTable("Users");
                 });
@@ -172,19 +175,19 @@ namespace photo_points.Migrations
             modelBuilder.Entity("photo_points.Models.Capture", b =>
                 {
                     b.HasOne("photo_points.Models.PhotoPoint", "PhotoPoint")
-                        .WithMany("captures")
-                        .HasForeignKey("photoPointID");
+                        .WithMany("Captures")
+                        .HasForeignKey("PhotoPointID");
 
-                    b.HasOne("photo_points.Models.User", "user")
-                        .WithMany("captures")
-                        .HasForeignKey("userID");
+                    b.HasOne("photo_points.Models.User", "User")
+                        .WithMany("Captures")
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("photo_points.Models.Data", b =>
                 {
                     b.HasOne("photo_points.Models.Capture", "Capture")
-                        .WithMany("data")
-                        .HasForeignKey("captureID");
+                        .WithMany("Data")
+                        .HasForeignKey("CaptureId");
                 });
 
             modelBuilder.Entity("photo_points.Models.Note", b =>
@@ -196,13 +199,13 @@ namespace photo_points.Migrations
 
             modelBuilder.Entity("photo_points.Models.Tag", b =>
                 {
-                    b.HasOne("photo_points.Models.Capture", "capture")
-                        .WithMany("tags")
-                        .HasForeignKey("captureID");
+                    b.HasOne("photo_points.Models.Capture", "Capture")
+                        .WithMany("Tags")
+                        .HasForeignKey("CaptureId");
 
-                    b.HasOne("photo_points.Models.User", "user")
-                        .WithMany("tags")
-                        .HasForeignKey("userID");
+                    b.HasOne("photo_points.Models.User", "User")
+                        .WithMany("Tags")
+                        .HasForeignKey("UserID");
                 });
 #pragma warning restore 612, 618
         }

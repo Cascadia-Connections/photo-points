@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using photo_points.Models;
-using photo_points.Services;
+using Microsoft.Extensions.Hosting;
 using photo_points.Repositories;
-using Microsoft.EntityFrameworkCore;
+using photo_points.Services;
 
 namespace photo_points
 {
@@ -34,10 +28,9 @@ namespace photo_points
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
 
             services.AddTransient<IAdminReviewServices, AdminReviewServices>();
-            services.AddTransient<IAdminReviewRepository, FakeAdminReviewRepository>();
+            services.AddTransient<IAdminReviewRepository, AdminReviewRepository>();
             services.AddMvc();
 
             //add services for the PhotoDataContext
@@ -50,7 +43,7 @@ namespace photo_points
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.EnvironmentName == "development")
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
