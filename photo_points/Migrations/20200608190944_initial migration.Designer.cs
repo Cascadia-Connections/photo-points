@@ -10,8 +10,8 @@ using photo_points.Models;
 namespace photo_points.Migrations
 {
     [DbContext(typeof(PhotoDataContext))]
-    [Migration("20200605073523_AddingRoleColumns")]
-    partial class AddingRoleColumns
+    [Migration("20200608190944_initial migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,6 +77,26 @@ namespace photo_points.Migrations
                     b.HasIndex("CaptureId");
 
                     b.ToTable("Datas");
+                });
+
+            modelBuilder.Entity("photo_points.Models.Note", b =>
+                {
+                    b.Property<long>("noteID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("CaptureId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("noteComment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("noteID");
+
+                    b.HasIndex("CaptureId");
+
+                    b.ToTable("Notes");
                 });
 
             modelBuilder.Entity("photo_points.Models.PhotoPoint", b =>
@@ -169,6 +189,13 @@ namespace photo_points.Migrations
                 {
                     b.HasOne("photo_points.Models.Capture", "Capture")
                         .WithMany("Data")
+                        .HasForeignKey("CaptureId");
+                });
+
+            modelBuilder.Entity("photo_points.Models.Note", b =>
+                {
+                    b.HasOne("photo_points.Models.Capture", "Capture")
+                        .WithMany()
                         .HasForeignKey("CaptureId");
                 });
 
