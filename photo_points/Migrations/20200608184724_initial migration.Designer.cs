@@ -10,8 +10,8 @@ using photo_points.Models;
 namespace photo_points.Migrations
 {
     [DbContext(typeof(PhotoDataContext))]
-    [Migration("20200605073523_AddingRoleColumns")]
-    partial class AddingRoleColumns
+    [Migration("20200608184724_initial migration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
