@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using photo_points.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace photo_points.Models
 {
@@ -17,11 +13,12 @@ namespace photo_points.Models
 
         //Access to Collections representing DB tables
         public DbSet<User> Users { get; set; }
+
         public DbSet<Capture> Captures { get; set; }
         public DbSet<PhotoPoint> PhotoPoints { get; set; }
         public DbSet<Data> Datas { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        
+        public DbSet<Note> Notes { get; set; }
 
 
         //TODO: on VS-MAC use the reference https://www.ciclosoftware.com/2018/03/14/sql-server-with-net-core-and-entityframework-on-mac/
@@ -31,7 +28,7 @@ namespace photo_points.Models
         {
 
             // it will be done after we start using our data//
-           // optionsBuilder.EnableSensitiveDataLogging(true);
+            // optionsBuilder.EnableSensitiveDataLogging(true);
 
             if (Environment.GetEnvironmentVariable("") == "") // // within the quotes, add the environment name
 

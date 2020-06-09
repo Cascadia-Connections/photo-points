@@ -12,8 +12,6 @@
     width: 100%;
 }
 
-
-
 .footer-content-one {
     text-align: center;
     vertical-align: middle;
@@ -22,21 +20,14 @@
     margin-right: auto;
 }
 
+@media screen and (min-width: 700px) {
+    .all-footer-content {
+        display: flex;
+        justify-content: space-between;
+    }
 
-
-@media screen and (min-width: 700px){
-    
-        .all-footer-content{
-            display:flex;
-        justify-content: space-between;      
-        }
-
-.footer-content{
+    .footer-content {
         /*width: calc(33.333333% - 0.5em);*/
         width: 100%;
     }
-        
-
-    
 }
-

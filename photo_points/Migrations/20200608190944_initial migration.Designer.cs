@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using photo_points.Models;
 
 namespace photo_points.Migrations
 {
     [DbContext(typeof(PhotoDataContext))]
-    partial class PhotoDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200608190944_initial migration")]
+    partial class initialmigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,24 +171,7 @@ namespace photo_points.Migrations
 
                     b.HasKey("UserID");
 
-                    b.HasIndex("tagID");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("photo_points.Models.UserTag", b =>
-                {
-                    b.Property<long>("userID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("tagID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("userID", "tagID");
-
-                    b.HasIndex("tagID");
-
-                    b.ToTable("UserTags");
                 });
 
             modelBuilder.Entity("photo_points.Models.Capture", b =>
@@ -223,28 +208,6 @@ namespace photo_points.Migrations
                     b.HasOne("photo_points.Models.User", "User")
                         .WithMany("Tags")
                         .HasForeignKey("UserID");
-                });
-
-            modelBuilder.Entity("photo_points.Models.User", b =>
-                {
-                    b.HasOne("photo_points.Models.Tag", null)
-                        .WithMany("Users")
-                        .HasForeignKey("tagID");
-                });
-
-            modelBuilder.Entity("photo_points.Models.UserTag", b =>
-                {
-                    b.HasOne("photo_points.Models.Tag", "Tag")
-                        .WithMany("UserTag")
-                        .HasForeignKey("tagID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("photo_points.Models.User", "User")
-                        .WithMany("UserTag")
-                        .HasForeignKey("userID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

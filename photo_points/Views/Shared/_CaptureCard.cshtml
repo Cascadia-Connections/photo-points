@@ -2,39 +2,39 @@
 
 @foreach (var itm in Model)
 {
-        <div class="container card-body-sm" capture-card-id="@itm.captureID">
-            <div style="overflow:hidden;" class="h-50 row">
-                <img class="card-img-sm" src="@string.Format("data:{0}; base64,{1}", "image/jpeg", Convert.ToBase64String(itm.photo))" />
-            </div>
-            <div class="h-50 row card-body">
-                <h3>@itm.photoPoint.locationName</h3>
-                <div class="h-50 col-sm-10">
-                    <div class="row">
-                        <h6>@itm.captureDate</h6>
-                    </div>
-                    <div class="row">
-                        <h6>@itm.user.firstName @itm.user.lastName</h6>
-                    </div>
+    <div class="container card-body-sm" capture-card-id="@itm.CaptureId">
+        <div style="overflow:hidden;" class="h-50 row">
+            <img class="card-img-sm" src="@string.Format("data:{0}; base64,{1}", "image/jpeg", Convert.ToBase64String(itm.Photo))" />
+        </div>
+        <div class="h-50 row card-body">
+            <h3>@itm.PhotoPoint.LocationName</h3>
+            <div class="h-50 col-sm-10">
+                <div class="row">
+                    <h6>@itm.CaptureDate</h6>
                 </div>
-                @if (itm.approval.ToString() == "Approve")
-                {
-                    <div class="h-25 col-sm-15" capture-id="@itm.captureID">
-                        <a style="float:left; margin-right:3px" class="reject btn btn-danger"
-                           asp-action="DeleteFromPhotoStream"
-                           asp-controller="Admin"
-                           asp-route-id="@itm.captureID">Remove</a>
-                    </div>
-                }
-                @if (itm.approval.ToString() == "Pending")
-                {
-                    <div class="h-25 col-sm-15" capture-id="@itm.captureID">
-                        <a style="float:left; margin-right:3px" class="approve btn btn-success">Approve</a>
-                        <a style="float:left; margin-right:3px" class="reject btn btn-danger">Reject</a>
-                    </div>
-                }
-            <div class="h-25 col-sm-15" capture-id="@itm.captureID">
-                <a href="Details?id=@itm.captureID" class="btn btn-warning">Details</a>
+                <div class="row">
+                    <h6>@itm.User.FirstName @itm.User.LastName</h6>
+                </div>
+            </div>
+            @if (itm.Approval.ToString() == "Approve")
+            {
+                <div class="h-25 col-sm-15" capture-id="@itm.CaptureId">
+                    <a style="float:left; margin-right:3px" class="reject btn btn-danger"
+                       asp-action="DeleteFromPhotoStream"
+                       asp-controller="Admin"
+                       asp-route-id="@itm.CaptureId">Remove</a>
+                </div>
+            }
+            @if (itm.Approval.ToString() == "Pending")
+            {
+                <div class="h-25 col-sm-15" capture-id="@itm.CaptureId">
+                    <a style="float:left; margin-right:3px" class="approve btn btn-success">Approve</a>
+                    <a style="float:left; margin-right:3px" class="reject btn btn-danger">Reject</a>
+                </div>
+            }
+            <div class="h-25 col-sm-15" capture-id="@itm.CaptureId">
+                <a href="Details?id=@itm.CaptureId" class="btn btn-warning">Details</a>
             </div>
         </div>
-        </div>
- }
+    </div>
+}

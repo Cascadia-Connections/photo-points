@@ -1,6 +1,4 @@
 ﻿$(document).ready(function () {
-
-
     var setEditableEvents = function (elems) {
         elems.each(function () {
             var elem = $(this);
@@ -81,7 +79,6 @@
             if (e.which === 27)
                 closeTagger();
         })
-        
     });
 
     var editStatus = function (url, data) {
@@ -112,7 +109,6 @@
                 tags.push(tag);
             });
         } catch (e) {
-
         }
         return d;
     }

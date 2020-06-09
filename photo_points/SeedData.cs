@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Bogus;
+using Microsoft.Extensions.DependencyInjection;
+using photo_points.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bogus;
-using photo_points.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 
 namespace photo_points
 {
@@ -32,19 +31,19 @@ namespace photo_points
             var captures = new List<Capture> {
                 new Capture
                 {
-                    photo = imgdata,
-                    captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Pending,
-                    photoPoint=
-                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Oak Trees #1"),
-                    user=
+                    Photo = imgdata,
+                    CaptureDate = DateTime.Now,
+                    Approval=ApprovalStatus.Pending,
+                    PhotoPoint=
+                    CreatePhotoPoint(FeatureType.Leaves, "Oak Trees #1"),
+                    User=
                     CreateUser(),
-                    tags=new List<Tag>
+                    Tags=new List<Tag>
                     {
                         CreateTag("Leaves Falling"),
                         CreateTag("On Track")
                     },
-                    data=new List<Data>
+                    Data=new List<Data>
                     {
                        CreateData("Color", "Green"),
                        CreateData("Color", "Red"),
@@ -52,19 +51,19 @@ namespace photo_points
                 },
                   new Capture
                 {
-                    photo = imgdata1,
-                    captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Approve,
-                    photoPoint=
-                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "Fern"),
-                    user=
+                    Photo = imgdata1,
+                    CaptureDate = DateTime.Now,
+                    Approval=ApprovalStatus.Approve,
+                    PhotoPoint=
+                    CreatePhotoPoint(FeatureType.Leaves, "Fern"),
+                    User=
                     CreateUser(),
-                    tags=new List<Tag>
+                    Tags=new List<Tag>
                     {
                         CreateTag("New Fern"),
                         CreateTag("Fern Falling")
                     },
-                    data=new List<Data>
+                    Data=new List<Data>
                     {
                        CreateData("Color", "Green"),
                        CreateData("Style", "Solid"),
@@ -72,34 +71,34 @@ namespace photo_points
                 },
                     new Capture
                 {
-                    photo = imgdata2,
-                    captureDate = DateTime.Now,
-                    approval=Capture.ApprovalType.Pending,
-                    photoPoint=
-                    CreatePhotoPoint(PhotoPoint.FeatureType.Leaves, "BlackBerry"),
-                    user=CreateUser(),
-                    tags=new List<Tag>
+                    Photo = imgdata2,
+                    CaptureDate = DateTime.Now,
+                    Approval=ApprovalStatus.Pending,
+                    PhotoPoint=
+                    CreatePhotoPoint(FeatureType.Leaves, "BlackBerry"),
+                    User=CreateUser(),
+                    Tags=new List<Tag>
                     {
                         CreateTag("Leaves Falling"),
                         CreateTag("On Track")
                     },
-                    data=new List<Data>
+                    Data=new List<Data>
                     {
                        CreateData("Color", "Green"),
                        CreateData("Color", "Purple"),
                     }
                 },
-
             };
 
             await context.Captures.AddRangeAsync(captures);
             await context.SaveChangesAsync();
         }
+
         public static Data CreateData(string type, string value)
         {
             Data newData = new Data();
-            newData.type = type;
-            newData.value = value;
+            newData.Type = type;
+            newData.Value = value;
             return newData;
         }
 
@@ -108,30 +107,31 @@ namespace photo_points
             var faker = new Faker();
             var fakeUser = new User
             {
-                firstName = faker.Name.FirstName(),
-                lastName = faker.Name.LastName(),
-                email = faker.Internet.Email(),
-                password = faker.Internet.Password()
+                FirstName = faker.Name.FirstName(),
+                LastName = faker.Name.LastName(),
+                Email = faker.Internet.Email(),
+                Password = faker.Internet.Password()
             };
 
             return fakeUser;
         }
-        
+
         public static Tag CreateTag(string tagName)
         {
             Tag tag = new Tag
             {
-                tagName = tagName
+                TagName = tagName
             };
 
             return tag;
         }
-        public static PhotoPoint CreatePhotoPoint(PhotoPoint.FeatureType feature, string locationName)
+
+        public static PhotoPoint CreatePhotoPoint(FeatureType feature, string locationName)
         {
             PhotoPoint photoPoint = new PhotoPoint
             {
-                feature = feature,
-                locationName = locationName
+                Feature = feature,
+                LocationName = locationName
             };
 
             return photoPoint;

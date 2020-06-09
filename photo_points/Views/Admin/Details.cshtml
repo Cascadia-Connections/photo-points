@@ -3,80 +3,102 @@
 @{
     Layout = "_Layout";
     ViewBag.Title = "Details";
-    var editable = Model.approval.Equals(Capture.ApprovalType.Pending);
+    var editable = Model.Approval.Equals(ApprovalStatus.Pending);
     var editClass = editable ? "editable" : "";
-    var statusClass = Model.approval == Capture.ApprovalType.Pending ? "btn-warning" : Model.approval == Capture.ApprovalType.Approve ? "btn-success" : "btn-danger";
+    var statusClass = Model.Approval == ApprovalStatus.Pending ? "btn-warning" : Model.Approval == ApprovalStatus.Approve ? "btn-success" : "btn-danger";
 }
 
 <link rel="stylesheet" href="~/css/details.css">
 <script type="text/javascript" src="~/js/jsAutocomplete.js"></script>
 <script type="text/javascript" src="~/js/captureStatusButtons.js"></script>
+<script type="text/javascript" src="~/js/addNotes.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 <div class="left">
-    <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.photo))" />
+    <img src="@string.Format("data:{0}; base64,{1}", "img/jpeg", Convert.ToBase64String(Model.Photo))" />
 </div>
 <div class="right">
-    <h2>Capture @Model.captureID Details</h2>
-    <div class="detailsRow">Created on @Model.captureDate by User @Model.user.firstName @Model.user.lastName</div>
-    <div class="detailsRow">Linked Photo Point {#@Model.photoPoint.photoPointID} @Model.photoPoint.feature @Model.photoPoint.locationName</div>
-    <br />
-    <div class="detailsRow">
-        <div class="detailsTitle">Tags</div>
-        <div class="tagsWrapper">
-            <div>
-                <div class="addTag btn">Add Tag</div>
-                <div class="tagger hide"><label>Tag name<input type="text" class="tagName"></label></div>
-            </div>
-            <div class="tags">
-                @foreach (Tag tag in Model.tags)
-                {
-                    <div class="pill @editClass" data-type="tag" data-id="@tag.tagID">
-                        @if (editable)
-                        {
-                            <div class="delPill">x</div>
-                        }
-                        <div class="pillText">@tag.tagName</div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <br />
-    <div class="detailsRow">
-        <div class="detailsTitle">Data</div>
-        <div class="data">
-            @foreach (Data data in Model.data)
+   <h2>Capture @Model.CaptureId Details</h2>
+   <div class="detailsRow">Created on @Model.CaptureDate by User @Model.User.FirstName @Model.User.LastName</div>
+   <div class="detailsRow">Linked Photo Point {#@Model.PhotoPoint.PhotoPointID} @Model.PhotoPoint.Feature @Model.PhotoPoint.LocationName</div>
+   <br />
+   <div class="detailsRow">
+      <div class="detailsTitle">Tags</div>
+      <div class="tagsWrapper">
+         <div>
+            <div class="addTag btn">Add Tag</div>
+            <div class="tagger hide"><label>Tag name<input type="text" class="tagName"></label></div>
+         </div>
+         <div class="tags">
+            @foreach (Tag tag in Model.Tags)
             {
-                <div class="pill">
-                    <div class="dataType">
-                        <div class="pillText">@data.type</div>
-                    </div>
-                    <div class="dataValue">
-                        <div class="pillText">@data.value</div>
-                    </div>
-                </div>
+               <div class="pill @editClass" data-type="tag" data-id="@tag.TagID">
+                  @if (editable)
+                  {
+                     <div class="delPill">x</div>
+                  }
+                  <div class="pillText">@tag.TagName</div>
+               </div>
             }
-        </div>
-    </div>
-    <br />
-    <div class="detailsRow">
-        <div class="detailsTitle">Status</div>
-        <div class="btn @statusClass">@Model.approval</div>
-    </div>
-
-@if (editable)
-{
-    <br />
-    <div class="detailsRow">
-        <form id="captureChanges" action="EditCapture" method="post">
-            <div class="detailsTitle">Take Action</div>
-            <div capture-id="@Model.captureID">
-                <div class="approve btn btn-success">Approve</div>
-                <div class="reject btn btn-danger">Reject</div>
-                <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
+         </div>
+      </div>
+   </div>
+   <br />
+   <div class="detailsRow">
+      <div class="detailsTitle">Data</div>
+      <div class="data">
+         @foreach (Data data in Model.Data)
+         {
+            <div class="pill">
+               <div class="dataType">
+                  <div class="pillText">@data.Type</div>
+               </div>
+               <div class="dataValue">
+                  <div class="pillText">@data.Value</div>
+               </div>
             </div>
-        </form>
-    </div>
-}
+         }
+      </div>
+   </div>
+   <br />
+   <div class="detailsRow">
+      <div class="detailsTitle">Status</div>
+      <div class="btn @statusClass">@Model.Approval</div>
+   </div>
+
+   @if (editable)
+   {
+      <br />
+      <div class="detailsRow">
+         <form id="captureChanges" action="EditCapture" method="post">
+            <div class="detailsTitle">Take Action</div>
+            <div capture-id="@Model.CaptureId">
+               <div class="approve btn btn-success">Approve</div>
+               <div class="reject btn btn-danger">Reject</div>
+               <div onclick="window.history.back();" class="btn btn-warning">Discard Changes</div>
+            </div>
+         </form>
+      </div>
+
+      <br />
+
+      <div class="detailsRow">
+         <div class="detailsTitle">Notes</div>
+         <div>
+            <div id="displayComment"></div>
+            <div>
+               <input type="button" class="btn btn-danger" value="Delete" id="deleteComment" onclick="deleteComment()" />
+               <input type="button" class="btn btn-success" value="Update" id="updateComment" onclick="updateComment()" />
+            </div>
+            <br />
+            <div class="notesWrapper">
+               <form>
+                  <textarea rows="5" cols="30" name="notes" placeholder="Write your comment here" id="comment"></textarea> <br />
+                  <input type="button" value="Add Note" class="btn btn-success" id="submitComment" onclick="addComment()" />
+               </form>
+            </div>
+            <!--  <div class="btn btn-danger">Delete</div>  -->
+         </div>
+      </div>
+   }
 </div>

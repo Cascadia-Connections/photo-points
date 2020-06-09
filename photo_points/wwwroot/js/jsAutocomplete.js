@@ -155,7 +155,6 @@
     };
 
     Autocomplete.prototype = {
-
         initialize: function () {
             var that = this,
                 suggestionSelector = '.' + that.classes.suggestion,
@@ -276,7 +275,6 @@
 
             this.options = options;
         },
-
 
         clearCache: function () {
             this.cachedResponse = {};
