@@ -37,8 +37,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                <td>
-                    <a asp-action="UserTags" asp-route-id="@item.UserID">User's Tags</a>
+                <td> 
+                    @{
+                    if (item.UserTags.Count <= 0)
+                    { 
+                        <text>No Tags</text> 
+                    }
+
+                    else
+                    {
+                        <a asp-action="UserTagsList" asp-route-id="@item.UserID">User's Tags</a>
+                    }
+                    }
+
+
                 </td>
             </tr>
         }

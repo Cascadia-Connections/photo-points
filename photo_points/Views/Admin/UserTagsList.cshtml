@@ -3,10 +3,11 @@
 @{
     ViewData["Title"] = "UserTags";
 }
+@{
+    UserTag ut = Model.FirstOrDefault();
+}
+<h2>@ut.User.FirstName @ut.User.LastName's Tags</h2>
 
-<h2>User's Tags</h2>
-
-<h3>Edit Tags</h3>
 <table class="table">
     <thead>
         <tr>
@@ -14,7 +15,7 @@
                 Tag ID
             </th>
             <th>
-                User ID
+                Tag Name
             </th>
             <th></th>
         </tr>
@@ -27,7 +28,7 @@
                     @Html.DisplayFor(modelItem => item.TagID)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
+                    @Html.DisplayFor(modelItem => item.Tag.TagName)
                 </td>
             </tr>
         }

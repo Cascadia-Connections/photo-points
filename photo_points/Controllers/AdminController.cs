@@ -61,7 +61,7 @@ namespace photo_points.Controllers
                 }
             else
             {
-                ViewBag.LoginIssue = "There is something wrong with you password or email";
+                ViewBag.LoginIssue = "There is something wrong with your password or email";
                 return View();
             }
         }
@@ -176,30 +176,22 @@ namespace photo_points.Controllers
         [HttpGet]
         public IActionResult Collaborators()
         {           
-            var users = _dbc.Users;
+            var users = _dbc.Users.Include(u => u.UserTags);
             return View(users);            
         }
 
         [HttpGet]
-        public IActionResult UserTags(long id)
+        public IActionResult UserTagsList(long id)
         {
-            _dbc.Tags.Add(new Tag
-            {
-                TagName = "First flower",
-            });
-            _dbc.SaveChanges();
-            var tag = _dbc.Tags.First();
-            var user = _dbc.Users.First(u => u.UserID == id);
-            _dbc.UserTags.Update(new UserTag
-            {
-                UserID = id,
-                TagID = tag.TagID
-            });
+            var users = _dbc.Users.Include(u => u.UserTags);
 
-            _dbc.SaveChanges();
-            IEnumerable<UserTag> userTags = _dbc.UserTags;
+            IEnumerable<UserTag> userTags = _dbc.UserTags.Include(u => u.User).Include(u => u.Tag);
             IEnumerable<UserTag> thisUsersTags = userTags.Where(ut => ut.UserID == id);
-            return View("UserTags", userTags);
+            if (thisUsersTags.Count() <= 0)
+            {
+                return View("Collaborators", users);
+            }
+            return View("UserTagsList", thisUsersTags);
         }
 
         [HttpGet]

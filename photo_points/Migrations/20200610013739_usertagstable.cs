@@ -41,7 +41,7 @@ namespace photo_points.Migrations
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
                 });
-
+            
             migrationBuilder.CreateIndex(
                 name: "IX_UserTags_TagID",
                 table: "UserTags",
