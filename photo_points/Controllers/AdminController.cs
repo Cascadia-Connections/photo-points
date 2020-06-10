@@ -175,8 +175,31 @@ namespace photo_points.Controllers
 
         [HttpGet]
         public IActionResult Collaborators()
+        {           
+            var users = _dbc.Users;
+            return View(users);            
+        }
+
+        [HttpGet]
+        public IActionResult UserTags(long id)
         {
-            return View("Collaborators");
+            _dbc.Tags.Add(new Tag
+            {
+                TagName = "First flower",
+            });
+            _dbc.SaveChanges();
+            var tag = _dbc.Tags.First();
+            var user = _dbc.Users.First(u => u.UserID == id);
+            _dbc.UserTags.Update(new UserTag
+            {
+                UserID = id,
+                TagID = tag.TagID
+            });
+
+            _dbc.SaveChanges();
+            IEnumerable<UserTag> userTags = _dbc.UserTags;
+            IEnumerable<UserTag> thisUsersTags = userTags.Where(ut => ut.UserID == id);
+            return View("UserTags", userTags);
         }
 
         [HttpGet]

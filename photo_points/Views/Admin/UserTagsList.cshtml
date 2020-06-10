@@ -1,0 +1,35 @@
+﻿@model IEnumerable<photo_points.Models.UserTag>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "UserTags";
+}
+
+<h2>User's Tags</h2>
+
+<h3>Edit Tags</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tag ID
+            </th>
+            <th>
+                User ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TagID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserID)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

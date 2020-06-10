@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace photo_points.Models
 {
@@ -9,8 +10,7 @@ namespace photo_points.Models
         [Display(Name = "Tag Name")]
         [Required(ErrorMessage = "Tag name is required.")]
         public string TagName { get; set; }
-
-        public User User { get; set; }
         public Capture Capture { get; set; }
+        public ICollection<UserTag> UserTags {get; set;}
     }
 }
