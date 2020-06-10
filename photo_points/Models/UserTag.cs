@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace photo_points.Models
 {
-    [Table("UserTag")]
+
     public class UserTag
     {
-        public long tagID { get; set; }
+        public long TagID { get; set; }
         public Tag Tag { get; set; }
 
-        public long userID { get; set; }
+        public long UserID { get; set; }
         public User User { get; set; }
     }
 }

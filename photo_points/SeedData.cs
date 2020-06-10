@@ -40,7 +40,7 @@ namespace photo_points
                     CreateUser(),
                     Tags=new List<Tag>
                     {
-                        CreateTag("Leaves Falling"),
+                        CreateTag("Leaves Falling, Cherry Tree"),
                         CreateTag("On Track")
                     },
                     Data=new List<Data>
@@ -61,7 +61,7 @@ namespace photo_points
                     Tags=new List<Tag>
                     {
                         CreateTag("New Fern"),
-                        CreateTag("Fern Falling")
+                        CreateTag("Fern Falling, Sword Fern")
                     },
                     Data=new List<Data>
                     {
@@ -76,10 +76,11 @@ namespace photo_points
                     Approval=ApprovalStatus.Pending,
                     PhotoPoint=
                     CreatePhotoPoint(FeatureType.Leaves, "BlackBerry"),
-                    User=CreateUser(),
+                    User=
+                    CreateUser(),
                     Tags=new List<Tag>
                     {
-                        CreateTag("Leaves Falling"),
+                        CreateTag("Leaves Falling, Maple Tree"),
                         CreateTag("On Track")
                     },
                     Data=new List<Data>
@@ -87,10 +88,15 @@ namespace photo_points
                        CreateData("Color", "Green"),
                        CreateData("Color", "Purple"),
                     }
-                },
+                }
             };
 
+            List<UserTag> list = CreateUserTags();
+
             await context.Captures.AddRangeAsync(captures);
+            await context.SaveChangesAsync();
+
+            await context.UserTags.AddRangeAsync(list);
             await context.SaveChangesAsync();
         }
 
@@ -110,7 +116,7 @@ namespace photo_points
                 FirstName = faker.Name.FirstName(),
                 LastName = faker.Name.LastName(),
                 Email = faker.Internet.Email(),
-                Password = faker.Internet.Password()
+                Password = faker.Internet.Password(),
             };
 
             return fakeUser;
@@ -124,6 +130,39 @@ namespace photo_points
             };
 
             return tag;
+        }
+
+        public static List<UserTag> CreateUserTags()
+        {
+            List<UserTag> userTags = new List<UserTag>
+            {
+                new UserTag
+                {
+                    UserID = 1,
+                    TagID = 1
+                },
+                new UserTag
+                {
+                    UserID = 1,
+                    TagID = 2
+                },
+                new UserTag
+                {
+                    UserID = 1,
+                    TagID = 3
+                },
+                new UserTag
+                {
+                    UserID = 1,
+                    TagID = 4
+                },
+                new UserTag
+                {
+                    UserID = 1,
+                    TagID = 5
+                }
+            };
+            return userTags;
         }
 
         public static PhotoPoint CreatePhotoPoint(FeatureType feature, string locationName)
