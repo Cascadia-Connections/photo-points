@@ -61,7 +61,7 @@ namespace photo_points.Controllers
                 }
             else
             {
-                ViewBag.LoginIssue = "There is something wrong with you password or email";
+                ViewBag.LoginIssue = "There is something wrong with your password or email";
                 return View();
             }
         }
@@ -175,8 +175,23 @@ namespace photo_points.Controllers
 
         [HttpGet]
         public IActionResult Collaborators()
+        {           
+            var users = _dbc.Users.Include(u => u.UserTags);
+            return View(users);            
+        }
+
+        [HttpGet]
+        public IActionResult UserTagsList(long id)
         {
-            return View("Collaborators");
+            var users = _dbc.Users.Include(u => u.UserTags);
+
+            IEnumerable<UserTag> userTags = _dbc.UserTags.Include(u => u.User).Include(u => u.Tag);
+            IEnumerable<UserTag> thisUsersTags = userTags.Where(ut => ut.UserID == id);
+            if (thisUsersTags.Count() <= 0)
+            {
+                return View("Collaborators", users);
+            }
+            return View("UserTagsList", thisUsersTags);
         }
 
         [HttpGet]

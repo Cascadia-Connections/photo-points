@@ -24,6 +24,6 @@ namespace photo_points.Models
         public string Password { get; set; }
         public Role Role { get; set; }
         public ICollection<Capture> Captures { get; set; }
-        public ICollection<Tag> Tags { get; set; }
+        public ICollection<UserTag> UserTags { get; set; }
     }
 }
