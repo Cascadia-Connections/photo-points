@@ -60,7 +60,7 @@
 
         input.autocomplete({
             autoFocus: true,
-            source: ["one", "two", "three", "four"],
+            source: ["Fern Growth", "two", "three", "four"],
             select: function (event, ui) {
                 selected = true;
                 // create, append, events new tag

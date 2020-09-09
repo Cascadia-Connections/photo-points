@@ -51,6 +51,7 @@ body {
 
 .main-body {
     padding: 0.8em;
+    padding-bottom: 80px;
 }
 
 /*'Title' Administrative view on Landing Page*/
@@ -61,11 +62,6 @@ body {
     border-color: white;*/
     padding: 0.5em;
     /*float:inherit;*/
-}
-
-.main-body {
-    padding: 0.8em;
-    /*    float:left;*/
 }
 
 .pending-update {
@@ -109,10 +105,6 @@ body {
     .pending-update {
         margin-bottom: 2px;
     }
-
-    /*.footer{
-        margin-bottom: -20px;
-    }*/
 }
 
 .form-control {
