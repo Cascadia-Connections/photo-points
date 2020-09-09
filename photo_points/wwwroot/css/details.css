@@ -10,9 +10,9 @@
     height: 33px;
 }
 
-    .tags:empty::after {
-        content: "No Tags";
-    }
+.tags:empty::after {
+    content: "No Tags";
+}
 
 .img {
     border: 5px solid blue;

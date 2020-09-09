@@ -20,6 +20,16 @@
     left: auto;
 }
 
+.results {
+    /* Consider adding background color for text readability.*/
+    /*border-top: solid;
+    border-left: hidden;*/
+    border-width: 1px;
+    border-color: darkslategrey;
+    margin-top: 15px;
+
+}
+
 .card-body-sm {
     float: left;
     width: 300px;
