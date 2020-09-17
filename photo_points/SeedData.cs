@@ -45,11 +45,6 @@ namespace photo_points
                         CreateTag("Leaves Falling, Cherry Tree"),
                         CreateTag("On Track")
                     },
-                    Data=new List<Data>
-                    {
-                       CreateData("Color", "Green"),
-                       CreateData("Color", "Red"),
-                    }
                 },
                   new Capture
                 {
@@ -65,11 +60,6 @@ namespace photo_points
                         CreateTag("New Fern"),
                         CreateTag("Fern Falling, Sword Fern")
                     },
-                    Data=new List<Data>
-                    {
-                       CreateData("Color", "Green"),
-                       CreateData("Style", "Solid"),
-                    }
                 },
                     new Capture
                 {
@@ -85,20 +75,19 @@ namespace photo_points
                         CreateTag("Leaves Falling, Maple Tree"),
                         CreateTag("On Track")
                     },
-                    Data=new List<Data>
-                    {
-                       CreateData("Color", "Green"),
-                       CreateData("Color", "Purple"),
-                    }
                 }
             };
 
-            List<UserTag> list = CreateUserTags();
+            List<UserTag> uTags = CreateUserTags();
+            List<CaptureData> cDatas = CreateCaptureDatas();
 
             await context.Captures.AddRangeAsync(captures);
             await context.SaveChangesAsync();
 
-            await context.UserTags.AddRangeAsync(list);
+            await context.UserTags.AddRangeAsync(uTags);
+            await context.SaveChangesAsync();
+
+            await context.CaptureDatas.AddRangeAsync(cDatas);
             await context.SaveChangesAsync();
         }
 
@@ -165,6 +154,39 @@ namespace photo_points
                 }
             };
             return userTags;
+        }
+
+        public static List<CaptureData> CreateCaptureDatas()
+        {
+            List<CaptureData> captureDatas = new List<CaptureData>
+            {
+                new CaptureData
+                {
+                    CaptureID = 1,
+                    DataID = 1
+                },
+                new CaptureData
+                {
+                    CaptureID = 1,
+                    DataID = 2
+                },
+                new CaptureData
+                {
+                    CaptureID = 1,
+                    DataID = 3
+                },
+                new CaptureData
+                {
+                    CaptureID = 1,
+                    DataID = 4
+                },
+                new CaptureData
+                {
+                    CaptureID = 2,
+                    DataID = 1
+                },
+            };
+            return captureDatas;
         }
 
         public static PhotoPoint CreatePhotoPoint(FeatureType feature, string locationName)

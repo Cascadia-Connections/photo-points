@@ -17,10 +17,9 @@ namespace photo_points.Models
 
         //Determines whether a photo should be displayed.
         public ApprovalStatus Approval { get; set; }
-
-        public ICollection<Data> Data { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public User User { get; set; }
         public PhotoPoint PhotoPoint { get; set; }
+        public ICollection<CaptureData> CaptureDatas { get; set; }
     }
 }

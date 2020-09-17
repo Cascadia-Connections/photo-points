@@ -8,9 +8,9 @@ namespace photo_points.Models
 {
     public class Note
     {
-        public long noteID { get; set; }
+        public long NoteID { get; set; }
         [Display(Name = "Add Note")]
-        public string noteComment { get; set; }
+        public string NoteComment { get; set; }
         public Capture Capture { get; set; }
     }
 }

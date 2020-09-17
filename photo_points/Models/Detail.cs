@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace photo_points.Models
 {
-    public class Data
+    public class Detail
     {
-        public long DataID { get; set; }
+        public long DetailID { get; set; }
 
         [Display(Name = "Data Type")]
         public string Type { get; set; }
@@ -15,6 +14,7 @@ namespace photo_points.Models
 
         [Display(Name = "Comments")]
         public string Comment { get; set; }
-        public ICollection<CaptureData> CaptureDatas { get; set; }
+
+        public Capture Capture { get; set; }
     }
 }

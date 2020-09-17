@@ -20,6 +20,7 @@ namespace photo_points.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Note> Notes { get; set; }
         public DbSet<UserTag> UserTags { get; set; }
+        public DbSet<CaptureData> CaptureDatas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +34,17 @@ namespace photo_points.Models
                 .HasOne(bc => bc.Tag)
                 .WithMany(c => c.UserTags)
                 .HasForeignKey(bc => bc.TagID);
+
+            modelBuilder.Entity<CaptureData>()
+    .HasKey(cd => new { cd.CaptureID, cd.DataID });
+            modelBuilder.Entity<CaptureData>()
+                .HasOne(cd => cd.Capture)
+                .WithMany(e => e.CaptureDatas)
+                .HasForeignKey(bc => bc.CaptureID);
+            modelBuilder.Entity<CaptureData>()
+                .HasOne(bc => bc.Data)
+                .WithMany(c => c.CaptureDatas)
+                .HasForeignKey(bc => bc.DataID);
         }
 
         //TODO: on VS-MAC use the reference https://www.ciclosoftware.com/2018/03/14/sql-server-with-net-core-and-entityframework-on-mac/

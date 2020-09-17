@@ -47,14 +47,14 @@
    <div class="detailsRow">
       <div class="detailsTitle">Data</div>
       <div class="data">
-         @foreach (Data data in Model.Data)
+         @foreach (CaptureData cData in Model.CaptureDatas)
          {
             <div class="pill">
                <div class="dataType">
-                  <div class="pillText">@data.Type</div>
+                  <div class="pillText">@cData.Data.Type</div>
                </div>
                <div class="dataValue">
-                  <div class="pillText">@data.Value</div>
+                  <div class="pillText">@cData.Data.Value</div>
                </div>
             </div>
          }
