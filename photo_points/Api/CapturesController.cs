@@ -46,7 +46,6 @@ namespace photo_points.Api
             Capture capture = new Capture { }; 
             capture = captures.Where(c => c.CaptureId == id).FirstOrDefault();
                 
-
             if (capture == null)
             {
                 return NotFound();
