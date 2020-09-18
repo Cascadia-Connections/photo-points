@@ -27,7 +27,7 @@ namespace photo_points.Api
             return await _context.Captures
                 //.Include(c=>c.User.FirstName)
                 .Include(c=>c.Datas)
-                //.Include(c=>c.PhotoPoint)
+                .Include(c=>c.PhotoPoint)
                 .Include(c=>c.Tags)
                 .ToListAsync();
         }
