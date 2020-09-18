@@ -79,7 +79,7 @@ namespace photo_points
             };
 
             List<UserTag> uTags = CreateUserTags();
-            List<CaptureData> cDatas = CreateCaptureDatas();
+            List<Data> datas = CreateDatas();
 
             await context.Captures.AddRangeAsync(captures);
             await context.SaveChangesAsync();
@@ -87,15 +87,18 @@ namespace photo_points
             await context.UserTags.AddRangeAsync(uTags);
             await context.SaveChangesAsync();
 
-            await context.CaptureDatas.AddRangeAsync(cDatas);
+            await context.Datas.AddRangeAsync(datas);
             await context.SaveChangesAsync();
         }
 
-        public static Data CreateData(string type, string value)
+        public static Data CreateData(long cid, string type, string value)
         {
-            Data newData = new Data();
-            newData.Type = type;
-            newData.Value = value;
+            Data newData = new Data
+            {
+                CaptureId = cid,
+                Type = type,
+                Value = value
+            };
             return newData;
         }
 
@@ -156,37 +159,19 @@ namespace photo_points
             return userTags;
         }
 
-        public static List<CaptureData> CreateCaptureDatas()
+        public static List<Data> CreateDatas()
         {
-            List<CaptureData> captureDatas = new List<CaptureData>
+            List<Data> datas = new List<Data>
             {
-                new CaptureData
-                {
-                    CaptureID = 1,
-                    DataID = 1
-                },
-                new CaptureData
-                {
-                    CaptureID = 1,
-                    DataID = 2
-                },
-                new CaptureData
-                {
-                    CaptureID = 1,
-                    DataID = 3
-                },
-                new CaptureData
-                {
-                    CaptureID = 1,
-                    DataID = 4
-                },
-                new CaptureData
-                {
-                    CaptureID = 2,
-                    DataID = 1
-                },
+                CreateData(1, "Stream Width", "30cm"),
+                CreateData(1, "Stream Length", "30m"),
+                CreateData(1, "Stream Depth", "1m"),
+                CreateData(2, "Stem Width", "3cm"),
+                CreateData(2, "Stem Length", "35cm"),
+                CreateData(2, "Stem Flowers", "3"),
+                CreateData(2, "Stem Color", "Greenish Yellow")
             };
-            return captureDatas;
+            return datas;
         }
 
         public static PhotoPoint CreatePhotoPoint(FeatureType feature, string locationName)
@@ -196,7 +181,6 @@ namespace photo_points
                 Feature = feature,
                 LocationName = locationName
             };
-
             return photoPoint;
         }
     }

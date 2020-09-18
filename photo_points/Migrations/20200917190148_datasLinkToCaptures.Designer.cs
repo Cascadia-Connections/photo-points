@@ -10,8 +10,8 @@ using photo_points.Models;
 namespace photo_points.Migrations
 {
     [DbContext(typeof(PhotoDataContext))]
-    [Migration("20200917181629_capturedatas")]
-    partial class capturedatas
+    [Migration("20200917190148_datasLinkToCaptures")]
+    partial class datasLinkToCaptures
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,27 +53,15 @@ namespace photo_points.Migrations
                     b.ToTable("Captures");
                 });
 
-            modelBuilder.Entity("photo_points.Models.CaptureData", b =>
-                {
-                    b.Property<long>("CaptureID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("DataID")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("CaptureID", "DataID");
-
-                    b.HasIndex("DataID");
-
-                    b.ToTable("CaptureDatas");
-                });
-
             modelBuilder.Entity("photo_points.Models.Data", b =>
                 {
                     b.Property<long>("DataID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("CaptureID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
@@ -85,6 +73,8 @@ namespace photo_points.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("DataID");
+
+                    b.HasIndex("CaptureID");
 
                     b.ToTable("Datas");
                 });
@@ -205,17 +195,11 @@ namespace photo_points.Migrations
                         .HasForeignKey("UserID");
                 });
 
-            modelBuilder.Entity("photo_points.Models.CaptureData", b =>
+            modelBuilder.Entity("photo_points.Models.Data", b =>
                 {
-                    b.HasOne("photo_points.Models.Capture", "Capture")
-                        .WithMany("CaptureDatas")
+                    b.HasOne("photo_points.Models.Capture", null)
+                        .WithMany("Datas")
                         .HasForeignKey("CaptureID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("photo_points.Models.Data", "Data")
-                        .WithMany("CaptureDatas")
-                        .HasForeignKey("DataID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

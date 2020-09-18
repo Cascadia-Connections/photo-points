@@ -20,6 +20,6 @@ namespace photo_points.Models
         public ICollection<Tag> Tags { get; set; }
         public User User { get; set; }
         public PhotoPoint PhotoPoint { get; set; }
-        public ICollection<CaptureData> CaptureDatas { get; set; }
+        public ICollection<Data> Datas { get; set; }
     }
 }

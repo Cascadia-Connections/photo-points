@@ -25,9 +25,9 @@ namespace photo_points.Api
         public async Task<ActionResult<IEnumerable<Capture>>> GetCaptures()
         {
             return await _context.Captures
-                .Include(c=>c.User.FirstName)
-                .Include(c=>c.CaptureDatas)
-                .Include(c=>c.PhotoPoint)
+                //.Include(c=>c.User.FirstName)
+                .Include(c=>c.Datas)
+                //.Include(c=>c.PhotoPoint)
                 .Include(c=>c.Tags)
                 .ToListAsync();
         }

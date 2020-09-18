@@ -15,6 +15,6 @@ namespace photo_points.Models
 
         [Display(Name = "Comments")]
         public string Comment { get; set; }
-        public ICollection<CaptureData> CaptureDatas { get; set; }
+        public long CaptureId { get; set; }
     }
 }
