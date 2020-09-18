@@ -13,7 +13,7 @@ namespace photo_points.Models
 
         public FeatureType Feature { get; set; }
 
-        public ICollection<Capture> Captures { get; set; }
+        //public ICollection<Capture> Captures { get; set; }
 
         //Designate the feature type.
     }

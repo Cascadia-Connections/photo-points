@@ -25,10 +25,10 @@ namespace photo_points.Api
         public async Task<ActionResult<IEnumerable<Capture>>> GetCaptures()
         {
             return await _context.Captures
-                //.Include(c=>c.User.FirstName)
-                .Include(c=>c.Datas)
-                .Include(c=>c.PhotoPoint)
-                .Include(c=>c.Tags)
+                .Include(c => c.User)
+                .Include(c => c.Datas)
+                .Include(c => c.PhotoPoint)
+                .Include(c => c.Tags)
                 .ToListAsync();
         }
 
@@ -36,7 +36,16 @@ namespace photo_points.Api
         [HttpGet("{id}")]
         public async Task<ActionResult<Capture>> GetCapture(long id)
         {
-            var capture = await _context.Captures.FindAsync(id);
+            var captures = await _context.Captures
+                .Include(c => c.User)
+                .Include(c => c.Datas)
+                .Include(c => c.PhotoPoint)
+                .Include(c => c.Tags)
+                .ToListAsync();
+
+            Capture capture = new Capture { }; 
+            capture = captures.Where(c => c.CaptureId == id).FirstOrDefault();
+                
 
             if (capture == null)
             {
