@@ -7,7 +7,6 @@ namespace photo_points.Models
     public class Capture
     {
         public long CaptureId { get; set; }
-
         [Display(Name = "Upload Photo")]
         [Required(ErrorMessage = "Must add a photo.")]
         [DataType(DataType.ImageUrl)]
