@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace photo_points.Models
 {
@@ -12,8 +13,6 @@ namespace photo_points.Models
         public string LocationName { get; set; }
 
         public FeatureType Feature { get; set; }
-
-        //public ICollection<Capture> Captures { get; set; }
 
         //Designate the feature type.
     }

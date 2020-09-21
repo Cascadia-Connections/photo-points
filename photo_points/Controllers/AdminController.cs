@@ -67,15 +67,6 @@ namespace photo_points.Controllers
         }
 
         //[HttpGet]
-        //public IActionResult PhotoStream()
-        //{
-        //    IQueryable<PhotoPoint> photos = _dbc.PhotoPoints
-        //        .OrderBy(p => p.photoPointID)
-        //        .Take(10);
-        //    return View("PhotoStream", photos);
-        //}
-
-        //[HttpGet]
         //public IActionResult DeleteFromPhotoStream(long id)
         //{
         //    //Remove the Photo associated with the given id number; Save Changes
@@ -84,13 +75,6 @@ namespace photo_points.Controllers
         //    _dbc.SaveChanges();
 
         //    return RedirectToAction("PhotoStream");
-        //}
-
-
-        //[HttpGet]
-        //public IActionResult Pending()
-        //{
-        //    return View("Pending", new PendingViewModel { PendingCaptures = _adminReviewServices.GetUnapprovedCaptures().ToList() });
         //}
 
         [HttpGet]

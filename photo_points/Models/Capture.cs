@@ -9,14 +9,11 @@ namespace photo_points.Models
         public long CaptureId { get; set; }
 
         [Display(Name = "Upload Photo")]
-        //[Required(ErrorMessage = "Must add a photo.")]
+        [Required(ErrorMessage = "Must add a photo.")]
         [DataType(DataType.ImageUrl)]
         public byte[] Photo { get; set; }
-
         public DateTime CaptureDate { get; set; }
-
-        //Determines whether a photo should be displayed.
-        public ApprovalStatus Approval { get; set; }
+        public ApprovalStatus Approval { get; set; }    //Determines whether a photo should be displayed.
         public ICollection<Tag> Tags { get; set; }
         public User User { get; set; }
         public PhotoPoint PhotoPoint { get; set; }
